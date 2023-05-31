@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Moneta Test</string>
+
+    <string name="title_player_detail">Player detail</string>
+    <string name="title_about">Player detail</string>
+
+    <string name="menu_Item_home">Home</string>
+    <string name="menu_item_about">About</string>
+</resources>
