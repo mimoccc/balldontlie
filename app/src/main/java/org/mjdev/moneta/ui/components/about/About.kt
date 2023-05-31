@@ -16,11 +16,12 @@ import androidx.compose.ui.unit.dp
 import org.mjdev.moneta.R
 import org.mjdev.moneta.base.ui.CircleImage
 import org.mjdev.moneta.base.ui.HtmlTextView
+import org.mjdev.moneta.ui.theme.grayLight
 
 @Preview(showBackground = true)
 @Composable
 fun About(
-    textColor: Color = Color.White
+    textColor: Color = grayLight
 ) {
     Column(
         modifier = Modifier

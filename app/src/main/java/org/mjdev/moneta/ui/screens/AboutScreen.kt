@@ -5,8 +5,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.Build
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -41,14 +39,11 @@ class AboutScreen : Screen() {
         backStackEntry: NavBackStackEntry?,
         menuItems: List<MenuItem>
     ) {
-
         ScreenView(
             navController = navController,
             title = stringResource(titleResId),
         ) { state, padding ->
-
             state.setIsNotLoading()
-
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -56,9 +51,7 @@ class AboutScreen : Screen() {
             ) {
                 About()
             }
-
         }
-
     }
 
 }

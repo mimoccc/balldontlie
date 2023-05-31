@@ -32,10 +32,6 @@ data class Player(
 
     ) {
 
-    constructor(fullName: String) : this() {
-        this.fullName = fullName
-    }
-
     var fullName: String
         get() = "${if (firstName == null) "" else firstName} ${if (lastName == null) "" else lastName}".trim()
         set(value) {

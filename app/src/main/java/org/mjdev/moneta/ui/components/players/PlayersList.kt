@@ -1,31 +1,33 @@
 package org.mjdev.moneta.ui.components.players
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import kotlinx.coroutines.flow.MutableStateFlow
 import org.mjdev.moneta.model.Player
 import org.mjdev.moneta.base.ui.PagingList
+import org.mjdev.moneta.mock.Mock
 import org.mjdev.moneta.ui.theme.black
 import org.mjdev.moneta.ui.theme.grayDark
 import org.mjdev.moneta.ui.theme.grayLight
 
-@Suppress("UNCHECKED_CAST")
+@SuppressLint("ModifierParameter")
 @Preview(showBackground = true)
 @Composable
 fun PlayersList(
-    playersData: LazyPagingItems<Player>? = MutableStateFlow(PagingData.from(listOf()))
-        .collectAsLazyPagingItems() as? LazyPagingItems<Player>?,
+    modifier: Modifier = Modifier.fillMaxSize(),
+    playersData: LazyPagingItems<Player>? = Mock.playersFlow().collectAsLazyPagingItems(),
     onItemClick: (data: Player?) -> Unit = {}
 ) {
     PagingList(
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp),
         data = playersData,
         onItemClick = onItemClick

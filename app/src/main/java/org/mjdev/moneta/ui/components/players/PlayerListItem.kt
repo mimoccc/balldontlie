@@ -20,13 +20,14 @@ import androidx.compose.ui.unit.dp
 import org.mjdev.moneta.R
 import org.mjdev.moneta.model.Player
 import org.mjdev.moneta.base.ui.CircleImage
+import org.mjdev.moneta.mock.Mock
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
 fun PlayerListItem(
     idx: Int? = 0,
-    item: Player? = Player("Test player"),
+    item: Player? = Mock.player(),
     onItemClick: (data: Player?) -> Unit = {},
     backgroundColor: Color = MaterialTheme.colorScheme.surface,
     textColor: Color = MaterialTheme.colorScheme.tertiary,

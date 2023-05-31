@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -22,6 +21,7 @@ import org.mjdev.moneta.base.navigation.MenuItem
 import org.mjdev.moneta.base.navigation.Screen
 import org.mjdev.moneta.base.navigation.StartDestination
 import org.mjdev.moneta.base.ui.ScreenView
+import org.mjdev.moneta.mock.Mock
 import org.mjdev.moneta.ui.components.players.PlayersList
 import org.mjdev.moneta.viewmodel.MainViewModel
 
@@ -47,21 +47,23 @@ class MainScreen : Screen() {
         menuItems: List<MenuItem>
     ) {
 
-        val viewModel: MainViewModel? = hiltViewModel()
-        val playersData = remember { viewModel?.players() }?.collectAsLazyPagingItems()
+        val viewModel: MainViewModel = hiltViewModel()
+        val playersData = remember {
+            if (viewModel.isMock) Mock.playersFlow(0, 25)
+            else viewModel.players()
+        }?.collectAsLazyPagingItems()
 
         ScreenView(
             navController = navController,
             title = stringResource(titleResId),
             menuItems = menuItems
         ) { state, padding ->
-
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
             ) {
-                viewModel?.handleError { error ->
+                viewModel.handleError { error ->
                     state.error(error)
                 }
                 playersData?.loadState?.refresh?.also { loadState ->

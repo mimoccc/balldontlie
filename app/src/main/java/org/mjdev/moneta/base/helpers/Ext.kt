@@ -17,8 +17,11 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.NavigatorProvider
 import androidx.navigation.compose.composable
+import org.mjdev.moneta.BuildConfig
 import org.mjdev.moneta.base.navigation.NavGraphBuilderEx
 import org.mjdev.moneta.base.navigation.Screen
+import timber.log.Timber
+import kotlin.reflect.KClass
 
 object Ext {
 
@@ -77,14 +80,23 @@ object Ext {
             "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
         },
         crossinline initBlock: VM.() -> Unit = {}
-    ): VM? {
+    ): VM {
         val context = LocalContext.current
-        return if (context !is Activity) null else viewModel<VM>(
+        return if (context !is Activity)
+            createMockViewModel()
+        else viewModel<VM>(
             viewModelStoreOwner = viewModelStoreOwner,
             factory = createHiltViewModelFactory(viewModelStoreOwner)
         ).apply {
             initBlock(this)
         }
+    }
+
+    // todo may be not working on render view
+    inline fun <reified VM> createMockViewModel(): VM {
+        return VM::class.constructors.firstOrNull {
+            it.parameters.isEmpty()
+        }?.call() as VM
     }
 
     @Composable

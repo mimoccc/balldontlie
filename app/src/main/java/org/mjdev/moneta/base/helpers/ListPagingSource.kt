@@ -56,9 +56,9 @@ class ListPagingSource<T : Any>(
         fun <T : Any> pagerList(
             cnt: Long = 8,
             source: suspend (page: Long, cnt: Long) -> List<T>
-        ) = pagerResult(cnt) { p, c ->
+        ) = pagerResult(cnt) { page, count ->
             try {
-                Result.success(source(p, c))
+                Result.success(source(page, count))
             } catch (e: Exception) {
                 Result.failure(e)
             }

@@ -101,7 +101,7 @@ fun ScreenView(
                             },
                             selected = false,
                             onClick = {
-                                selectedItem.value = menuItems.get(idx)
+                                selectedItem.value = menuItems[idx]
                                 scope.launch {
                                     drawerState.close()
                                 }

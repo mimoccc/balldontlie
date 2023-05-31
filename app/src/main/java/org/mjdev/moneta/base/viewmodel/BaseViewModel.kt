@@ -1,12 +1,15 @@
 package org.mjdev.moneta.base.viewmodel
 
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.runBlocking
 import org.mjdev.moneta.error.ApiError
 import org.mjdev.moneta.error.EmptyError
 import timber.log.Timber
+import kotlin.coroutines.CoroutineContext
 
 open class BaseViewModel : ViewModel() {
 
@@ -28,13 +31,25 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
-    protected fun <T> runSafe(block: suspend () -> T) = flow {
+    protected fun <T> runSafeFlow(block: suspend () -> T) = flow {
         try {
             emit(block.invoke())
         } catch (t: Throwable) {
             onError(t)
         }
     }
+
+    @Suppress("UNCHECKED_CAST")
+    protected fun <T> runSafe(
+        coroutineContext: CoroutineContext = Dispatchers.IO,
+        block: suspend () -> T
+    ) : T? = runBlocking(coroutineContext) {
+        try {
+            block.invoke()
+        } catch (t: Throwable) {
+            onError(t)
+        }
+    } as? T?
 
     fun handleError(block: (error: Throwable) -> Unit) {
         errorHandler = block

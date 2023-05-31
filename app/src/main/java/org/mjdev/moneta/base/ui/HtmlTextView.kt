@@ -22,16 +22,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.widget.TextViewCompat
+import org.mjdev.moneta.R
 
+@Preview(showBackground = true)
 @Composable
 fun HtmlTextView(
     modifier: Modifier = Modifier,
-    @StringRes htmlStringResource: Int,
-    color: Color = Color.Unspecified,
+    @StringRes htmlStringResource: Int = R.string.webpage,
+    color: Color = MaterialTheme.colorScheme.tertiary,
     fontSize: TextUnit = TextUnit.Unspecified,
     fontStyle: FontStyle? = null,
     fontWeight: FontWeight? = null,
@@ -70,10 +72,11 @@ fun HtmlTextView(
     )
 }
 
+@Preview(showBackground = true)
 @Composable
 fun HtmlTextView(
     modifier: Modifier = Modifier,
-    html: String,
+    html: String = "test",
     color: Color = MaterialTheme.colorScheme.tertiary,
     fontSize: TextUnit = TextUnit.Unspecified,
     fontStyle: FontStyle? = null,

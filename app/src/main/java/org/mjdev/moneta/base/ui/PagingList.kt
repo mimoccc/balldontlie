@@ -12,6 +12,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import kotlinx.coroutines.flow.MutableStateFlow
+import org.mjdev.moneta.mock.Mock
 
 @Suppress("UNCHECKED_CAST", "UNUSED_ANONYMOUS_PARAMETER")
 @Preview(showBackground = true)
@@ -19,7 +20,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 fun <T : Any> PagingList(
     modifier: Modifier = Modifier,
     verticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.spacedBy(8.dp),
-    data: LazyPagingItems<T>? = MutableStateFlow(PagingData.from(listOf()))
+    data: LazyPagingItems<T>? = MutableStateFlow(PagingData.from(Mock.players()))
         .collectAsLazyPagingItems() as LazyPagingItems<T>,
     onItemClick: (data: T?) -> Unit = {},
     itemBlock: @Composable (
