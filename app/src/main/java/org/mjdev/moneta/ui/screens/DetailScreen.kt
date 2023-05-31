@@ -47,7 +47,7 @@ class DetailScreen : Screen() {
 
         val viewModel: DetailViewModel = hiltViewModel()
         val playerId = backStackEntry?.arg(argPlayerId, -1) ?: -1
-        val playerData: State<Player?> = if (viewModel.isMock) Mock.playerState(0)
+        val playerData: State<Player?> = if (viewModel.isMock) Mock.playerState(playerId)
         else remember { viewModel.player(playerId) }.collectAsState(Player())
         val player = playerData.value
 

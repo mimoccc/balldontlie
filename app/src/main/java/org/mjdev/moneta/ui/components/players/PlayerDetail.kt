@@ -20,7 +20,7 @@ import org.mjdev.moneta.model.Player
 @Composable
 fun PlayerDetail(
     modifier: Modifier = Modifier,
-    playerData: Player? = Mock.player(),
+    playerData: Player? = Mock.player(1),
     backgroundColor: Color = MaterialTheme.colorScheme.surface,
     textColor: Color = MaterialTheme.colorScheme.tertiary,
     circleImageColor: Color = MaterialTheme.colorScheme.tertiary,
