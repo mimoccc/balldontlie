@@ -7,6 +7,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -47,7 +48,7 @@ class MainScreen : Screen() {
     ) {
 
         val viewModel: MainViewModel? = hiltViewModel()
-        val playersData = viewModel?.players()?.collectAsLazyPagingItems()
+        val playersData = remember { viewModel?.players() }?.collectAsLazyPagingItems()
 
         ScreenView(
             navController = navController,
