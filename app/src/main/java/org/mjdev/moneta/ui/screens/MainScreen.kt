@@ -3,8 +3,12 @@ package org.mjdev.moneta.ui.screens
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NamedNavArgument
@@ -28,6 +32,8 @@ class MainScreen : Screen() {
     override val args = listOf<NamedNavArgument>()
 
     override val menuResId: Int = R.string.menu_Item_home
+
+    override val menuIcon: ImageVector get() = Icons.Filled.Home
 
     @Preview(showBackground = true)
     @Composable
