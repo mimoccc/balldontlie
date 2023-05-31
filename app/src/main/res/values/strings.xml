@@ -2,8 +2,15 @@
     <string name="app_name">Moneta Test</string>
 
     <string name="title_player_detail">Player detail</string>
-    <string name="title_about">Player detail</string>
+    <string name="title_about">About</string>
 
     <string name="menu_Item_home">Home</string>
     <string name="menu_item_about">About</string>
+
+    <string name="developer">Milan Jurkulak</string>
+    <string name="copyright">Copyright (c) 2023</string>
+    <string name="email"><![CDATA[M : <a href=\"mailto:mj@mjdev.org\">mj@mjdev.org</a>]]></string>
+    <string name="webpage"><![CDATA[W : <a href=\"http://mjdev.org\">http://mjdev.org</a>]]></string>
+    <string name="phone"><![CDATA[P : <a href=\"tel:+420702568909\">+420702568909</a>]]></string>
+    <string name="github"><![CDATA[G : <a href=\"http://github.com/mimoccc\">http://github.com/mimoccc</a>]]></string>
 </resources>

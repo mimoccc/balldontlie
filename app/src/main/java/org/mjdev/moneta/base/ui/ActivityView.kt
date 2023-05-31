@@ -84,7 +84,6 @@ fun ScreenView(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.BottomCenter,
     ) {
-
         ModalNavigationDrawer(
             drawerState = drawerState,
             drawerContent = {
@@ -97,7 +96,9 @@ fun ScreenView(
                                     Icon(item.menuIcon, contentDescription = null)
                                 }
                             },
-                            label = { Text(stringResource(item.menuTextResId)) },
+                            label = {
+                                Text(stringResource(item.menuTextResId))
+                            },
                             selected = false,
                             onClick = {
                                 selectedItem.value = menuItems.get(idx)
