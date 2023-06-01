@@ -16,15 +16,16 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import org.mjdev.moneta.R
-import org.mjdev.moneta.base.helpers.Ext.hiltViewModel
+import org.mjdev.moneta.base.annotations.NightPreview
+import org.mjdev.moneta.base.helpers.Ext.appViewModel
 import org.mjdev.moneta.base.navigation.MenuItem
 import org.mjdev.moneta.base.navigation.Screen
-import org.mjdev.moneta.base.navigation.StartDestination
+import org.mjdev.moneta.base.annotations.StartDestination
 import org.mjdev.moneta.base.ui.ScreenView
-import org.mjdev.moneta.mock.Mock
 import org.mjdev.moneta.ui.components.players.PlayersList
 import org.mjdev.moneta.viewmodel.MainViewModel
 
+@NightPreview
 @StartDestination
 class MainScreen : Screen() {
 
@@ -47,11 +48,8 @@ class MainScreen : Screen() {
         menuItems: List<MenuItem>
     ) {
 
-        val viewModel: MainViewModel = hiltViewModel()
-        val playersData = remember {
-            if (viewModel.isMock) Mock.playersFlow(0, 25)
-            else viewModel.players()
-        }?.collectAsLazyPagingItems()
+        val viewModel: MainViewModel = appViewModel()
+        val players = remember { viewModel.players() }?.collectAsLazyPagingItems()
 
         ScreenView(
             navController = navController,
@@ -66,11 +64,11 @@ class MainScreen : Screen() {
                 viewModel.handleError { error ->
                     state.error(error)
                 }
-                playersData?.loadState?.refresh?.also { loadState ->
+                players?.loadState?.refresh?.also { loadState ->
                     state.setLoadingState(loadState)
                 }
                 PlayersList(
-                    playersData = playersData,
+                    players = players,
                     onItemClick = { player ->
                         open<DetailScreen>(navController, player?.id)
                     }

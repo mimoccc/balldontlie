@@ -42,19 +42,32 @@ android {
     }
 
     buildTypes {
+
         debug {
+            debuggable = true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
         mock {
+            debuggable = true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "Boolean", "USE_MOCK", "true"
         }
-        release {
-            minifyEnabled false
+
+        minified {
+            debuggable = true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        release {
+            debuggable = false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
     }
 
     compileOptions {

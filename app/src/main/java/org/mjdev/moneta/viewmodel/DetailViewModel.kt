@@ -2,30 +2,26 @@ package org.mjdev.moneta.viewmodel
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import org.mjdev.moneta.repository.ApiRepository
 import org.mjdev.moneta.base.viewmodel.BaseViewModel
-import org.mjdev.moneta.base.viewmodel.ViewModelError
-import org.mjdev.moneta.mock.Mock
 import org.mjdev.moneta.model.Player
+import org.mjdev.moneta.repository.IRepository
+import org.mjdev.moneta.repository.MockedRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel
 @Inject
 constructor(
-    private val repository: ApiRepository?,
-    var isMock: Boolean
+    private val repository: IRepository,
 ) : BaseViewModel() {
 
-    @Suppress("unused")
-    constructor() : this(null, true)
+    private val isMock = repository is MockedRepository
 
     fun player(playerId: Int): Flow<Player?> = runSafeFlow {
         if (isMock) {
-            Mock.player(playerId, "Player $playerId")
+            (repository as MockedRepository).player(playerId)
         } else {
-            repository?.getPlayer(playerId.toLong())?.getOrThrow()
-                ?: throw(ViewModelError("Repository not initialized"))
+            repository.getPlayer(playerId).getOrThrow()
         }
     }
 

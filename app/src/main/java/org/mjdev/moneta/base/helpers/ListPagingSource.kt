@@ -7,27 +7,26 @@ import androidx.paging.PagingState
 
 @Suppress("UNUSED_ANONYMOUS_PARAMETER", "MemberVisibilityCanBePrivate")
 class ListPagingSource<T : Any>(
-
-    private val cnt: Long = 8,
-    private val source: suspend (page: Long, cnt: Long) -> Result<List<T>> = { p, c ->
+    private val cnt: Int = 8,
+    private val source: suspend (page: Int, cnt: Int) -> Result<List<T>> = { p, c ->
         Result.success(emptyList())
     },
-) : PagingSource<Long, T>() {
+) : PagingSource<Int, T>() {
 
-    override fun getRefreshKey(state: PagingState<Long, T>): Long? {
+    override fun getRefreshKey(state: PagingState<Int, T>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
 
-    override suspend fun load(params: LoadParams<Long>): LoadResult<Long, T> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
         return try {
             val page = params.key ?: 1
             val response = source.invoke(page, cnt).getOrThrow()
             LoadResult.Page(
                 data = response,
-                prevKey = if (page == 1L) null else page.minus(1),
+                prevKey = if (page == 1) null else page.minus(1),
                 nextKey = if (response.isEmpty()) null else page.plus(1),
             )
         } catch (e: Exception) {
@@ -38,15 +37,15 @@ class ListPagingSource<T : Any>(
     companion object {
 
         fun <T : Any> listPageSource(
-            cnt: Long = 8,
-            source: suspend (page: Long, cnt: Long) -> Result<List<T>>
+            cnt: Int = 8,
+            source: suspend (page: Int, cnt: Int) -> Result<List<T>>
         ) = ListPagingSource(cnt, source)
 
         fun <T : Any> pagerResult(
-            cnt: Long = 8,
-            source: suspend (page: Long, cnt: Long) -> Result<List<T>>
+            cnt: Int = 8,
+            source: suspend (page: Int, cnt: Int) -> Result<List<T>>
         ) = Pager(
-            config = PagingConfig(pageSize = cnt.toInt()),
+            config = PagingConfig(pageSize = cnt),
             pagingSourceFactory = {
                 listPageSource(cnt) { p, c ->
                     source.invoke(p, c)
@@ -54,8 +53,8 @@ class ListPagingSource<T : Any>(
             }).flow
 
         fun <T : Any> pagerList(
-            cnt: Long = 8,
-            source: suspend (page: Long, cnt: Long) -> List<T>
+            cnt: Int = 8,
+            source: suspend (page: Int, cnt: Int) -> List<T>
         ) = pagerResult(cnt) { page, count ->
             try {
                 Result.success(source(page, count))

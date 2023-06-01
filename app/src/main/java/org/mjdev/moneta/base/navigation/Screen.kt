@@ -3,10 +3,11 @@ package org.mjdev.moneta.base.navigation
 import androidx.annotation.CallSuper
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
+import org.mjdev.moneta.base.annotations.NightPreview
+import org.mjdev.moneta.base.annotations.StartDestination
 import kotlin.reflect.full.createInstance
 
 abstract class Screen {
@@ -41,7 +42,7 @@ abstract class Screen {
             return (startAnnotation != null)
         }
 
-    @Preview
+    @NightPreview
     @Composable
     @CallSuper
     open fun Compose() = Compose(null, null, emptyList())

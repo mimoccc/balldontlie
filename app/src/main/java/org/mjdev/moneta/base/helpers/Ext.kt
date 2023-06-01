@@ -1,10 +1,22 @@
 package org.mjdev.moneta.base.helpers
 
-import android.app.Activity
+import android.graphics.drawable.Drawable
+import android.os.Build
+import android.text.Html
+import android.text.SpannableString
+import android.text.Spanned
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.core.graphics.drawable.toBitmap
 import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -17,13 +29,72 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.NavigatorProvider
 import androidx.navigation.compose.composable
+import androidx.paging.PagingData
+import androidx.paging.compose.collectAsLazyPagingItems
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import org.mjdev.moneta.BuildConfig
 import org.mjdev.moneta.base.navigation.NavGraphBuilderEx
 import org.mjdev.moneta.base.navigation.Screen
-import timber.log.Timber
-import kotlin.reflect.KClass
+import org.mjdev.moneta.repository.IRepository
+import org.mjdev.moneta.repository.MockedRepository.Companion.MockRepository
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.reflect.full.isSubclassOf
+import kotlin.reflect.jvm.jvmErasure
 
+@Suppress("unused")
 object Ext {
+
+    fun Drawable.asImageBitmap(width: Int = 1, height: Int = 1): ImageBitmap =
+        toBitmap(width, height).asImageBitmap()
+
+    @Composable
+    fun <T> previewData(
+        block: () -> T
+    ): T? = if (isEditMode()) block.invoke() else null
+
+    @Composable
+    fun <T> previewData(
+        defaultValue: T,
+        block: () -> T
+    ): T = if (isEditMode()) block.invoke() else defaultValue
+
+    @Composable
+    fun <T : Any> previewLazyData(vararg values: T) =
+        flowOf(PagingData.from(values.toList())).collectAsLazyPagingItems()
+
+    @Composable
+    inline fun <reified T> textFrom(text: T?): String? = when (text) {
+        is Int -> LocalContext.current.getString(text)
+        is String -> text
+        else -> null
+    }
+
+    fun fromHtml(html: String?): Spanned {
+        return when {
+            html == null -> {
+                SpannableString("")
+            }
+
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> {
+                Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
+            }
+
+            else -> {
+                @Suppress("DEPRECATION")
+                Html.fromHtml(html)
+            }
+        }
+    }
+
+    @Composable
+    fun stringResWithStyling(@StringRes id: Int?): String? = LocalContext.current.resources
+        .let { res ->
+            id?.let { id -> res.getText(id) }
+        }?.toString()
 
     @Composable
     fun NavHost(
@@ -75,28 +146,59 @@ object Ext {
     }
 
     @Composable
-    inline fun <reified VM : ViewModel> hiltViewModel(
-        viewModelStoreOwner: ViewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {
-            "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
-        },
+    fun isEditMode() = LocalInspectionMode.current
+
+    @Composable
+    fun isMock() = BuildConfig.USE_MOCK || isEditMode()
+
+    @Composable
+    inline fun <reified VM : ViewModel> appViewModel(
+        viewModelStoreOwner: ViewModelStoreOwner? = null,
         crossinline initBlock: VM.() -> Unit = {}
-    ): VM {
-        val context = LocalContext.current
-        return if (context !is Activity)
-            createMockViewModel()
-        else viewModel<VM>(
-            viewModelStoreOwner = viewModelStoreOwner,
-            factory = createHiltViewModelFactory(viewModelStoreOwner)
-        ).apply {
-            initBlock(this)
+    ): VM = if (isMock() || isEditMode()) {
+        mockViewModel<VM>().apply(initBlock)
+    } else {
+        val viewModelStoreOwnerImpl =
+            viewModelStoreOwner ?: checkNotNull(LocalViewModelStoreOwner.current) {
+                "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
+            }
+        viewModel(
+            viewModelStoreOwner = viewModelStoreOwnerImpl,
+            factory = createHiltViewModelFactory(viewModelStoreOwnerImpl)
+        )
+    }.apply(initBlock)
+
+    @Composable
+    fun <T : R, R> Flow<T>.collectAsState(
+        initial: R,
+        context: CoroutineContext = EmptyCoroutineContext
+    ): State<R> {
+        return if (isEditMode()) {
+            runBlocking(context) {
+                var ret: R = initial
+                collect { value ->
+                    ret = value
+                }
+                mutableStateOf(ret)
+            }
+        } else {
+            produceState(initial, this, context) {
+                if (context == EmptyCoroutineContext) {
+                    collect { value = it }
+                } else withContext(context) {
+                    collect { value = it }
+                }
+            }
         }
     }
 
-    // todo may be not working on render view
-    inline fun <reified VM> createMockViewModel(): VM {
-        return VM::class.constructors.firstOrNull {
-            it.parameters.isEmpty()
-        }?.call() as VM
+    @Composable
+    inline fun <reified VM> mockViewModel(): VM {
+        val mockConstructor = VM::class.constructors.first { c ->
+            c.parameters.size == 1 &&
+                    c.parameters[0].type.jvmErasure.isSubclassOf(IRepository::class)
+        }
+        return mockConstructor.call(MockRepository)
     }
 
     @Composable

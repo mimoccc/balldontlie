@@ -1,7 +1,7 @@
 package org.mjdev.moneta.base.ui
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
+import android.graphics.drawable.ColorDrawable
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -11,43 +11,44 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.mjdev.moneta.R
+import org.mjdev.moneta.base.annotations.NightPreview
+import org.mjdev.moneta.base.helpers.Ext.previewData
 
-@Preview(showBackground = true)
+@SuppressLint("ModifierParameter")
+@NightPreview
 @Composable
-@SuppressLint("ModifierParameter") // just for preview
 fun CircleImage(
-    modifier: Modifier = Modifier.size(50.dp),
-    backGroundColor: Color = Color.Black,
-    borderColor: Color = Color.White,
+    modifier: Modifier = previewData(Modifier) { Modifier.size(64.dp) },
+    backGroundColor: Color = Color.White,
+    borderColor: Color = Color.Black,
     borderSize: Dp = 2.dp,
     contentDescription: String = "",
-    src: Any? = R.drawable.person
+    src: Any? = previewData { R.drawable.milanj },
 ) {
     Box(
         modifier = modifier,
         contentAlignment = androidx.compose.ui.Alignment.Center
     ) {
-        Image(
+        ImageAny(
             modifier = modifier
                 .padding(borderSize)
                 .clip(CircleShape),
-            painter = colorPainter(backGroundColor),
+            src = ColorDrawable(backGroundColor.toArgb()),
             contentDescription = contentDescription,
             contentScale = ContentScale.Crop
         )
-        Image(
+        ImageAny(
             modifier = modifier
                 .clip(CircleShape)
                 .border(borderSize, borderColor, CircleShape),
-            painter = glideResource(src),
+            src = src,
             contentDescription = contentDescription,
             contentScale = ContentScale.Crop,
         )
     }
 }
-

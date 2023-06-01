@@ -1,4 +1,4 @@
-package org.mjdev.moneta.base.navigation
+package org.mjdev.moneta.base.annotations
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)

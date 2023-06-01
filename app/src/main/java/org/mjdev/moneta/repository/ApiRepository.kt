@@ -8,17 +8,17 @@ import retrofit2.Response
 
 class ApiRepository(
     private val apiService: ApiService
-) {
+) : IRepository {
 
-    suspend fun getPlayers(
-        page: Long = 0,
-        perPage: Long = 8,
+    override suspend fun getPlayers(
+        page: Int,
+        perPage: Int,
     ): Result<Players> = call {
         apiService.getPlayersAsync(page, perPage).await()
     }
 
-    suspend fun getPlayer(
-        id: Long
+    override suspend fun getPlayer(
+        id: Int
     ): Result<Player> = call {
         apiService.getPlayerAsync(id).await()
     }

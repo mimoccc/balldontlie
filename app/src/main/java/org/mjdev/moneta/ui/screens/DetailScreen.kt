@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -14,16 +13,18 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.navArgument
 import org.mjdev.moneta.R
+import org.mjdev.moneta.base.annotations.NightPreview
+import org.mjdev.moneta.base.helpers.Ext.appViewModel
 import org.mjdev.moneta.base.helpers.Ext.arg
-import org.mjdev.moneta.base.helpers.Ext.hiltViewModel
+import org.mjdev.moneta.base.helpers.Ext.collectAsState
 import org.mjdev.moneta.base.navigation.MenuItem
 import org.mjdev.moneta.base.navigation.Screen
 import org.mjdev.moneta.model.Player
 import org.mjdev.moneta.base.ui.ScreenView
-import org.mjdev.moneta.mock.Mock
 import org.mjdev.moneta.ui.components.players.PlayerDetail
 import org.mjdev.moneta.viewmodel.DetailViewModel
 
+@NightPreview
 class DetailScreen : Screen() {
 
     private val argPlayerId = "playerId"
@@ -45,10 +46,11 @@ class DetailScreen : Screen() {
         menuItems: List<MenuItem>
     ) {
 
-        val viewModel: DetailViewModel = hiltViewModel()
-        val playerId = backStackEntry?.arg(argPlayerId, -1) ?: -1
-        val playerData: State<Player?> = if (viewModel.isMock) Mock.playerState(playerId)
-        else remember { viewModel.player(playerId) }.collectAsState(Player())
+        val viewModel: DetailViewModel = appViewModel()
+        val playerId = backStackEntry?.arg(argPlayerId, 0) ?: 0
+        val playerData: State<Player?> = remember {
+            viewModel.player(playerId)
+        }.collectAsState(Player())
         val player = playerData.value
 
         ScreenView(
@@ -72,7 +74,7 @@ class DetailScreen : Screen() {
                 }
                 PlayerDetail(
                     modifier = Modifier.fillMaxSize(),
-                    playerData = player
+                    player = player
                 )
             }
         }

@@ -2,24 +2,24 @@ package org.mjdev.moneta.base.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.tooling.preview.Preview
+import org.mjdev.moneta.base.annotations.NightPreview
 
-@Preview(showBackground = true)
+@NightPreview
 @Composable
 fun NavigationIcon(
-    navigationIcon: ImageVector = Icons.Filled.Menu,
+    navigationIcon: Any? = Icons.Filled.Menu,
     onNavigationIconClick: () -> Unit = {},
 ) {
     IconButton(
         onClick = onNavigationIconClick
     ) {
-        Icon(
-            imageVector = navigationIcon,
-            contentDescription = ""
+        IconAny(
+            src = navigationIcon,
+            contentDescription = "",
+            tint = LocalContentColor.current
         )
     }
 }

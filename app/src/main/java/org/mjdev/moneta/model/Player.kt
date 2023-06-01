@@ -33,7 +33,11 @@ data class Player(
     ) {
 
     var fullName: String
-        get() = "${if (firstName == null) "" else firstName} ${if (lastName == null) "" else lastName}".trim()
+        get() {
+            val fn = if (firstName == null) "" else firstName
+            val ln = if (lastName == null) "" else lastName
+            return "$fn $ln".trim()
+        }
         set(value) {
             value.split(" ").also { pair ->
                 firstName = if (pair.isNotEmpty()) pair[0] else ""

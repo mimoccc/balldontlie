@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package org.mjdev.moneta.base.ui
 
 import androidx.compose.foundation.background
@@ -16,7 +14,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
@@ -24,7 +21,6 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -36,33 +32,30 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import kotlinx.coroutines.launch
 import org.mjdev.moneta.R
+import org.mjdev.moneta.base.annotations.NightPreview
+import org.mjdev.moneta.base.helpers.Ext.previewData
 import org.mjdev.moneta.base.navigation.MenuItem
-import org.mjdev.moneta.base.ui.ActivityViewState.Companion.rememberActivityViewState
-import org.mjdev.moneta.error.ApiError
-import org.mjdev.moneta.error.EmptyError
-import org.mjdev.moneta.error.Info
+import org.mjdev.moneta.base.states.ActivityViewState
+import org.mjdev.moneta.base.states.ActivityViewState.Companion.rememberActivityViewState
 import org.mjdev.moneta.ui.theme.grayLight
 
 @Suppress("UNUSED_ANONYMOUS_PARAMETER")
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
+@NightPreview
 @Composable
 fun ScreenView(
     navController: NavHostController? = null,
-    navigationIconMain: ImageVector = Icons.Filled.Menu,
-    navigationIconBack: ImageVector = Icons.Filled.ArrowBack,
+    navigationIconMain: Any? = Icons.Filled.Menu,
+    navigationIconBack: Any? = Icons.Filled.ArrowBack,
     actions: @Composable RowScope.() -> Unit = {},
     colorBackground: Color = MaterialTheme.colorScheme.background,
-    title: String = stringResource(R.string.app_name),
+    title: Any? = previewData { R.string.app_name },
     menuItems: List<MenuItem> = listOf(),
     content: @Composable (
         state: ActivityViewState,
@@ -93,11 +86,11 @@ fun ScreenView(
                         NavigationDrawerItem(
                             icon = {
                                 if (item.menuIcon != null) {
-                                    Icon(item.menuIcon, contentDescription = null)
+                                    IconAny(src = item.menuIcon)
                                 }
                             },
                             label = {
-                                Text(stringResource(item.menuTextResId))
+                                TextAny(text = item.menuText)
                             },
                             selected = false,
                             onClick = {
@@ -165,63 +158,3 @@ fun ScreenView(
         )
     }
 }
-
-@Suppress("ReplaceCallWithBinaryOperator")
-class ActivityViewState(
-    title: String = "",
-    loading: LoadState = LoadState.Loading,
-    error: ApiError = EmptyError()
-) {
-
-    val errorState: MutableState<ApiError> = mutableStateOf(error)
-    val loadingState: MutableState<LoadState> = mutableStateOf(loading)
-    val titleState: MutableState<String> = mutableStateOf(title)
-
-    fun clearError() {
-        errorState.value = EmptyError()
-    }
-
-    fun error(message: String) {
-        errorState.value = ApiError(message)
-    }
-
-    fun error(e: Throwable) {
-        errorState.value = ApiError(e)
-    }
-
-    fun info(message: String) {
-        errorState.value = Info(message)
-    }
-
-    fun info(e: Throwable) {
-        errorState.value = Info(e)
-    }
-
-    fun setTitle(title: String) {
-        titleState.value = title
-    }
-
-    fun setLoadingState(state: LoadState) {
-        if (!state.equals(loadingState.value)) {
-            loadingState.value = state
-        }
-    }
-
-    fun setIsLoading() = setLoadingState(LoadState.Loading)
-
-    fun setIsNotLoading(endOfPaginationReached: Boolean = true) =
-        setLoadingState(LoadState.NotLoading(endOfPaginationReached))
-
-    companion object {
-
-        @Composable
-        fun rememberActivityViewState(
-            title: String = "",
-            loading: LoadState = LoadState.Loading,
-            error: ApiError = EmptyError()
-        ): ActivityViewState = remember { ActivityViewState(title, loading, error) }
-
-    }
-
-}
-

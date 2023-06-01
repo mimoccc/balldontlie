@@ -12,13 +12,13 @@ interface ApiService {
 
     @GET("players/")
     fun getPlayersAsync(
-        @Query("page") page: Long = 0,
-        @Query("per_page") perPage: Long = 25,
+        @Query("page") page: Int = 0,
+        @Query("per_page") perPage: Int = 25,
     ): Deferred<Response<Players>>
 
     @GET("players/{id}")
     fun getPlayerAsync(
-        @Path("id") id: Long
+        @Path("id") id: Int
     ): Deferred<Response<Player>>
 
 }

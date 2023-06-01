@@ -14,11 +14,13 @@ import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import org.mjdev.moneta.R
+import org.mjdev.moneta.base.annotations.NightPreview
 import org.mjdev.moneta.base.navigation.MenuItem
 import org.mjdev.moneta.base.navigation.Screen
 import org.mjdev.moneta.base.ui.ScreenView
 import org.mjdev.moneta.ui.components.about.About
 
+@NightPreview
 class AboutScreen : Screen() {
 
     override val titleResId = R.string.title_about

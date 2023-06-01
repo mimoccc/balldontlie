@@ -15,19 +15,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.mjdev.moneta.R
+import org.mjdev.moneta.base.annotations.NightPreview
+import org.mjdev.moneta.base.helpers.Ext.previewData
 import org.mjdev.moneta.model.Player
 import org.mjdev.moneta.base.ui.CircleImage
-import org.mjdev.moneta.mock.Mock
+import org.mjdev.moneta.repository.MockedRepository.Companion.MockRepository
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
+@NightPreview
 @Composable
 fun PlayerListItem(
     idx: Int? = 0,
-    item: Player? = Mock.player(),
+    item: Player? = previewData { MockRepository.player() },
     onItemClick: (data: Player?) -> Unit = {},
     backgroundColor: Color = MaterialTheme.colorScheme.surface,
     textColor: Color = MaterialTheme.colorScheme.tertiary,

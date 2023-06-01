@@ -10,6 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.mjdev.moneta.BuildConfig
 import org.mjdev.moneta.network.ApiService
 import org.mjdev.moneta.repository.ApiRepository
+import org.mjdev.moneta.repository.IRepository
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -60,6 +61,6 @@ object ApiModule {
     @Provides
     fun providesApiRepository(
         apiService: ApiService
-    ) = ApiRepository(apiService)
+    ) : IRepository = ApiRepository(apiService)
 
 }
