@@ -12,11 +12,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.mjdev.balldontlie.R
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.ui.CircleImage
 import org.mjdev.balldontlie.base.ui.HtmlTextView
 
-@NightPreview
+@DayPreview
 @Composable
 fun About() {
     Column(

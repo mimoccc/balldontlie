@@ -12,14 +12,14 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.MutableStateFlow
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.base.ui.PagingList
 import org.mjdev.balldontlie.repository.MockedRepository
 
 @SuppressLint("ModifierParameter")
-@NightPreview
+@DayPreview
 @Composable
 fun PlayersList(
     modifier: Modifier = previewData(Modifier) { Modifier.fillMaxSize() },

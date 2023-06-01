@@ -7,13 +7,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import org.mjdev.balldontlie.R
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 
-@Preview(showBackground = true)
+@DayPreview
 @Composable
 fun TitleBar(
     modifier: Modifier = Modifier,

@@ -20,11 +20,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.error.ApiError
 import org.mjdev.balldontlie.error.EmptyError
 
-@NightPreview
+@DayPreview
 @Composable
 fun ErrorIndicatorSmall(
     modifier: Modifier = Modifier,

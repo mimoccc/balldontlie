@@ -10,13 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.repository.MockedRepository.Companion.MockRepository
 
 @SuppressLint("ModifierParameter")
-@NightPreview
+@DayPreview
 @Composable
 fun PlayerDetail(
     modifier: Modifier = previewData(Modifier) { Modifier.fillMaxSize() },

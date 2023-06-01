@@ -34,7 +34,7 @@ import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import kotlinx.coroutines.launch
 import org.mjdev.balldontlie.R
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.base.navigation.MenuItem
 import org.mjdev.balldontlie.base.states.ActivityViewState
@@ -42,7 +42,7 @@ import org.mjdev.balldontlie.base.states.ActivityViewState.Companion.rememberAct
 
 @Suppress("UNUSED_ANONYMOUS_PARAMETER")
 @OptIn(ExperimentalMaterial3Api::class)
-@NightPreview
+@DayPreview
 @Composable
 fun ScreenView(
     navController: NavHostController? = null,

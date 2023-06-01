@@ -8,12 +8,11 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.navArgument
 import org.mjdev.balldontlie.R
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayNightPreview
 import org.mjdev.balldontlie.base.helpers.Ext.appViewModel
 import org.mjdev.balldontlie.base.helpers.Ext.arg
 import org.mjdev.balldontlie.base.helpers.Ext.collectAsState
@@ -24,7 +23,6 @@ import org.mjdev.balldontlie.base.ui.ScreenView
 import org.mjdev.balldontlie.ui.components.players.PlayerDetail
 import org.mjdev.balldontlie.viewmodel.DetailViewModel
 
-@NightPreview
 class DetailScreen : Screen() {
 
     private val argPlayerId = "playerId"
@@ -35,7 +33,7 @@ class DetailScreen : Screen() {
         navArgument(argPlayerId) { defaultValue = -1 }
     )
 
-    @Preview(showBackground = true)
+    @DayNightPreview
     @Composable
     override fun Compose() = super.Compose()
 

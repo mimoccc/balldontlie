@@ -23,13 +23,13 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.viewinterop.AndroidView
 import org.mjdev.balldontlie.R
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.fromHtml
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.base.helpers.Ext.stringResWithStyling
 
 @SuppressLint("ModifierParameter")
-@NightPreview
+@DayPreview
 @Composable
 fun HtmlTextView(
     modifier: Modifier = previewData { Modifier.fillMaxWidth() } ?: Modifier,
@@ -74,7 +74,7 @@ fun HtmlTextView(
 }
 
 @SuppressLint("ModifierParameter")
-@NightPreview
+@DayPreview
 @Composable
 fun HtmlTextView(
     modifier: Modifier = previewData { Modifier.fillMaxWidth() } ?: Modifier,

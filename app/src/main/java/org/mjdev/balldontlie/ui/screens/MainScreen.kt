@@ -10,13 +10,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import org.mjdev.balldontlie.R
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayNightPreview
 import org.mjdev.balldontlie.base.helpers.Ext.appViewModel
 import org.mjdev.balldontlie.base.navigation.MenuItem
 import org.mjdev.balldontlie.base.navigation.Screen
@@ -25,7 +24,6 @@ import org.mjdev.balldontlie.base.ui.ScreenView
 import org.mjdev.balldontlie.ui.components.players.PlayersList
 import org.mjdev.balldontlie.viewmodel.MainViewModel
 
-@NightPreview
 @StartDestination
 class MainScreen : Screen() {
 
@@ -37,7 +35,7 @@ class MainScreen : Screen() {
 
     override val menuIcon: ImageVector get() = Icons.Filled.Home
 
-    @Preview(showBackground = true)
+    @DayNightPreview
     @Composable
     override fun Compose() = super.Compose()
 

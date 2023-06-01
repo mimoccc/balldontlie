@@ -17,11 +17,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.mjdev.balldontlie.R
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 
 @SuppressLint("ModifierParameter")
-@NightPreview
+@DayPreview
 @Composable
 fun CircleImage(
     modifier: Modifier = previewData(Modifier) { Modifier.size(64.dp) },

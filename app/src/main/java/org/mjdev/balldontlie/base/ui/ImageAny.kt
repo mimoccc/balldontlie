@@ -20,14 +20,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import org.mjdev.balldontlie.R
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.asImageBitmap
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import java.lang.RuntimeException
 import java.net.URL
 
 @SuppressLint("ModifierParameter")
-@NightPreview
+@DayPreview
 @Composable
 fun ImageAny(
     modifier: Modifier = previewData(Modifier) { Modifier.size(64.dp) },

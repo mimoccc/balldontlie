@@ -5,9 +5,9 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 
-@NightPreview
+@DayPreview
 @Composable
 fun NavigationIcon(
     navigationIcon: Any? = Icons.Filled.Menu,

@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.annotations.StartDestination
 import kotlin.reflect.full.createInstance
 
@@ -42,17 +42,18 @@ abstract class Screen {
             return (startAnnotation != null)
         }
 
-    @NightPreview
+    @DayPreview
     @Composable
     @CallSuper
     open fun Compose() = Compose(null, null, emptyList())
 
     @Composable
-    abstract fun Compose(
+    open fun Compose(
         navController: NavHostController?,
         backStackEntry: NavBackStackEntry?,
         menuItems: List<MenuItem>
-    )
+    ) {
+    }
 
     companion object {
 

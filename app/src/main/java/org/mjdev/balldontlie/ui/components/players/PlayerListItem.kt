@@ -16,14 +16,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import org.mjdev.balldontlie.R
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.base.ui.CircleImage
 import org.mjdev.balldontlie.repository.MockedRepository.Companion.MockRepository
 
 @OptIn(ExperimentalMaterial3Api::class)
-@NightPreview
+@DayPreview
 @Composable
 fun PlayerListItem(
     idx: Int? = 0,

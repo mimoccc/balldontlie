@@ -9,12 +9,12 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 
 
 @Suppress("UNUSED_ANONYMOUS_PARAMETER", "ModifierParameter")
-@NightPreview
+@DayPreview
 @Composable
 fun <T : Any> PagingList(
     modifier: Modifier = previewData(Modifier) { Modifier.fillMaxSize() },

@@ -13,13 +13,12 @@ import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import org.mjdev.balldontlie.R
-import org.mjdev.balldontlie.base.annotations.NightPreview
+import org.mjdev.balldontlie.base.annotations.DayNightPreview
 import org.mjdev.balldontlie.base.navigation.MenuItem
 import org.mjdev.balldontlie.base.navigation.Screen
 import org.mjdev.balldontlie.base.ui.ScreenView
 import org.mjdev.balldontlie.ui.components.about.About
 
-@NightPreview
 class AboutScreen : Screen() {
 
     override val titleResId = R.string.title_about
@@ -30,7 +29,7 @@ class AboutScreen : Screen() {
 
     override val menuIcon: ImageVector get() = Icons.Filled.AccountBox
 
-    @NightPreview
+    @DayNightPreview
     @Composable
     override fun Compose() = super.Compose()
 
