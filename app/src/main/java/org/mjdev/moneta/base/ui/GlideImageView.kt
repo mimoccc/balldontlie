@@ -11,17 +11,19 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import org.mjdev.moneta.R
 import org.mjdev.moneta.base.annotations.NightPreview
-import org.mjdev.moneta.base.helpers.Ext
+import org.mjdev.moneta.base.helpers.Ext.previewData
 
-// todo glide module
-@Suppress("SpellCheckingInspection")
 @SuppressLint("ModifierParameter")
 @NightPreview
 @Composable
 fun GlideImageView(
-    modifier: Modifier = Ext.previewData(Modifier) { Modifier.size(64.dp) },
-    src: Any? = Ext.previewData { "https://duckduckgo.com/assets/onboarding/bathroomguy/teaser-2@2x.png" },
+    modifier: Modifier = previewData(Modifier) { Modifier.size(64.dp) },
+    src: Any? = previewData {
+        // glide need socket, unsupported in preview, as example simple access to drawables
+        R.drawable.milanj
+    },
     contentDescription: String? = null,
     alignment: Alignment = Alignment.Center,
     contentScale: ContentScale = ContentScale.Fit,
