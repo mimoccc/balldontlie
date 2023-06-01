@@ -15,11 +15,11 @@ android {
             keyPassword "testtest"
         }
     }
-    namespace 'org.mjdev.moneta'
+    namespace 'org.mjdev.balldontlie'
     compileSdk 33
 
     defaultConfig {
-        applicationId "org.mjdev.moneta"
+        applicationId "org.mjdev.balldontlie"
 
         minSdk 21
         targetSdk 33

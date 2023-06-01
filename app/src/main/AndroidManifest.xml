@@ -14,13 +14,13 @@
         android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Moneta"
+        android:theme="@style/Theme.BallDontLie"
         tools:targetApi="31">
 
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Moneta">
+            android:theme="@style/Theme.BallDontLie">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
