@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,22 +28,18 @@ import org.mjdev.balldontlie.repository.MockedRepository.Companion.MockRepositor
 fun PlayerListItem(
     idx: Int? = 0,
     item: Player? = previewData { MockRepository.player() },
+    showInCard: Boolean = true,
     onItemClick: (data: Player?) -> Unit = {},
-    backgroundColor: Color = MaterialTheme.colorScheme.surface,
-    textColor: Color = MaterialTheme.colorScheme.tertiary,
-    circleImageColor: Color = MaterialTheme.colorScheme.tertiary,
-    circleBorderColor: Color = Color.Black
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(2.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = backgroundColor
-        ),
         onClick = {
             onItemClick(item)
-        }
+        },
+        colors = if (showInCard) CardDefaults.cardColors()
+        else CardDefaults.cardColors(containerColor = Color.Transparent)
     ) {
         Row(
             modifier = Modifier
@@ -54,8 +49,6 @@ fun PlayerListItem(
         ) {
             CircleImage(
                 src = R.drawable.person,
-                backGroundColor = circleImageColor,
-                borderColor = circleBorderColor,
                 contentDescription = "",
                 modifier = Modifier
                     .padding(2.dp)
@@ -68,15 +61,12 @@ fun PlayerListItem(
                     .padding(8.dp)
             ) {
                 Text(
-                    color = textColor,
                     text = "${item?.id ?: 0}. ${item?.fullName}"
                 )
                 Text(
-                    color = textColor,
                     text = "${item?.team?.fullName ?: "No team"} / ${item?.position ?: ""}"
                 )
                 Text(
-                    color = textColor,
                     text = "${item?.heightInches ?: 0} / ${item?.weightPounds ?: 0} / ${item?.heightFeet ?: 0}"
                 )
             }

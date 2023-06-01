@@ -1,4 +1,4 @@
-package org.mjdev.balldontlie.ui.theme
+package com.example.compose
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFF006B56)
@@ -27,7 +27,7 @@ val md_theme_light_outline = Color(0xFF6F7975)
 val md_theme_light_inverseOnSurface = Color(0xFFFFEEDE)
 val md_theme_light_inverseSurface = Color(0xFF462A00)
 val md_theme_light_inversePrimary = Color(0xFF5FDBB9)
-//val md_theme_light_shadow = Color(0xFF000000)
+val md_theme_light_shadow = Color(0xFF000000)
 val md_theme_light_surfaceTint = Color(0xFF006B56)
 val md_theme_light_outlineVariant = Color(0xFFBFC9C3)
 val md_theme_light_scrim = Color(0xFF000000)
@@ -58,10 +58,10 @@ val md_theme_dark_outline = Color(0xFF89938E)
 val md_theme_dark_inverseOnSurface = Color(0xFF2A1800)
 val md_theme_dark_inverseSurface = Color(0xFFFFDDB6)
 val md_theme_dark_inversePrimary = Color(0xFF006B56)
-//val md_theme_dark_shadow = Color(0xFF000000)
+val md_theme_dark_shadow = Color(0xFF000000)
 val md_theme_dark_surfaceTint = Color(0xFF5FDBB9)
 val md_theme_dark_outlineVariant = Color(0xFF3F4945)
 val md_theme_dark_scrim = Color(0xFF000000)
 
 
-//val seed = Color(0xFF009E80)
+val seed = Color(0xFF009E80)

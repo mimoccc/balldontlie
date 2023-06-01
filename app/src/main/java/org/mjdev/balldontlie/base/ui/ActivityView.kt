@@ -1,6 +1,5 @@
 package org.mjdev.balldontlie.base.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
@@ -15,7 +14,6 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LargeTopAppBar
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -30,8 +28,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -43,7 +39,6 @@ import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.base.navigation.MenuItem
 import org.mjdev.balldontlie.base.states.ActivityViewState
 import org.mjdev.balldontlie.base.states.ActivityViewState.Companion.rememberActivityViewState
-import org.mjdev.balldontlie.ui.theme.grayLight
 
 @Suppress("UNUSED_ANONYMOUS_PARAMETER")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,7 +49,6 @@ fun ScreenView(
     navigationIconMain: Any? = Icons.Filled.Menu,
     navigationIconBack: Any? = Icons.Filled.ArrowBack,
     actions: @Composable RowScope.() -> Unit = {},
-    colorBackground: Color = MaterialTheme.colorScheme.background,
     title: Any? = previewData { R.string.app_name },
     menuItems: List<MenuItem> = listOf(),
     content: @Composable (
@@ -110,8 +104,7 @@ fun ScreenView(
             content = {
                 Scaffold(
                     modifier = Modifier
-                        .nestedScroll(scrollBehavior.nestedScrollConnection)
-                        .background(colorBackground, RectangleShape),
+                        .nestedScroll(scrollBehavior.nestedScrollConnection),
                     topBar = {
                         LargeTopAppBar(
                             title = {
@@ -144,8 +137,7 @@ fun ScreenView(
                     }
                 )
                 CircleIndicatorScreen(
-                    alpha = 0.5f,
-                    backgroundColor = grayLight,
+                    alpha = 0.6f,
                     visibility = loadState.value is LoadState.Loading
                 )
                 ErrorIndicatorSmall(

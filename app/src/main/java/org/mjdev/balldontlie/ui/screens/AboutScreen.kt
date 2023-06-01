@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
@@ -31,7 +30,7 @@ class AboutScreen : Screen() {
 
     override val menuIcon: ImageVector get() = Icons.Filled.AccountBox
 
-    @Preview(showBackground = true)
+    @NightPreview
     @Composable
     override fun Compose() = super.Compose()
 

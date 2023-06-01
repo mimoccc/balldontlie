@@ -17,9 +17,6 @@ import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.base.ui.PagingList
 import org.mjdev.balldontlie.repository.MockedRepository
-import org.mjdev.balldontlie.ui.theme.black
-import org.mjdev.balldontlie.ui.theme.grayDark
-import org.mjdev.balldontlie.ui.theme.grayLight
 
 @SuppressLint("ModifierParameter")
 @NightPreview
@@ -43,11 +40,7 @@ fun PlayersList(
             PlayerListItem(
                 idx = idx + 1,
                 item = player,
-                onItemClick = onClick,
-                grayDark,
-                grayLight,
-                grayLight,
-                black
+                onItemClick = onClick
             )
         }
     }

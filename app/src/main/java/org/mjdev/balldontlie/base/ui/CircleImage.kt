@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,7 +25,7 @@ import org.mjdev.balldontlie.base.helpers.Ext.previewData
 @Composable
 fun CircleImage(
     modifier: Modifier = previewData(Modifier) { Modifier.size(64.dp) },
-    backGroundColor: Color = Color.White,
+    backGroundColor: Color = MaterialTheme.colorScheme.secondary,
     borderColor: Color = Color.Black,
     borderSize: Dp = 2.dp,
     contentDescription: String = "",
