@@ -16,11 +16,11 @@ import org.mjdev.balldontlie.base.annotations.NightPreview
 @Composable
 fun CircleIndicatorScreen(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = Color.Black,
-    alpha: Float = 0.5f,
+    backgroundColor: Color = MaterialTheme.colorScheme.secondary,
+    alpha: Float = 0.3f,
     color: Color = MaterialTheme.colorScheme.tertiary,
     trackColor: Color = MaterialTheme.colorScheme.secondary,
-    strokeWidth: Dp = 4.dp,
+    strokeWidth: Dp = 5.dp,
     visibility: Boolean? = true
 ) {
     UntouchableLayout(

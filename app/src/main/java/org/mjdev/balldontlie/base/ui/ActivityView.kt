@@ -137,7 +137,6 @@ fun ScreenView(
                     }
                 )
                 CircleIndicatorScreen(
-                    alpha = 0.6f,
                     visibility = loadState.value is LoadState.Loading
                 )
                 ErrorIndicatorSmall(
