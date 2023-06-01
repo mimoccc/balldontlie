@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.BallDontLie" parent="android:Theme.Material.Light.NoActionBar.Overscan" />
+
+    <style name="Theme.BallDontLie" parent="Theme.Material3.DayNight" />
+
 </resources>
