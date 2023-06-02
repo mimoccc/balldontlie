@@ -6,6 +6,8 @@ plugins {
     id 'com.google.dagger.hilt.android'
 }
 
+apply from: "../version.gradle"
+
 android {
     signingConfigs {
         debug {
@@ -24,8 +26,8 @@ android {
         minSdk 21
         targetSdk 33
 
-        versionCode = 8
-        versionName = 1.7
+        versionCode getVersionCode()
+        versionName getVersionName()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
