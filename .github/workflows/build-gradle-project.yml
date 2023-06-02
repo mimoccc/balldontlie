@@ -67,7 +67,7 @@ jobs:
           versionCode: ${{ env.GITHUB_APP_VERSION_CODE }}
           versionName: ${{ env.GITHUB_APP_VERSION_NAME }}
 
-      - name: Commit Files
+      - name: Commit Changes and Merge to Dev
         run: |
           rm -rf ./version.properties
           rm -rf ./release-notes.txt
@@ -75,17 +75,10 @@ jobs:
           git config --global user.email 'mimoccc@gmail.com'
           git add .
           git commit -a -m "Add changes"
-
-      - name: Push Changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.TOKEN }}
-          branch: ${{ github.ref }}
-
-      - name: Merge Changes
-        uses: fastify/github-action-merge-dependabot@v2.1.1
-        with:
-          github-token: ${{ secrets.TOKEN }}
+          git push -u origin dev
+          git checkout master  
+          git merge dev
+          git push
 
       - name: Update wiki pages
         uses: OrlovM/Wiki-Action@v1
