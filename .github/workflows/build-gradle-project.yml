@@ -69,13 +69,12 @@ jobs:
 
       - name: Commit Changes and Merge to Dev
         run: |
-          rm -rf ./version.properties
           rm -rf ./release-notes.txt
           git config --global user.name 'Milan Jurkulak'
           git config --global user.email 'mimoccc@gmail.com'
           git add .
           git commit -a -m "bump version"
-          git push -u origin master
+          git push -u origin main
 
       - name: Update wiki pages
         uses: OrlovM/Wiki-Action@v1
