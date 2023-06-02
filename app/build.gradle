@@ -98,27 +98,6 @@ android {
         checkReleaseBuilds false
     }
 
-    task createVersionFile() {
-        def filePath = "../version.properties"
-        def outputFile = new File(projectDir, filePath)
-        def newVersionCode = defaultConfig.versionCode
-        def newVersionName = defaultConfig.versionName
-        outputs.file outputFile
-        doLast {
-            outputFile.text = "versionCode=$newVersionCode\nversionName=$newVersionName"
-        }
-        outputs.upToDateWhen { false }
-    }
-
-    project.tasks.whenTaskAdded { Task task ->
-        if (task.name == 'assembleRelease') {
-            task.doLast {
-                println("createVersionFile")
-            }
-            task.finalizedBy(createVersionFile)
-        }
-    }
-
 }
 
 dependencies {
