@@ -22,19 +22,13 @@ android {
     compileSdk 33
 
     defaultConfig {
-        def versionProperties = new Properties()
-
-        file("../version.properties").withInputStream {
-            stream -> versionProperties.load(stream)
-        }
-
         applicationId "org.mjdev.balldontlie"
 
         minSdk 21
         targetSdk 33
 
-        versionCode Integer.parseInt(versionProperties.versionCode)
-        versionName versionProperties.versionName
+        versionCode=5
+        versionName=1.4
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -105,24 +99,6 @@ android {
 
     lintOptions {
         checkReleaseBuilds false
-    }
-
-    task increaseVersion()  {
-        def filePath = "../version.properties"
-        def versionProperties = new Properties()
-        file(filePath).withInputStream { stream -> versionProperties.load(stream) }
-        def outputFile = new File(projectDir, filePath)
-        def newVersionCode = Integer.parseInt(versionProperties.versionCode) + 1
-        DecimalFormat df = new DecimalFormat("#.#")
-        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ENGLISH))
-        def newVersionName = df.format(Float.parseFloat(
-                versionProperties.versionName
-        ) + 0.1)
-        outputs.file outputFile
-        doLast {
-            outputFile.text = "versionCode=$newVersionCode\nversionName=$newVersionName"
-        }
-        outputs.upToDateWhen { false }
     }
 
 }
