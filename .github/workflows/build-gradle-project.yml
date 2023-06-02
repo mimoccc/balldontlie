@@ -35,10 +35,6 @@ jobs:
         id: grant_gradle
         run: chmod +x gradlew
 
-      - name: Build Release APK
-        id: build_release_apk
-        run: ./gradlew assembleRelease
-
       - name: Prepare Version Number
         id: prepare_version
         run: |
@@ -52,8 +48,8 @@ jobs:
           export VERSION_MAJOR=$(echo $VERSION_VMAJ_TMP | sed -e 's/^majorVersion=//'  -e 's/"$//')
           export VERSION_MINOR=$(echo $VERSION_VMIN_TMP | sed -e 's/^minorVersion=//'  -e 's/"$//')
           export VERSION_PATCH=$(echo $VERSION_VMPAT_TMP | sed -e 's/^patchVersion=//'  -e 's/"$//')
-          export APP_VERSION = "$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH"
-          echo "Release Version :  $APP_VERSION"
+          export APP_VERSION="$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH"
+          echo "Release Version : $APP_VERSION"
           echo "GITHUB_APP_VERSION_NAME=$(echo $APP_VERSION)" >> $GITHUB_ENV
 
       - name: Create Release Notes
@@ -61,6 +57,10 @@ jobs:
         run: |
           chmod a+x ./release-notes.sh ${{ env.GITHUB_APP_VERSION_NAME }} dev
           ./release-notes.sh
+
+      - name: Build Release APK
+        id: build_release_apk
+        run: ./gradlew assembleRelease
 
       - name: Create Release
         id: release
