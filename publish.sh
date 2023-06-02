@@ -18,4 +18,4 @@ git add .
 git commit -m "new release"
 git push
 git tag "$VERSION"
-git push origin "$VERSION"
+#git push origin "$VERSION"
