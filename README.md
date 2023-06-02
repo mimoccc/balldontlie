@@ -36,8 +36,8 @@ Use Android studio or use command:
 ./gradlew assembleMock
 - minified debuggable app version
 ./gradlew assembleMinified
-- release app version
-- ./gradlew assembleRelease
+- release app version 
+./gradlew assembleRelease
 
 ## Usage
 
