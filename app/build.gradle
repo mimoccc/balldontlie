@@ -19,13 +19,19 @@ android {
     compileSdk 33
 
     defaultConfig {
+        def versionProperties = new Properties()
+
+        file("../version.properties").withInputStream {
+            stream -> versionProperties.load(stream)
+        }
+
         applicationId "org.mjdev.balldontlie"
 
         minSdk 21
         targetSdk 33
 
-        versionCode 1
-        versionName "1.0"
+        versionCode Integer.parseInt(versionProperties.versionCode)
+        versionName versionProperties.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
