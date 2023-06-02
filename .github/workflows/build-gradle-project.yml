@@ -53,8 +53,10 @@ jobs:
 
       - name: Increase Version number
         run: |
-          ./gradlew increaseVersion
           git config --global user.email "mimoccc@gmail.com"
           git config --global user.name "Milan Jurkulak"
+          git branch dev
+          ./gradlew increaseVersion
+          git add .
           git commit -m "Version bump"
           git push origin dev
