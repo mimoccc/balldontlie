@@ -1,5 +1,9 @@
 #!/bin/bash
 # todo this will be improved, incubating
+###
+RN_FILE="./release-notes.txt"
+echo "# Release Notes"
+###
 echo "Crating release notes from commits."
 DATE=
 git log --pretty=format:"%ad || %h || %s || Author:%an " --date=short | sort -r | while read line
@@ -12,15 +16,15 @@ else
     NEWDATE=`echo $temp |  awk  '{print $1}'`
     if [ "$NEWDATE" = "$DATE" ]
     then
-        echo $temp | awk '{$1="";$2="";print}' >> release-notes.txt
+        echo $temp | awk '{$1="";$2="";print}' >> $RN_FILE
     else
         echo >> release-notes.txt
         DATE=$NEWDATE
-        echo `date --date=$DATE +%d-%B-%Y` >> release-notes.txt
-        echo $temp | awk '{$1="";$2="";print}' >> release-notes.txt
+        echo `date --date=$DATE +%d-%B-%Y` >> $RN_FILE
+        echo $temp | awk '{$1="";$2="";print}' >> $RN_FILE
     fi
 fi
 done
-echo "Copying to wikis"
-# todo
 echo "Crating release notes from commits done."
+echo "File content:"
+cat $RN_FILE

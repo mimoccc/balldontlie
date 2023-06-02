@@ -74,11 +74,11 @@ jobs:
           git config --global user.name 'Milan Jurkulak'
           git config --global user.email 'mimoccc@gmail.com'
           git add .
-          git commit -a -m "Add changes"
+          git commit -a -m "bump version"
           git push -u origin dev
-          git checkout master  
-          git merge dev
-          git push
+#          git checkout master
+#          git merge dev
+#          git push
 
       - name: Update wiki pages
         uses: OrlovM/Wiki-Action@v1
