@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.mjdev.balldontlie.BuildConfig
 import org.mjdev.balldontlie.network.ApiService
+import org.mjdev.balldontlie.base.network.CacheInterceptor
 import org.mjdev.balldontlie.repository.ApiRepository
 import org.mjdev.balldontlie.repository.IRepository
 import retrofit2.Retrofit
@@ -24,6 +25,8 @@ object ApiModule {
 
     private val isDebug = BuildConfig.DEBUG
 
+    private const val CACHE_SIZE = 64L * 1024L * 1024L // 64 MiB
+
     @Singleton
     @Provides
     fun providesHttpLoggingInterceptor(
@@ -33,9 +36,15 @@ object ApiModule {
 
     @Singleton
     @Provides
+    fun providesCacheInterceptor() = CacheInterceptor()
+
+    @Singleton
+    @Provides
     fun providesOkHttpClient(
+        cacheInterceptor: CacheInterceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient = OkHttpClient.Builder().apply {
+        addNetworkInterceptor(cacheInterceptor)
         if (isDebug) {
             addInterceptor(httpLoggingInterceptor)
         }
@@ -62,6 +71,6 @@ object ApiModule {
     @Provides
     fun providesApiRepository(
         apiService: ApiService
-    ) : IRepository = ApiRepository(apiService)
+    ): IRepository = ApiRepository(apiService)
 
 }
