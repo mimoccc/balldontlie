@@ -32,7 +32,7 @@ jobs:
         run: chmod a+x release-notes.sh
 
       - name: Create Release Notes
-        run: chmod a+x release-notes.sh
+        run: ./release-notes.sh
 
       - name: Prepare Version Number
         run: |
@@ -41,11 +41,11 @@ jobs:
             export VERSION_TMP=$(grep $GRADLE_FIELD $GRADLE_PATH | cat $2)
             export VERSION=$(echo $VERSION_TMP | sed -e 's/^versionName=//'  -e 's/"$//')
             echo "Release Version : $VERSION"
-
+            echo "GITHUB_APP_VERSION=$(echo $VERSION)" >> $GITHUB_ENV
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          name: Release v $VERSION
+          name: Release v ${{ env.GITHUB_APP_VERSION }}
           token: ${{ secrets.TOKEN }}
           tag: ${{ github.run_number }}
-          artifacts: "app/build/outputs/apk/release/app-release.apk;release-notes.txt"
+          artifacts: "app/build/outputs/apk/release/app-release.apk,release-notes.txt"
