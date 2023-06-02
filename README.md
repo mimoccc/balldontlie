@@ -32,11 +32,11 @@ Use Android studio or use command:
 
 - debug app version :
 ./gradlew assembleDebug 
-- mocked app version
+- mocked app version :
 ./gradlew assembleMock
-- minified debuggable app version
+- minified debuggable app version :
 ./gradlew assembleMinified
-- release app version 
+- release app version :
 ./gradlew assembleRelease
 
 ## Usage
