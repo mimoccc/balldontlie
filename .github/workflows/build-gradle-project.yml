@@ -70,11 +70,16 @@ jobs:
           git add .
           git commit -a -m "Add changes"
 
-      - name: Push changes
+      - name: Push Changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.TOKEN }}
           branch: ${{ github.ref }}
+
+      - name: Merge Changes
+        uses: fastify/github-action-merge-dependabot@v2.1.1
+        with:
+          github-token: ${{ secrets.TOKEN }}
 
       - name: Update wiki pages
         uses: OrlovM/Wiki-Action@v1
