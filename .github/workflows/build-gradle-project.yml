@@ -15,9 +15,9 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-            java-version: '17'
-            distribution: 'temurin'
-            cache: gradle
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
@@ -36,12 +36,12 @@ jobs:
 
       - name: Prepare Version Number
         run: |
-            export GRADLE_PATH=./version.properties;
-            export GRADLE_FIELD="versionName"
-            export VERSION_TMP=$(grep $GRADLE_FIELD $GRADLE_PATH | cat $2)
-            export VERSION=$(echo $VERSION_TMP | sed -e 's/^versionName=//'  -e 's/"$//')
-            echo "Release Version : $VERSION"
-            echo "GITHUB_APP_VERSION=$(echo $VERSION)" >> $GITHUB_ENV
+          export GRADLE_PATH=./version.properties;
+          export GRADLE_FIELD="versionName"
+          export VERSION_TMP=$(grep $GRADLE_FIELD $GRADLE_PATH | cat $2)
+          export VERSION=$(echo $VERSION_TMP | sed -e 's/^versionName=//'  -e 's/"$//')
+          echo "Release Version : $VERSION"
+          echo "GITHUB_APP_VERSION=$(echo $VERSION)" >> $GITHUB_ENV
 
       - name: Create Release
         uses: ncipollo/release-action@v1
@@ -50,3 +50,9 @@ jobs:
           token: ${{ secrets.TOKEN }}
           tag: ${{ github.run_number }}
           artifacts: "app/build/outputs/apk/release/app-release.apk,release-notes.txt"
+
+      - name: Increase Version number
+        run: |
+          ./gradlew increaseVersion
+          git commit -m "Version bump"
+          git push origin dev
