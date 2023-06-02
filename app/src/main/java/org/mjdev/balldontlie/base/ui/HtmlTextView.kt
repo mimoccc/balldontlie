@@ -32,7 +32,7 @@ import org.mjdev.balldontlie.base.helpers.Ext.stringResWithStyling
 @DayPreview
 @Composable
 fun HtmlTextView(
-    modifier: Modifier = previewData { Modifier.fillMaxWidth() } ?: Modifier,
+    modifier: Modifier = previewData(Modifier) { Modifier.fillMaxWidth() } ,
     @StringRes htmlResId: Int? = previewData { R.string.webpage },
     color: Color = Color.Unspecified,
     fontSize: TextUnit = TextUnit.Unspecified,
@@ -77,7 +77,7 @@ fun HtmlTextView(
 @DayPreview
 @Composable
 fun HtmlTextView(
-    modifier: Modifier = previewData { Modifier.fillMaxWidth() } ?: Modifier,
+    modifier: Modifier = previewData(Modifier) { Modifier.fillMaxWidth() },
     html: String? = previewData { "test html <a href=\"#\">link</a><b>bold</b>" },
     color: Color = MaterialTheme.colorScheme.tertiary,
     fontSize: TextUnit = TextUnit.Unspecified,

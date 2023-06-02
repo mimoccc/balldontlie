@@ -1,16 +1,24 @@
 package org.mjdev.balldontlie.base.navigation
 
 import androidx.annotation.CallSuper
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
+import org.mjdev.balldontlie.R
 import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.annotations.StartDestination
+import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import kotlin.reflect.full.createInstance
 
-abstract class Screen {
+open class Screen {
 
     private val routeBase: String
         get() = this::class.simpleName ?: "-"
@@ -24,9 +32,9 @@ abstract class Screen {
             routeImpl
         }
 
-    abstract val titleResId: Int
+    open val titleResId: Int = R.string.app_name
 
-    abstract val args: List<NamedNavArgument>
+    open val args: List<NamedNavArgument> = emptyList()
 
     open val menuResId: Int = -1
 
@@ -53,6 +61,15 @@ abstract class Screen {
         backStackEntry: NavBackStackEntry?,
         menuItems: List<MenuItem>
     ) {
+        Column(
+            modifier = previewData(Modifier) {
+                Modifier.fillMaxSize()
+            },
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = "screen")
+        }
     }
 
     companion object {
