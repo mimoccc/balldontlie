@@ -51,12 +51,15 @@ jobs:
           tag: ${{ github.run_number }}
           artifacts: "app/build/outputs/apk/release/app-release.apk,release-notes.txt"
 
-      - name: Increase Version number
-        run: |
-          git config --global user.email "mimoccc@gmail.com"
-          git config --global user.name "Milan Jurkulak"
-          git branch dev
-          ./gradlew increaseVersion
-          git add .
-          git commit -m "Version bump"
-          git push origin dev
+      - name: Increase Version Number
+        uses: chkfung/android-version-actions@v1.2.1
+        with:
+            gradlePath: app/build.gradle # or app/build.gradle.kts
+            versionCode: ${{github.run_number}}
+            versionName: 1.0.0
+
+      - name: Update wiki pages
+        uses: OrlovM/Wiki-Action@v1
+        with:
+            path: 'wiki'
+            token: ${{ secrets.TOKEN }}
