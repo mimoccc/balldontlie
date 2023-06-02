@@ -37,16 +37,20 @@ jobs:
       - name: Prepare Version Number
         run: |
           export GRADLE_PATH=./version.properties;
-          export GRADLE_FIELD="versionName"
-          export VERSION_TMP=$(grep $GRADLE_FIELD $GRADLE_PATH | cat $2)
-          export VERSION=$(echo $VERSION_TMP | sed -e 's/^versionName=//'  -e 's/"$//')
-          echo "Release Version : $VERSION"
-          echo "GITHUB_APP_VERSION=$(echo $VERSION)" >> $GITHUB_ENV
+          export GRADLE_FIELD_VC="versionCode"
+          export GRADLE_FIELD_VN="versionName"
+          export VERSION_VC_TMP=$(grep $GRADLE_FIELD_VC $GRADLE_PATH | cat $2)
+          export VERSION_VN_TMP=$(grep $GRADLE_FIELD_VN $GRADLE_PATH | cat $2)
+          export VERSION_CODE=$(echo $VERSION_VC_TMP | sed -e 's/^versionCode=//'  -e 's/"$//')
+          export VERSION_NAME=$(echo $VERSION_VN_TMP | sed -e 's/^versionName=//'  -e 's/"$//')
+          echo "Release Version : (VC : $VERSION_CODE, VN: $VERSION_NAME)"
+          echo "GITHUB_APP_VERSION_CODE=$(echo $VERSION_CODE)" >> $GITHUB_ENV
+          echo "GITHUB_APP_VERSION_NAME=$(echo $VERSION_NAME)" >> $GITHUB_ENV
 
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          name: Release v ${{ env.GITHUB_APP_VERSION }}
+          name: Release v ${{ env.GITHUB_APP_VERSION_NAME }}
           token: ${{ secrets.TOKEN }}
           tag: ${{ github.run_number }}
           artifacts: "app/build/outputs/apk/release/app-release.apk,release-notes.txt"
@@ -54,9 +58,9 @@ jobs:
       - name: Increase Version Number
         uses: chkfung/android-version-actions@v1.2.1
         with:
-            gradlePath: app/build.gradle # or app/build.gradle.kts
-            versionCode: ${{github.run_number}}
-            versionName: 1.0.0
+            gradlePath: app/build.gradle
+            versionCode: ${{ env.GITHUB_APP_VERSION_CODE }}
+            versionName: ${{ env.GITHUB_APP_VERSION_NAME }}
 
       - name: Update wiki pages
         uses: OrlovM/Wiki-Action@v1

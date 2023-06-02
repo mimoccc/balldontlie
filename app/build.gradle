@@ -1,6 +1,3 @@
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
-
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android' version '1.7.0'
@@ -27,8 +24,8 @@ android {
         minSdk 21
         targetSdk 33
 
-        versionCode=5
-        versionName=1.4
+        versionCode = 5
+        versionName = 1.4
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -99,6 +96,27 @@ android {
 
     lintOptions {
         checkReleaseBuilds false
+    }
+
+    task createVersionFile() {
+        def filePath = "../version.properties"
+        def outputFile = new File(projectDir, filePath)
+        def newVersionCode = defaultConfig.versionCode
+        def newVersionName = defaultConfig.versionName
+        outputs.file outputFile
+        doLast {
+            outputFile.text = "versionCode=$newVersionCode\nversionName=$newVersionName"
+        }
+        outputs.upToDateWhen { false }
+    }
+
+    project.tasks.whenTaskAdded { Task task ->
+        if (task.name == 'assembleRelease') {
+            task.doLast {
+                println("createVersionFile")
+            }
+            task.finalizedBy(createVersionFile)
+        }
     }
 
 }
