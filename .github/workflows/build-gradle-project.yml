@@ -42,6 +42,7 @@ jobs:
             export VERSION=$(echo $VERSION_TMP | sed -e 's/^versionName=//'  -e 's/"$//')
             echo "Release Version : $VERSION"
             echo "GITHUB_APP_VERSION=$(echo $VERSION)" >> $GITHUB_ENV
+
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
