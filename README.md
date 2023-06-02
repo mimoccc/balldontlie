@@ -1,5 +1,7 @@
 # Balldontlie test app
 
+[![Build & Publish Release APK](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml/badge.svg)](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml)
+
 ## Description
 
 Just an test app to skills showcase of coding skills, using
@@ -29,10 +31,6 @@ Just an test app to skills showcase of coding skills, using
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
-
-## Badges
-
-[![Build & Publish Release APK](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml/badge.svg)](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml)
 
 ## Compilation
 
