@@ -33,12 +33,11 @@ fun PlayersList(
         verticalArrangement = Arrangement.spacedBy(4.dp),
         data = players,
         onItemClick = onItemClick
-    ) { idx, player, onClick ->
+    ) { _, player, onClick ->
         Box(
             modifier = Modifier.padding(4.dp, 0.dp, 4.dp, 0.dp)
         ) {
             PlayerListItem(
-                idx = idx + 1,
                 item = player,
                 onItemClick = onClick
             )

@@ -26,7 +26,6 @@ import org.mjdev.balldontlie.repository.MockedRepository.Companion.MockRepositor
 @DayPreview
 @Composable
 fun PlayerListItem(
-    idx: Int? = 0,
     item: Player? = previewData { MockRepository.player() },
     showInCard: Boolean = true,
     onItemClick: (data: Player?) -> Unit = {},

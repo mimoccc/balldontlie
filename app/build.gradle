@@ -39,19 +39,31 @@ android {
 
         // custom fields
         buildConfigField "String", "API_URL", "\"https://www.balldontlie.io/api/v1/\""
+        resValue("string", "API_URL", "https://www.balldontlie.io/api/v1/")
+
         buildConfigField "Boolean", "USE_MOCK", "false"
-        //
+
+        buildConfigField "String", "SYNC_AUTH", "\"" + applicationId + ".sync\""
+        resValue "string", "sync_auth",  applicationId + ".sync"
+        manifestPlaceholders["sync_auth"] = applicationId + ".sync"
+
+        buildConfigField "String", "SYNC_PROVIDER", "\"" + applicationId + ".sync.provider\""
+        resValue "string", "sync_provider",  applicationId + ".sync.provider"
+        manifestPlaceholders["sync_provider"] = applicationId + ".sync.provider"
+
     }
 
     buildTypes {
 
         debug {
+            applicationIdSuffix = ".debug"
             debuggable = true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         mock {
+            applicationIdSuffix = ".mock"
             debuggable = true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -59,6 +71,7 @@ android {
         }
 
         minified {
+            applicationIdSuffix = ".min"
             debuggable = true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
