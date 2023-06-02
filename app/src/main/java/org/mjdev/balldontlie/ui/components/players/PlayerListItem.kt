@@ -61,13 +61,13 @@ fun PlayerListItem(
                     .padding(8.dp)
             ) {
                 Text(
-                    text = "${item?.id ?: 0}. ${item?.fullName}"
+                    text = "${item?.id ?: "-"}. ${item?.fullName}"
                 )
                 Text(
                     text = "${item?.team?.fullName ?: "No team"} / ${item?.position ?: ""}"
                 )
                 Text(
-                    text = "${item?.heightInches ?: 0} / ${item?.weightPounds ?: 0} / ${item?.heightFeet ?: 0}"
+                    text = "${item?.heightInches ?: "-"} / ${item?.weightPounds ?: "-"} / ${item?.heightFeet ?: "-"}"
                 )
             }
         }
