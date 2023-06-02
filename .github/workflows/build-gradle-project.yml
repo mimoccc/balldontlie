@@ -2,6 +2,8 @@ name: Build Gradle project
 
 on:
   push:
+    branches:
+      - master
 
 jobs:
   build-gradle-project:
@@ -18,8 +20,9 @@ jobs:
         uses: gradle/gradle-build-action@v2
       - name: Build Release APK
         run: ./gradlew assembleRelease
-      - name: Releasing using Hub
-        uses: r0user/release-apk@main
+      - name: Release using Hub
+        uses: ShaunLWM/action-release-debugapk@master
         env:
             GITHUB_TOKEN: ${{ secrets.TOKEN }}
             APP_FOLDER: app
+            RELEASE_TITLE: New Build

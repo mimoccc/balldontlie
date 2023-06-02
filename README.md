@@ -28,7 +28,7 @@ Just an test app to skills showcase of coding skills, using
 
 ## Badges
 
-[![Build & Publish Release APK](https://github.com/mimoccc/moneta-test/actions/workflows/android.yml/badge.svg)](https://github.com/mimoccc/moneta-test/actions/workflows/android.yml)
+[![Build & Publish Release APK](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml/badge.svg)](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml)
 
 ## Compilation
 
