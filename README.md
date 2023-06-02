@@ -10,14 +10,18 @@ Just an test app to skills showcase of coding skills, using
 - Glide
 - Kotlin
 - LifeCycle
-- Solve problems with previews
+- Solve problems with compose previews
 - Coroutines
 - Flow
 - Paging
 - Retrofit
-- Json serialization
-- Gradle
-- MarkDown
+- Json serialization (Moshi)
+- Gradle scripting / configuration
+- MarkDown editing
+- Github actions
+- Shell scripting
+- Yaml scripting
+- CI/CD
 
 ## Table of Contents (Optional)
 
