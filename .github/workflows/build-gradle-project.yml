@@ -61,21 +61,20 @@ jobs:
           versionCode: ${{ env.GITHUB_APP_VERSION_CODE }}
           versionName: ${{ env.GITHUB_APP_VERSION_NAME }}
 
-      - name: Check for modified files
-        id: git-check
-        run: echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)
-
-      - name: Commit Changes (version)
-        if: steps.git-check.outputs.modified == 'true'
+      - name: Commit Files
         run: |
           rm -rf ./version.properties
           rm -rf ./release-notes.txt
           git config --global user.name 'Milan Jurkulak'
           git config --global user.email 'mimoccc@gmail.com'
-          git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}
           git add .
-          git commit -am "Version bump"
-          git push
+          git commit -a -m "Add changes"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          branch: ${{ github.ref }}
 
       - name: Update wiki pages
         uses: OrlovM/Wiki-Action@v1
