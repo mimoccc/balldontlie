@@ -75,7 +75,8 @@ jobs:
           git config --global user.email 'mimoccc@gmail.com'
           git add .
           git commit -a -m "bump version"
-          git push -u origin dev
+# todo
+          git push -u origin master
 #          git checkout master
 #          git merge dev
 #          git push
