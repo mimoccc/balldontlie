@@ -1,4 +1,5 @@
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 
 plugins {
     id 'com.android.application'
@@ -112,7 +113,9 @@ android {
         file(filePath).withInputStream { stream -> versionProperties.load(stream) }
         def outputFile = new File(projectDir, filePath)
         def newVersionCode = Integer.parseInt(versionProperties.versionCode) + 1
-        def newVersionName = new DecimalFormat("#.#").format(Float.parseFloat(
+        DecimalFormat df = new DecimalFormat("#.#")
+        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ENGLISH))
+        def newVersionName = df.format(Float.parseFloat(
                 versionProperties.versionName
         ) + 0.1)
         outputs.file outputFile
@@ -198,6 +201,6 @@ dependencies {
             because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
         }
     }
-    // reflection just for viewmodels, unfinished compose libs
+    // reflection just for view models, unfinished compose libs
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.8.21"
 }
