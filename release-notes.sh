@@ -4,7 +4,7 @@
 APP_VERSION="$1"
 GIT_BRANCH="$2"
 RN_FILE="release-notes.txt"
-echo "# Release Notes for $APP_VERSION version:\n" >> $RN_FILE
+echo "# Release Notes for $APP_VERSION version:" >> $RN_FILE
 ###
 echo "Crating release notes from commits."
 DATE=
