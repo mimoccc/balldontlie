@@ -28,14 +28,6 @@ jobs:
       - name: Build Release APK
         run: ./gradlew assembleRelease
 
-      - name: Apply Executable Bit To Script For Release Notes
-        run:
-
-      - name: Create Release Notes
-        run: |
-            chmod a+x release-notes.sh
-            . release-notes.sh
-
       - name: Prepare Version Number
         run: |
           export GRADLE_PATH=./version.properties;
@@ -48,6 +40,11 @@ jobs:
           echo "Release Version : (VC : $VERSION_CODE, VN: $VERSION_NAME)"
           echo "GITHUB_APP_VERSION_CODE=$(echo $VERSION_CODE)" >> $GITHUB_ENV
           echo "GITHUB_APP_VERSION_NAME=$(echo $VERSION_NAME)" >> $GITHUB_ENV
+
+      - name: Create Release Notes
+        run: |
+          chmod a+x release-notes.sh
+          . release-notes.sh
 
       - name: Create Release
         uses: ncipollo/release-action@v1
