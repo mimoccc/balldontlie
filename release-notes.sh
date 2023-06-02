@@ -14,6 +14,7 @@ else
     else
         echo >> releaseNotes.txt
         DATE=$NEWDATE
+        # shellcheck disable=SC2046
         echo `date --date=$DATE +%d-%B-%Y` >> release-notes.txt
         echo $temp | awk '{$1="";$2="";print}' >> release-notes.txt
     fi
