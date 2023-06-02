@@ -16,9 +16,11 @@ jobs:
 
     steps:
       - name: Checkout project sources
+        id: checkout_project
         uses: actions/checkout@v3
 
       - name: Set up JDK 17
+        id: setup_java
         uses: actions/setup-java@v3
         with:
           java-version: '17'
@@ -26,15 +28,19 @@ jobs:
           cache: gradle
 
       - name: Setup Gradle
+        id: setup_gradle
         uses: gradle/gradle-build-action@v2
 
       - name: Grant execute permission for gradlew
+        id: grant_gradle
         run: chmod +x gradlew
 
       - name: Build Release APK
+        id: build_release_apk
         run: ./gradlew assembleRelease
 
       - name: Prepare Version Number
+        id: prepare_version
         run: |
           export GRADLE_PATH=./version.properties;
           export GRADLE_FIELD_VC="versionCode"
@@ -48,35 +54,30 @@ jobs:
           echo "GITHUB_APP_VERSION_NAME=$(echo $VERSION_NAME)" >> $GITHUB_ENV
 
       - name: Create Release Notes
+        id: create_release_notes
         run: |
-          chmod a+x ./release-notes.sh
+          chmod a+x ./release-notes.sh ${{ env.GITHUB_APP_VERSION_NAME }} dev
           ./release-notes.sh
 
       - name: Create Release
+        id: release
         uses: ncipollo/release-action@v1
         with:
           name: Release v ${{ env.GITHUB_APP_VERSION_NAME }}
           token: ${{ secrets.TOKEN }}
           tag: ${{ github.run_number }}
-          artifacts: "./app/build/outputs/apk/release/app-release.apk, ./release-notes.txt"
+          artifacts: './app/build/outputs/apk/release/app-release.apk, ./release-notes.txt'
 
-      - name: Increase Version Number
-        uses: chkfung/android-version-actions@v1.2.1
+      - name: Bump version
+        id: bump_version
+        uses: oflynned/android-version-bump@master
         with:
-          gradlePath: app/build.gradle
-          versionCode: ${{ env.GITHUB_APP_VERSION_CODE }}
-          versionName: ${{ env.GITHUB_APP_VERSION_NAME }}
-
-#      - name: Commit Changes and Merge to Dev
-#        run: |
-#          rm -rf ./release-notes.txt
-#          git config --global user.name 'Milan Jurkulak'
-#          git config --global user.email 'mimoccc@gmail.com'
-#          git add .
-#          git commit -a -m "bump version"
-#          git push -u origin main
+          commit_message: 'bump version'
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Update wiki pages
+        id: update_wiki_pages
         uses: OrlovM/Wiki-Action@v1
         with:
           path: 'wiki'
