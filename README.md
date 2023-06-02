@@ -25,6 +25,7 @@ Just an test app to skills showcase of coding skills, using
 - Shell scripting
 - Yaml scripting
 - CI/CD
+- SyncAdapter
 
 ## Table of Contents (Optional)
 
@@ -38,13 +39,13 @@ Just an test app to skills showcase of coding skills, using
 Use Android studio or use command:
 
 - debug app version :
-./gradlew assembleDebug 
+  ./gradlew assembleDebug
 - mocked app version :
-./gradlew assembleMock
+  ./gradlew assembleMock
 - minified debuggable app version :
-./gradlew assembleMinified
+  ./gradlew assembleMinified
 - release app version :
-./gradlew assembleRelease
+  ./gradlew assembleRelease
 
 ## Usage
 
