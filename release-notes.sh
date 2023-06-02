@@ -1,8 +1,8 @@
 #!/bin/bash
 # todo this will be improved, incubating
 ###
-RN_FILE="./release-notes.txt"
-echo "# Release Notes"
+RN_FILE="release-notes.txt"
+echo "# Release Notes" >> $RN_FILE
 ###
 echo "Crating release notes from commits."
 DATE=
@@ -18,7 +18,7 @@ else
     then
         echo $temp | awk '{$1="";$2="";print}' >> $RN_FILE
     else
-        echo >> release-notes.txt
+        echo >> $RN_FILE
         DATE=$NEWDATE
         echo `date --date=$DATE +%d-%B-%Y` >> $RN_FILE
         echo $temp | awk '{$1="";$2="";print}' >> $RN_FILE
