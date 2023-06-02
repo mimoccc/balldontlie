@@ -43,15 +43,18 @@ jobs:
         id: prepare_version
         run: |
           export GRADLE_PATH=./version.properties;
-          export GRADLE_FIELD_VC="versionCode"
-          export GRADLE_FIELD_VN="versionName"
-          export VERSION_VC_TMP=$(grep $GRADLE_FIELD_VC $GRADLE_PATH | cat $2)
-          export VERSION_VN_TMP=$(grep $GRADLE_FIELD_VN $GRADLE_PATH | cat $2)
-          export VERSION_CODE=$(echo $VERSION_VC_TMP | sed -e 's/^versionCode=//'  -e 's/"$//')
-          export VERSION_NAME=$(echo $VERSION_VN_TMP | sed -e 's/^versionName=//'  -e 's/"$//')
-          echo "Release Version : (VC : $VERSION_CODE, VN: $VERSION_NAME)"
-          echo "GITHUB_APP_VERSION_CODE=$(echo $VERSION_CODE)" >> $GITHUB_ENV
-          echo "GITHUB_APP_VERSION_NAME=$(echo $VERSION_NAME)" >> $GITHUB_ENV
+          export GRADLE_FIELD_VMAJ="majorVersion"
+          export GRADLE_FIELD_VMIN="minorVersion"
+          export GRADLE_FIELD_VPAT="patchVersion"
+          export VERSION_VMAJ_TMP=$(grep $GRADLE_FIELD_VMAJ $GRADLE_PATH | cat $2)
+          export VERSION_VMIN_TMP=$(grep $GRADLE_FIELD_VMIN $GRADLE_PATH | cat $2)
+          export VERSION_VMPAT_TMP=$(grep $GRADLE_FIELD_VMIN $GRADLE_PATH | cat $2)
+          export VERSION_MAJOR=$(echo VERSION_VMAJ_TMP | sed -e 's/^majorVersion=//'  -e 's/"$//')
+          export VERSION_MINOR=$(echo VERSION_VMIN_TMP | sed -e 's/^minorVersion=//'  -e 's/"$//')
+          export VERSION_PATCH=$(echo VERSION_VMPAT_TMP | sed -e 's/^patchVersion=//'  -e 's/"$//')
+          export APP_VERSION = "$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH"
+          echo "Release Version :  $APP_VERSION"
+          echo "GITHUB_APP_VERSION_NAME=$(echo $APP_VERSION)" >> $GITHUB_ENV
 
       - name: Create Release Notes
         id: create_release_notes

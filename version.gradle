@@ -1,4 +1,5 @@
 Properties props = new Properties()
+
 props.load(new FileInputStream("$project.rootDir/version.properties"))
 props.each { prop ->
     project.ext.set(prop.key, prop.value)
