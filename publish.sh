@@ -11,4 +11,4 @@ git add .
 git commit -m "new release"
 git push
 git tag "$VERSION"
-git push origin "$VERSION"
+git --with-token $TOKEN push origin "$VERSION"
