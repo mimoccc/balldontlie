@@ -15,6 +15,7 @@ import androidx.navigation.NavHostController
 import org.mjdev.balldontlie.R
 import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.annotations.StartDestination
+import org.mjdev.balldontlie.base.helpers.Ext.currentRoute
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import kotlin.reflect.full.createInstance
 
@@ -89,7 +90,11 @@ open class Screen {
                 }
                 routeImpl
             }.also { finalRoute ->
-                navController?.navigate(finalRoute)
+                val currentRoute = navController?.currentRoute
+                val equals = currentRoute?.equals(finalRoute)
+                if (equals == false) {
+                    navController.navigate(finalRoute)
+                }
             }
         }
 
