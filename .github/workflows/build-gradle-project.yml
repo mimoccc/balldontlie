@@ -43,8 +43,8 @@ jobs:
 
       - name: Create Release Notes
         run: |
-          chmod a+x release-notes.sh
-          . release-notes.sh
+          chmod a+x ./release-notes.sh
+          ./release-notes.sh
 
       - name: Create Release
         uses: ncipollo/release-action@v1
@@ -57,12 +57,26 @@ jobs:
       - name: Increase Version Number
         uses: chkfung/android-version-actions@v1.2.1
         with:
-            gradlePath: app/build.gradle
-            versionCode: ${{ env.GITHUB_APP_VERSION_CODE }}
-            versionName: ${{ env.GITHUB_APP_VERSION_NAME }}
+          gradlePath: app/build.gradle
+          versionCode: ${{ env.GITHUB_APP_VERSION_CODE }}
+          versionName: ${{ env.GITHUB_APP_VERSION_NAME }}
+
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)
+
+      - name: Commit Changes (version)
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.name 'Milan Jurkulak'
+          git config --global user.email 'mimoccc@gmail.com'
+          git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}
+          git add .
+          git commit -am "Version bump"
+          git push
 
       - name: Update wiki pages
         uses: OrlovM/Wiki-Action@v1
         with:
-            path: 'wiki'
-            token: ${{ secrets.TOKEN }}
+          path: 'wiki'
+          token: ${{ secrets.TOKEN }}
