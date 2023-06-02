@@ -90,6 +90,8 @@ object Ext {
         }
     }
 
+    val NavHostController.currentRoute get() = currentDestination?.route
+
     @Composable
     fun stringResWithStyling(@StringRes id: Int?): String? = LocalContext.current.resources
         .let { res ->
