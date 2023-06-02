@@ -34,4 +34,7 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-            artifacts: "app-release.apk"
+          name: Release ${{ github.event.repository.name }} v${{ github.run_number }}
+          token: ${{ secrets.TOKEN }}
+          tag: ${{ github.run_number }}
+          artifacts: "app/build/outputs/apk/release/app-release.apk"
