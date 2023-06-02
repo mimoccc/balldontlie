@@ -92,9 +92,16 @@ open class Screen {
             }.also { finalRoute ->
                 val currentRoute = navController?.currentRoute
                 val equals = currentRoute?.equals(finalRoute)
-                if (equals == false) {
-                    navController.navigate(finalRoute)
+                if (equals != true) {
+                    navController?.navigate(finalRoute)
                 }
+            }
+        }
+
+        fun NavHostController.open(route: String) {
+            val equals = currentRoute?.equals(route)
+            if (equals != true) {
+                navigate(route)
             }
         }
 
