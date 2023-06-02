@@ -1,9 +1,9 @@
 #!/bin/bash
 # todo this will be improved, incubating
 ###
+APP_VERSION="$1"
+GIT_BRANCH="$2"
 RN_FILE="release-notes.txt"
-APP_VERSION=$1
-GIT_BRANCH=$2
 echo "# Release Notes for $APP_VERSION version:\n" >> $RN_FILE
 ###
 echo "Crating release notes from commits."
