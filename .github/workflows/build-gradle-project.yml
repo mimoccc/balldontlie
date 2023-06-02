@@ -29,10 +29,25 @@ jobs:
         run: ./gradlew assembleRelease
 
       - name: Apply Executable Bit To Script For Release Notes
-        run: chmod a+x release-notes.sh
+        run:
 
       - name: Create Release Notes
-        run: ./release-notes.sh
+        run: |
+            chmod a+x release-notes.sh
+            . release-notes.sh
+
+      - name: Prepare Version Number
+        run: |
+          export GRADLE_PATH=./version.properties;
+          export GRADLE_FIELD_VC="versionCode"
+          export GRADLE_FIELD_VN="versionName"
+          export VERSION_VC_TMP=$(grep $GRADLE_FIELD_VC $GRADLE_PATH | cat $2)
+          export VERSION_VN_TMP=$(grep $GRADLE_FIELD_VN $GRADLE_PATH | cat $2)
+          export VERSION_CODE=$(echo $VERSION_VC_TMP | sed -e 's/^versionCode=//'  -e 's/"$//')
+          export VERSION_NAME=$(echo $VERSION_VN_TMP | sed -e 's/^versionName=//'  -e 's/"$//')
+          echo "Release Version : (VC : $VERSION_CODE, VN: $VERSION_NAME)"
+          echo "GITHUB_APP_VERSION_CODE=$(echo $VERSION_CODE)" >> $GITHUB_ENV
+          echo "GITHUB_APP_VERSION_NAME=$(echo $VERSION_NAME)" >> $GITHUB_ENV
 
       - name: Create Release
         uses: ncipollo/release-action@v1
@@ -43,10 +58,11 @@ jobs:
           artifacts: "app/build/outputs/apk/release/app-release.apk,release-notes.txt"
 
       - name: Increase Version Number
-        uses: ults-io/mobile-version-bump-action@v1
+        uses: chkfung/android-version-actions@v1.2.1
         with:
-            android-project-path: ./
-            bump-type: patch
+            gradlePath: app/build.gradle
+            versionCode: ${{ env.GITHUB_APP_VERSION_CODE }}
+            versionName: ${{ env.GITHUB_APP_VERSION_NAME }}
 
       - name: Update wiki pages
         uses: OrlovM/Wiki-Action@v1
