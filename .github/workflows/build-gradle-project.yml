@@ -52,7 +52,7 @@ jobs:
           name: Release v ${{ env.GITHUB_APP_VERSION_NAME }}
           token: ${{ secrets.TOKEN }}
           tag: ${{ github.run_number }}
-          artifacts: "app/build/outputs/apk/release/app-release.apk,release-notes.txt"
+          artifacts: "./app/build/outputs/apk/release/app-release.apk, ./release-notes.txt"
 
       - name: Increase Version Number
         uses: chkfung/android-version-actions@v1.2.1
@@ -68,6 +68,8 @@ jobs:
       - name: Commit Changes (version)
         if: steps.git-check.outputs.modified == 'true'
         run: |
+          rm -rf ./version.properties
+          rm -rf ./release-notes.txt
           git config --global user.name 'Milan Jurkulak'
           git config --global user.email 'mimoccc@gmail.com'
           git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}
