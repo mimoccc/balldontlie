@@ -55,8 +55,8 @@ jobs:
       - name: Create Release Notes
         id: create_release_notes
         run: |
-          chmod a+x ./release-notes.sh "${{ env.GITHUB_APP_VERSION_NAME }}" "dev"
-          ./release-notes.sh
+          chmod a+x ./release-notes.sh 
+          ./release-notes.sh ${{ env.GITHUB_APP_VERSION_NAME }} dev
 
       - name: Build Release APK
         id: build_release_apk
