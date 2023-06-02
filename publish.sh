@@ -1,5 +1,5 @@
 # variables
-export GRADLE_PATH=./version.gradle
+export GRADLE_PATH=./version.properties
 export GRADLE_FIELD="versionName"
 # logic
 export VERSION_TMP=$(grep $GRADLE_FIELD $GRADLE_PATH | awk '{print $2}')
