@@ -1,3 +1,5 @@
+import java.text.DecimalFormat
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android' version '1.7.0'
@@ -107,10 +109,12 @@ android {
     task increaseVersion()  {
         def filePath = "../version.properties"
         def versionProperties = new Properties()
-        def outputFile = new File(projectDir, filePath)
         file(filePath).withInputStream { stream -> versionProperties.load(stream) }
+        def outputFile = new File(projectDir, filePath)
         def newVersionCode = Integer.parseInt(versionProperties.versionCode) + 1
-        def newVersionName = Float.parseFloat(versionProperties.versionName) + 0.1
+        def newVersionName = new DecimalFormat("#.#").format(Float.parseFloat(
+                versionProperties.versionName
+        ) + 0.1)
         outputs.file outputFile
         doLast {
             outputFile.text = "versionCode=$newVersionCode\nversionName=$newVersionName"
