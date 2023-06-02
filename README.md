@@ -26,6 +26,10 @@ Just an test app to skills showcase of coding skills, using
 - [Credits](#credits)
 - [License](#license)
 
+## Badges
+
+[![Build & Publish Release APK](https://github.com/mimoccc/moneta-test/actions/workflows/android.yml/badge.svg)](https://github.com/mimoccc/moneta-test/actions/workflows/android.yml)
+
 ## Compilation
 
 Use Android studio or use command:
