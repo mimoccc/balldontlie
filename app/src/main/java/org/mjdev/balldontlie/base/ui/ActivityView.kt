@@ -37,6 +37,7 @@ import org.mjdev.balldontlie.R
 import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.base.navigation.MenuItem
+import org.mjdev.balldontlie.base.navigation.Screen.Companion.open
 import org.mjdev.balldontlie.base.states.ActivityViewState
 import org.mjdev.balldontlie.base.states.ActivityViewState.Companion.rememberActivityViewState
 
@@ -93,7 +94,7 @@ fun ScreenView(
                                     drawerState.close()
                                 }
                                 selectedItem.value?.route?.let { route ->
-                                    navController?.navigate(route)
+                                    navController?.open(route)
                                 }
                             },
                             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
@@ -123,7 +124,9 @@ fun ScreenView(
                                         if (navController?.previousBackStackEntry != null) {
                                             navController.navigateUp()
                                         } else {
-                                            scope.launch { drawerState.open() }
+                                            scope.launch {
+                                                drawerState.open()
+                                            }
                                         }
                                     }
                                 )

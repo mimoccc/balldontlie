@@ -16,6 +16,7 @@ Just an test app to skills showcase of coding skills, using
 - Coroutines
 - Flow
 - Paging
+- Navigation
 - Retrofit
 - Json serialization (Moshi)
 - Gradle scripting / configuration
