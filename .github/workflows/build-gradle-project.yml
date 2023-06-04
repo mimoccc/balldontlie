@@ -67,8 +67,9 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           name: Release v ${{ env.GITHUB_APP_VERSION_NAME }}
+          allowUpdates: true
           token: ${{ secrets.TOKEN }}
-          tag: ${{ github.run_number }}
+          tag: release-${{ env.GITHUB_APP_VERSION_NAME }}
           artifacts: './app/build/outputs/apk/release/app-release.apk, ./release-notes.txt'
 
       - name: Update wiki pages

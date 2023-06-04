@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id("org.jetbrains.dokka") version "1.8.10"
 }
 
 apply from: "../version.gradle"
@@ -44,11 +45,11 @@ android {
         buildConfigField "Boolean", "USE_MOCK", "false"
 
         buildConfigField "String", "SYNC_AUTH", "\"" + applicationId + ".sync\""
-        resValue "string", "sync_auth",  applicationId + ".sync"
+        resValue "string", "sync_auth", applicationId + ".sync"
         manifestPlaceholders["sync_auth"] = applicationId + ".sync"
 
         buildConfigField "String", "SYNC_PROVIDER", "\"" + applicationId + ".sync.provider\""
-        resValue "string", "sync_provider",  applicationId + ".sync.provider"
+        resValue "string", "sync_provider", applicationId + ".sync.provider"
         manifestPlaceholders["sync_provider"] = applicationId + ".sync.provider"
 
     }
@@ -111,6 +112,20 @@ android {
 
     lintOptions {
         checkReleaseBuilds false
+    }
+
+    subprojects {
+        apply(plugin = "org.jetbrains.dokka")
+    }
+
+    tasks.dokkaGfm {
+        outputDirectory.set(new File(projectDir, "../wiki/documentation"))
+    }
+
+    project.tasks.whenTaskAdded { Task task ->
+        if (task.name == 'assembleRelease') {
+            task.finalizedBy(tasks.dokkaGfm)
+        }
     }
 
 }
