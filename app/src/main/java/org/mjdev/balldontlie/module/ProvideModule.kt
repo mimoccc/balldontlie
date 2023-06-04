@@ -1,31 +1,38 @@
 package org.mjdev.balldontlie.module
 
+import android.content.Context
+import com.j256.ormlite.android.apptools.OpenHelperManager
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.mjdev.balldontlie.BuildConfig
-import org.mjdev.balldontlie.network.ApiService
 import org.mjdev.balldontlie.base.network.CacheInterceptor
-import org.mjdev.balldontlie.repository.ApiRepository
-import org.mjdev.balldontlie.repository.IRepository
+import org.mjdev.balldontlie.database.DAO
+import org.mjdev.balldontlie.network.ApiService
+import org.mjdev.balldontlie.repository.def.INetworkRepository
+import org.mjdev.balldontlie.repository.def.IRepository
+import org.mjdev.balldontlie.repository.impl.ApiRepository
+import org.mjdev.balldontlie.repository.impl.SyncRepository
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
-@Suppress("unused")
 @Module
 @InstallIn(SingletonComponent::class)
-object ApiModule {
+class ProvideModule {
 
-    private const val BASE_URL = BuildConfig.API_URL
+    @Suppress("PrivatePropertyName")
+    private val BASE_URL = BuildConfig.API_URL
 
     private val isDebug = BuildConfig.DEBUG
 
-    private const val CACHE_SIZE = 64L * 1024L * 1024L // 64 MiB
+//    private val CACHE_SIZE = 64L * 1024L * 1024L // 64 MiB
 
     @Singleton
     @Provides
@@ -69,8 +76,25 @@ object ApiModule {
 
     @Singleton
     @Provides
+    fun providesSyncRepository(
+        dao: DAO
+    ): IRepository = SyncRepository(dao)
+
+    @Singleton
+    @Provides
+    fun providesMoshi(): Moshi = Moshi.Builder().build()
+
+    @Singleton
+    @Provides
     fun providesApiRepository(
         apiService: ApiService
-    ): IRepository = ApiRepository(apiService)
+    ): INetworkRepository = ApiRepository(apiService)
+
+    @Singleton
+    @Provides
+    fun provideDAO(
+        @ApplicationContext
+        context:Context
+    ) : DAO = OpenHelperManager.getHelper(context, DAO::class.java)
 
 }

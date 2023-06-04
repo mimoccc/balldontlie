@@ -40,16 +40,13 @@ open class BaseViewModel : ViewModel() {
     }
 
     @Suppress("UNCHECKED_CAST")
-    protected fun <T> runSafe(
-        coroutineContext: CoroutineContext = Dispatchers.IO,
+    protected suspend fun <T> runSafe(
         block: suspend () -> T
-    ) : T? = runBlocking(coroutineContext) {
-        try {
-            block.invoke()
-        } catch (t: Throwable) {
-            onError(t)
-        }
-    } as? T?
+    ): T = try {
+        block.invoke()
+    } catch (t: Throwable) {
+        onError(t)
+    } as T
 
     fun handleError(block: (error: Throwable) -> Unit) {
         errorHandler = block

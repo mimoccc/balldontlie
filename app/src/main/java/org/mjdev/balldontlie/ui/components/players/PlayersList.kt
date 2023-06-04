@@ -8,30 +8,33 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.paging.PagingData
-import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.collectAsLazyPagingItems
-import kotlinx.coroutines.flow.MutableStateFlow
+import androidx.paging.LoadState
+import kotlinx.coroutines.flow.Flow
 import org.mjdev.balldontlie.base.annotations.DayPreview
+import org.mjdev.balldontlie.base.helpers.Ext.asMutableFlow
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.base.ui.PagingList
-import org.mjdev.balldontlie.repository.MockedRepository
+import org.mjdev.balldontlie.repository.impl.MockedRepository.Companion.MockRepository
 
 @SuppressLint("ModifierParameter")
 @DayPreview
 @Composable
 fun PlayersList(
     modifier: Modifier = previewData(Modifier) { Modifier.fillMaxSize() },
-    players: LazyPagingItems<Player>? = previewData {
-        MutableStateFlow(PagingData.from(MockedRepository.MockRepository.players().players))
-    }?.collectAsLazyPagingItems(),
-    onItemClick: (data: Player?) -> Unit = {}
+    perPage: Int = 25,
+    source: (page: Int, cnt: Int) -> List<Player> = { p, c ->
+        MockRepository.players(0, perPage).players
+    },
+    loadStateHandler: (state: LoadState) -> Unit = {},
+    onItemClick: (data: Player) -> Unit = {}
 ) {
+
     PagingList(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp),
-        data = players,
+        perPage = perPage,
+        source = source,
         onItemClick = onItemClick
     ) { _, player, onClick ->
         Box(
@@ -43,4 +46,5 @@ fun PlayersList(
             )
         }
     }
+
 }

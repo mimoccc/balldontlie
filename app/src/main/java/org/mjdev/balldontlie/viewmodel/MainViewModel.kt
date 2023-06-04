@@ -1,14 +1,12 @@
 package org.mjdev.balldontlie.viewmodel
 
-import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import org.mjdev.balldontlie.base.helpers.ListPagingSource.Companion.pagerList
+import kotlinx.coroutines.flow.Flow
+import org.mjdev.balldontlie.base.helpers.Ext.asMutableFlow
 import org.mjdev.balldontlie.base.viewmodel.BaseViewModel
-import org.mjdev.balldontlie.repository.IRepository
-import org.mjdev.balldontlie.repository.MockedRepository
+import org.mjdev.balldontlie.model.Player
+import org.mjdev.balldontlie.repository.def.IRepository
+import org.mjdev.balldontlie.repository.impl.MockedRepository
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,19 +16,19 @@ constructor(
     private val repository: IRepository
 ) : BaseViewModel() {
 
-    @Suppress("PrivatePropertyName")
-    private val DEFAULT_COUNT_OF_PLAYERS = 25
-
     private val isMock = repository is MockedRepository
 
-    fun players() = runSafe {
-        if (isMock) {
-            MutableStateFlow(PagingData.from((repository as MockedRepository).players().players))
-        } else {
-            pagerList(DEFAULT_COUNT_OF_PLAYERS) { page, count ->
-                repository.getPlayers(page, count).getOrThrow().players
-            }.cachedIn(viewModelScope)
-        }
+    suspend fun players(
+        page: Int = 0,
+        cnt: Int = 50
+    ): Flow<List<Player>> = runSafe {
+//        if (isMock) {
+           (repository as MockedRepository).players().players.asMutableFlow()
+//        } else {
+//            repository.getPlayers(page, cnt).getOrThrow().map { data ->
+//                data.players
+//            }
+//        }
     }
 
 }

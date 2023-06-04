@@ -5,18 +5,35 @@ import android.accounts.AccountManager
 import android.app.Service
 import android.content.ContentResolver
 import android.content.ContentResolver.setIsSyncable
+import android.content.ContentResolver.setSyncAutomatically
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.IBinder
+import dagger.hilt.android.AndroidEntryPoint
 import org.mjdev.balldontlie.BuildConfig
+import org.mjdev.balldontlie.database.DAO
+import org.mjdev.balldontlie.repository.def.INetworkRepository
 import timber.log.Timber
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SyncService : Service() {
 
+    @Inject
+    lateinit var repository: INetworkRepository
+
+    @Inject
+    lateinit var dao: DAO
+
     override fun onCreate() {
+        super.onCreate()
         synchronized(sSyncAdapterLock) {
-            sSyncAdapter = sSyncAdapter ?: SyncAdapter(applicationContext, true)
+            sSyncAdapter = sSyncAdapter ?: SyncAdapter(
+                context = applicationContext,
+                repository = repository,
+                dao = dao
+            )
         }
     }
 
@@ -26,8 +43,9 @@ class SyncService : Service() {
 
     companion object {
 
-        private const val ACCOUNT: String = BuildConfig.SYNC_AUTH
+        private const val ACCOUNT_NAME: String = BuildConfig.SYNC_AUTH
         private const val ACCOUNT_TYPE: String = BuildConfig.SYNC_AUTH
+
         private const val AUTHORITY: String = BuildConfig.SYNC_AUTH
 
         private var sSyncAdapter: SyncAdapter? = null
@@ -35,17 +53,31 @@ class SyncService : Service() {
 
         fun Context.createSyncAccount(): Account {
             val accountManager = getSystemService(Context.ACCOUNT_SERVICE) as AccountManager
-            return Account(ACCOUNT, ACCOUNT_TYPE).also { account ->
-                if (accountManager.addAccountExplicitly(account, "", Bundle())) {
-                    setIsSyncable(account, AUTHORITY, 1)
+            return Account(ACCOUNT_NAME, ACCOUNT_TYPE).also { account ->
+                val accounts = accountManager.getAccountsByType(ACCOUNT_TYPE)
+                if (accounts.isEmpty()) {
+                    if (accountManager.addAccountExplicitly(account, "", Bundle())) {
+                        setIsSyncable(account, AUTHORITY, 1)
+                        setSyncAutomatically(account, AUTHORITY, true)
+                    } else {
+                        Timber.e("Can not create sync account")
+                    }
                 } else {
-                    Timber.e("Can not create sync account")
+                    Timber.d("Account already exists.")
                 }
             }
         }
 
-        fun requestSync(account: Account) =
-            ContentResolver.requestSync(account, AUTHORITY, Bundle())
+        fun requestSync(account: Account) {
+            ContentResolver.requestSync(
+                account,
+                AUTHORITY,
+                Bundle().apply {
+                    putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true)
+                    putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true)
+                }
+            )
+        }
 
     }
 

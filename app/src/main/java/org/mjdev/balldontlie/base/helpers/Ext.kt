@@ -29,24 +29,49 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.NavigatorProvider
 import androidx.navigation.compose.composable
-import androidx.paging.PagingData
-import androidx.paging.compose.collectAsLazyPagingItems
+import com.squareup.moshi.Moshi
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import org.json.JSONException
 import org.mjdev.balldontlie.BuildConfig
 import org.mjdev.balldontlie.base.navigation.NavGraphBuilderEx
 import org.mjdev.balldontlie.base.navigation.Screen
-import org.mjdev.balldontlie.repository.IRepository
-import org.mjdev.balldontlie.repository.MockedRepository.Companion.MockRepository
+import org.mjdev.balldontlie.repository.def.IRepository
+import org.mjdev.balldontlie.repository.impl.MockedRepository.Companion.MockRepository
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.reflect.full.isSubclassOf
 import kotlin.reflect.jvm.jvmErasure
 
-@Suppress("unused")
 object Ext {
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    suspend fun <T> Flow<T>.collectAs() = flatMapConcat {
+        it.asMutableFlow()
+    }.toList().first()
+
+    fun <T> T.asMutableFlow(): Flow<T> = mutableStatFlowOf(this@asMutableFlow)
+
+    fun <T> T.mutableStatFlowOf(item: T): MutableStateFlow<T> = MutableStateFlow(item)
+
+    inline fun <reified T> fromJson(s: String, moshi: Moshi? = null): T =
+        (moshi ?: Moshi.Builder().build()).adapter(T::class.java).fromJson(s)
+            ?: throw (JSONException("Invalid data."))
+
+    inline fun <reified T> T.toJson(
+        moshi: Moshi? = null
+    ): String = (moshi ?: Moshi.Builder().build()).adapter(T::class.java).toJson(this)
+
+    fun <T> List<T>.contains(block: (T) -> Boolean) = count(block) > 0
+
+    fun <T> List<T>.containsNot(block: (T) -> Boolean) = count(block) == 0
+
 
     fun Drawable.asImageBitmap(width: Int = 1, height: Int = 1): ImageBitmap =
         toBitmap(width, height).asImageBitmap()
@@ -61,10 +86,6 @@ object Ext {
         defaultValue: T,
         block: () -> T
     ): T = if (isEditMode()) block.invoke() else defaultValue
-
-    @Composable
-    fun <T : Any> previewLazyData(vararg values: T) =
-        flowOf(PagingData.from(values.toList())).collectAsLazyPagingItems()
 
     @Composable
     inline fun <reified T> textFrom(text: T?): String? = when (text) {

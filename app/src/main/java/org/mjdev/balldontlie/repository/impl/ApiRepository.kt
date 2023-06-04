@@ -1,14 +1,17 @@
-package org.mjdev.balldontlie.repository
+package org.mjdev.balldontlie.repository.impl
 
 import org.mjdev.balldontlie.error.ApiError
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.model.Players
 import org.mjdev.balldontlie.network.ApiService
+import org.mjdev.balldontlie.repository.def.INetworkRepository
 import retrofit2.Response
+import javax.inject.Inject
 
-class ApiRepository(
-    private val apiService: ApiService
-) : IRepository {
+@Suppress("MemberVisibilityCanBePrivate")
+class ApiRepository @Inject constructor(
+    var apiService: ApiService
+) : INetworkRepository {
 
     override suspend fun getPlayers(
         page: Int,

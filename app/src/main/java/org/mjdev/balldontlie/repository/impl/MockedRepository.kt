@@ -1,14 +1,17 @@
-package org.mjdev.balldontlie.repository
+package org.mjdev.balldontlie.repository.impl
 
+import kotlinx.coroutines.flow.Flow
+import org.mjdev.balldontlie.base.helpers.Ext.asMutableFlow
 import org.mjdev.balldontlie.model.Meta
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.model.Players
 import org.mjdev.balldontlie.model.Team
+import org.mjdev.balldontlie.repository.def.IRepository
 
 class MockedRepository : IRepository {
 
     @Suppress("PropertyName", "MemberVisibilityCanBePrivate")
-    val DEFAULT_COUNT_OF_PLAYERS = 25
+    val DEFAULT_COUNT_OF_PLAYERS = 50
 
     fun player(
         idx: Int = 0,
@@ -56,11 +59,11 @@ class MockedRepository : IRepository {
     override suspend fun getPlayers(
         page: Int,
         perPage: Int,
-    ): Result<Players> = Result.success(players(0, perPage))
+    ): Result<Flow<Players>> = Result.success(players(0, perPage).asMutableFlow())
 
     override suspend fun getPlayer(
         id: Int
-    ): Result<Player> = Result.success(player(id))
+    ): Result<Flow<Player>> = Result.success(player(id).asMutableFlow())
 
     companion object {
         val MockRepository by lazy { MockedRepository() }
