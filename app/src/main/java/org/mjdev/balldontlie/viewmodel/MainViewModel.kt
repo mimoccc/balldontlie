@@ -23,7 +23,7 @@ constructor(
 
     private val isMock = repository is MockedRepository
 
-    fun players() = runSafe {
+    suspend fun players() = runSafe {
         if (isMock) {
             MutableStateFlow(PagingData.from((repository as MockedRepository).players().players))
         } else {

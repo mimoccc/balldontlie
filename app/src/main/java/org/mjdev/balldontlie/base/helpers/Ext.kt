@@ -7,10 +7,13 @@ import android.text.SpannableString
 import android.text.Spanned
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
@@ -47,6 +50,18 @@ import kotlin.reflect.jvm.jvmErasure
 
 @Suppress("unused")
 object Ext {
+
+    @Composable
+    fun <T> runInComposeScope(function: suspend () -> T): MutableState<T?> {
+        val composableScope = rememberCoroutineScope()
+        val result = remember { mutableStateOf<T?>(null) }
+        LaunchedEffect(key1 = Unit) {
+            withContext(composableScope.coroutineContext) {
+                result.value = function.invoke()
+            }
+        }
+        return result
+    }
 
     fun Drawable.asImageBitmap(width: Int = 1, height: Int = 1): ImageBitmap =
         toBitmap(width, height).asImageBitmap()
@@ -176,6 +191,7 @@ object Ext {
         context: CoroutineContext = EmptyCoroutineContext
     ): State<R> {
         return if (isEditMode()) {
+            // todo remove blocking
             runBlocking(context) {
                 var ret: R = initial
                 collect { value ->

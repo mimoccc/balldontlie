@@ -1,6 +1,7 @@
 package org.mjdev.balldontlie.module
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,16 +17,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
-@Suppress("unused")
 @Module
 @InstallIn(SingletonComponent::class)
-object ApiModule {
+class ProvideModule {
 
-    private const val BASE_URL = BuildConfig.API_URL
+    @Suppress("PrivatePropertyName")
+    private val BASE_URL = BuildConfig.API_URL
 
     private val isDebug = BuildConfig.DEBUG
 
-    private const val CACHE_SIZE = 64L * 1024L * 1024L // 64 MiB
+//    private val CACHE_SIZE = 64L * 1024L * 1024L // 64 MiB
 
     @Singleton
     @Provides
@@ -66,6 +67,10 @@ object ApiModule {
     fun providesApiService(
         retrofit: Retrofit
     ): ApiService = retrofit.create(ApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun providesMoshi(): Moshi = Moshi.Builder().build()
 
     @Singleton
     @Provides

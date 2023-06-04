@@ -1,15 +1,12 @@
 package org.mjdev.balldontlie.base.viewmodel
 
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.runBlocking
 import org.mjdev.balldontlie.error.ApiError
 import org.mjdev.balldontlie.error.EmptyError
 import timber.log.Timber
-import kotlin.coroutines.CoroutineContext
 
 open class BaseViewModel : ViewModel() {
 
@@ -40,16 +37,13 @@ open class BaseViewModel : ViewModel() {
     }
 
     @Suppress("UNCHECKED_CAST")
-    protected fun <T> runSafe(
-        coroutineContext: CoroutineContext = Dispatchers.IO,
+    protected suspend fun <T> runSafe(
         block: suspend () -> T
-    ) : T? = runBlocking(coroutineContext) {
-        try {
-            block.invoke()
-        } catch (t: Throwable) {
-            onError(t)
-        }
-    } as? T?
+    ): T = try {
+        block.invoke()
+    } catch (t: Throwable) {
+        onError(t)
+    } as T
 
     fun handleError(block: (error: Throwable) -> Unit) {
         errorHandler = block

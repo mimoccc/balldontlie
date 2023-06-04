@@ -122,11 +122,12 @@ android {
         outputDirectory.set(new File(projectDir, "../wiki/documentation"))
     }
 
-    project.tasks.whenTaskAdded { Task task ->
-        if (task.name == 'assembleRelease') {
-            task.finalizedBy(tasks.dokkaGfm)
-        }
-    }
+    // todo dokka is ignored yet
+//    project.tasks.whenTaskAdded { Task task ->
+//        if (task.name == 'assembleRelease') {
+//            task.finalizedBy(tasks.dokkaGfm)
+//        }
+//    }
 
 }
 

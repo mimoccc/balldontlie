@@ -5,9 +5,11 @@ import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.model.Players
 import org.mjdev.balldontlie.network.ApiService
 import retrofit2.Response
+import javax.inject.Inject
 
-class ApiRepository(
-    private val apiService: ApiService
+@Suppress("MemberVisibilityCanBePrivate")
+class ApiRepository @Inject constructor(
+    var apiService: ApiService
 ) : IRepository {
 
     override suspend fun getPlayers(
