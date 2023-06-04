@@ -51,20 +51,25 @@ class SyncService : Service() {
         private var sSyncAdapter: SyncAdapter? = null
         private val sSyncAdapterLock = Any()
 
-        fun Context.createSyncAccount(): Account {
-            val accountManager = getSystemService(Context.ACCOUNT_SERVICE) as AccountManager
-            return Account(ACCOUNT_NAME, ACCOUNT_TYPE).also { account ->
-                val accounts = accountManager.getAccountsByType(ACCOUNT_TYPE)
-                if (accounts.isEmpty()) {
-                    if (accountManager.addAccountExplicitly(account, "", Bundle())) {
-                        setIsSyncable(account, AUTHORITY, 1)
-                        setSyncAutomatically(account, AUTHORITY, true)
+        fun Context.createSyncAccount(): Account? {
+            return try {
+                val accountManager = getSystemService(Context.ACCOUNT_SERVICE) as AccountManager
+                Account(ACCOUNT_NAME, ACCOUNT_TYPE).also { account ->
+                    val accounts = accountManager.getAccountsByType(ACCOUNT_TYPE)
+                    if (accounts.isEmpty()) {
+                        if (accountManager.addAccountExplicitly(account, "", Bundle())) {
+                            setIsSyncable(account, AUTHORITY, 1)
+                            setSyncAutomatically(account, AUTHORITY, true)
+                        } else {
+                            Timber.e("Can not create sync account")
+                        }
                     } else {
-                        Timber.e("Can not create sync account")
+                        Timber.d("Account already exists.")
                     }
-                } else {
-                    Timber.d("Account already exists.")
                 }
+            } catch (e: Throwable) {
+                Timber.e(e)
+                null
             }
         }
 

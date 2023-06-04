@@ -12,9 +12,10 @@ class MainApp : Application() {
     override fun onCreate() {
         super.onCreate()
         DynamicColors.applyToActivitiesIfAvailable(this)
-        createSyncAccount().also { account ->
+        createSyncAccount()?.also { account ->
             SyncService.requestSync(account)
         }
+        // todo account time to time can not be prepared
     }
 
 }
