@@ -19,7 +19,6 @@ import org.mjdev.balldontlie.base.helpers.Ext.appViewModel
 import org.mjdev.balldontlie.base.navigation.MenuItem
 import org.mjdev.balldontlie.base.navigation.Screen
 import org.mjdev.balldontlie.base.annotations.StartDestination
-import org.mjdev.balldontlie.base.helpers.Ext.collectAs
 import org.mjdev.balldontlie.base.ui.ScreenView
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.ui.components.players.PlayersList
@@ -48,9 +47,10 @@ class MainScreen : Screen() {
     ) {
 
         val viewModel: MainViewModel = appViewModel()
+
         val dataProvider: (p: Int, c: Int) -> List<Player> = { p, c ->
             runBlocking {
-                viewModel.players(p, c).collectAs()
+                viewModel.players(p, c)
             }
         }
 

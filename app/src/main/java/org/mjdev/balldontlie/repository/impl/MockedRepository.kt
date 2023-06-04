@@ -1,7 +1,5 @@
 package org.mjdev.balldontlie.repository.impl
 
-import kotlinx.coroutines.flow.Flow
-import org.mjdev.balldontlie.base.helpers.Ext.asMutableFlow
 import org.mjdev.balldontlie.model.Meta
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.model.Players
@@ -30,18 +28,18 @@ class MockedRepository : IRepository {
 
     fun players(
         page: Int = 0,
-        cnt: Int = DEFAULT_COUNT_OF_PLAYERS
+        perPage: Int = DEFAULT_COUNT_OF_PLAYERS
     ): Players = Players(
         players = mutableListOf<Player>().apply {
-            (1..cnt + 1).forEach { idx ->
+            (1..perPage + 1).forEach { idx ->
                 add(player(idx))
             }
         },
         meta = Meta(
             currentPage = page,
             nextPage = page + 1,
-            perPage = cnt,
-            totalCount = cnt,
+            perPage = perPage,
+            totalCount = perPage,
             totalPages = 1
         )
     )
@@ -59,11 +57,11 @@ class MockedRepository : IRepository {
     override suspend fun getPlayers(
         page: Int,
         perPage: Int,
-    ): Result<Flow<Players>> = Result.success(players(0, perPage).asMutableFlow())
+    ): Result<Players> = Result.success(players(0, perPage))
 
     override suspend fun getPlayer(
         id: Int
-    ): Result<Flow<Player>> = Result.success(player(id).asMutableFlow())
+    ): Result<Player> = Result.success(player(id))
 
     companion object {
         val MockRepository by lazy { MockedRepository() }

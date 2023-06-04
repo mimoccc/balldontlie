@@ -1,10 +1,6 @@
 package org.mjdev.balldontlie.repository.impl
 
 import com.j256.ormlite.dao.Dao
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import org.mjdev.balldontlie.base.helpers.DaoExt.daoValueOf
-import org.mjdev.balldontlie.base.helpers.DaoExt.listOfAll
 import org.mjdev.balldontlie.database.DAO
 import org.mjdev.balldontlie.model.Meta
 import org.mjdev.balldontlie.model.Player
@@ -22,8 +18,14 @@ class SyncRepository @Inject constructor(
     override suspend fun getPlayers(
         page: Int,
         perPage: Int,
-    ): Result<Flow<Players>> = Result.success(
-        playersStore.listOfAll().map { list ->
+    ): Result<Players> = Result.success(
+        playersStore.query(
+            playersStore.queryBuilder()
+                .offset(page.toLong())
+                .limit(
+                    perPage.toLong()
+                ).prepare()
+        ).let { list ->
             Players(
                 players = list,
                 meta = Meta(
@@ -38,12 +40,12 @@ class SyncRepository @Inject constructor(
 
     override suspend fun getPlayer(
         id: Int
-    ): Result<Flow<Player>> = Result.success(
-        playersStore.daoValueOf(
+    ): Result<Player> = Result.success(
+        playersStore.query(
             playersStore.queryBuilder()
                 .where().eq("id", id)
                 .prepare()
-        )
+        ).first()
     )
 
 }

@@ -67,33 +67,10 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           name: Release v ${{ env.GITHUB_APP_VERSION_NAME }}
+          allowUpdates: true
           token: ${{ secrets.TOKEN }}
-          tag: ${{ github.run_number }}
+          tag: release-${{ env.GITHUB_APP_VERSION_NAME }}
           artifacts: './app/build/outputs/apk/release/app-release.apk, ./release-notes.txt'
-
-      - name: Temporarily disable "include administrators" branch protection
-        uses: benjefferies/branch-protection-bot@master
-        if: always()
-        with:
-          access_token: ${{ secrets.TOKEN }}
-          branch: ${{ github.event.repository.default_branch }}
-
-      - name: Bump version
-        id: bump_version
-        uses: oflynned/android-version-bump@master
-        with:
-          commit_message: 'bump version'
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-
-      - name: Enable "include administrators" branch protection
-        uses: benjefferies/branch-protection-bot@master
-        if: always()
-        with:
-          access_token: ${{ secrets.TOKEN }}
-          owner: benjefferies
-          repo: branch-protection-bot
-          branch: ${{ github.event.repository.default_branch }}
 
       - name: Update wiki pages
         id: update_wiki_pages

@@ -4,21 +4,18 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.navArgument
+import kotlinx.coroutines.runBlocking
 import org.mjdev.balldontlie.R
 import org.mjdev.balldontlie.base.annotations.DayNightPreview
 import org.mjdev.balldontlie.base.helpers.Ext.appViewModel
 import org.mjdev.balldontlie.base.helpers.Ext.arg
-import org.mjdev.balldontlie.base.helpers.Ext.collectAsState
 import org.mjdev.balldontlie.base.navigation.MenuItem
 import org.mjdev.balldontlie.base.navigation.Screen
-import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.base.ui.ScreenView
 import org.mjdev.balldontlie.ui.components.players.PlayerDetail
 import org.mjdev.balldontlie.viewmodel.DetailViewModel
@@ -46,10 +43,9 @@ class DetailScreen : Screen() {
 
         val viewModel: DetailViewModel = appViewModel()
         val playerId = backStackEntry?.arg(argPlayerId, 0) ?: 0
-        val playerData: State<Player?> = remember {
+        val player = runBlocking {
             viewModel.player(playerId)
-        }.collectAsState(Player())
-        val player = playerData.value
+        }
 
         ScreenView(
             navController = navController,
@@ -63,7 +59,7 @@ class DetailScreen : Screen() {
                     .fillMaxSize()
                     .padding(padding)
             ) {
-                if (player == null) {
+                if (player.isEmpty()) {
                     state.error("No player data show. Check internet connection.")
                 } else if (player.isEmpty()) {
                     state.setIsLoading()

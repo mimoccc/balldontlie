@@ -7,9 +7,6 @@ import android.text.SpannableString
 import android.text.Spanned
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
@@ -29,44 +26,35 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.NavigatorProvider
 import androidx.navigation.compose.composable
-import com.squareup.moshi.Moshi
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flatMapConcat
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
-import org.json.JSONException
 import org.mjdev.balldontlie.BuildConfig
 import org.mjdev.balldontlie.base.navigation.NavGraphBuilderEx
 import org.mjdev.balldontlie.base.navigation.Screen
 import org.mjdev.balldontlie.repository.def.IRepository
 import org.mjdev.balldontlie.repository.impl.MockedRepository.Companion.MockRepository
-import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.reflect.full.isSubclassOf
 import kotlin.reflect.jvm.jvmErasure
 
 object Ext {
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    suspend fun <T> Flow<T>.collectAs() = flatMapConcat {
-        it.asMutableFlow()
-    }.toList().first()
+//    @Composable
+//    fun <T> runInComposeScope(function: suspend () -> T): MutableState<T?> {
+//        val composableScope = rememberCoroutineScope()
+//        val result = remember { mutableStateOf<T?>(null) }
+//        LaunchedEffect(key1 = Unit) {
+//            withContext(composableScope.coroutineContext) {
+//                result.value = function.invoke()
+//            }
+//        }
+//        return result
+//    }
 
-    fun <T> T.asMutableFlow(): Flow<T> = mutableStatFlowOf(this@asMutableFlow)
+//    inline fun <reified T> fromJson(s: String, moshi: Moshi? = null): T =
+//        (moshi ?: Moshi.Builder().build()).adapter(T::class.java).fromJson(s)
+//            ?: throw (JSONException("Invalid data."))
 
-    fun <T> T.mutableStatFlowOf(item: T): MutableStateFlow<T> = MutableStateFlow(item)
-
-    inline fun <reified T> fromJson(s: String, moshi: Moshi? = null): T =
-        (moshi ?: Moshi.Builder().build()).adapter(T::class.java).fromJson(s)
-            ?: throw (JSONException("Invalid data."))
-
-    inline fun <reified T> T.toJson(
-        moshi: Moshi? = null
-    ): String = (moshi ?: Moshi.Builder().build()).adapter(T::class.java).toJson(this)
+//    inline fun <reified T> T.toJson(
+//        moshi: Moshi? = null
+//    ): String = (moshi ?: Moshi.Builder().build()).adapter(T::class.java).toJson(this)
 
     fun <T> List<T>.contains(block: (T) -> Boolean) = count(block) > 0
 
@@ -86,6 +74,11 @@ object Ext {
         defaultValue: T,
         block: () -> T
     ): T = if (isEditMode()) block.invoke() else defaultValue
+
+//    @Composable
+//    fun <T : Any> previewLazyData(vararg values: T) = flowOf<PagingData<T>>(
+//        PagingData.from(values.toList())
+//    ).collectAsLazyPagingItems()
 
     @Composable
     inline fun <reified T> textFrom(text: T?): String? = when (text) {
@@ -191,29 +184,29 @@ object Ext {
         )
     }.apply(initBlock)
 
-    @Composable
-    fun <T : R, R> Flow<T>.collectAsState(
-        initial: R,
-        context: CoroutineContext = EmptyCoroutineContext
-    ): State<R> {
-        return if (isEditMode()) {
-            runBlocking(context) {
-                var ret: R = initial
-                collect { value ->
-                    ret = value
-                }
-                mutableStateOf(ret)
-            }
-        } else {
-            produceState(initial, this, context) {
-                if (context == EmptyCoroutineContext) {
-                    collect { value = it }
-                } else withContext(context) {
-                    collect { value = it }
-                }
-            }
-        }
-    }
+//    @Composable
+//    fun <T : R, R> Flow<T>.collectAsState(
+//        initial: R,
+//        context: CoroutineContext = EmptyCoroutineContext
+//    ): State<R> {
+//        return if (isEditMode()) {
+//            runBlocking(context) {
+//                var ret: R = initial
+//                collect { value ->
+//                    ret = value
+//                }
+//                mutableStateOf(ret)
+//            }
+//        } else {
+//            produceState(initial, this, context) {
+//                if (context == EmptyCoroutineContext) {
+//                    collect { value = it }
+//                } else withContext(context) {
+//                    collect { value = it }
+//                }
+//            }
+//        }
+//    }
 
     @Composable
     inline fun <reified VM> mockViewModel(): VM {

@@ -1,8 +1,6 @@
 package org.mjdev.balldontlie.viewmodel
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import org.mjdev.balldontlie.base.helpers.Ext.asMutableFlow
 import org.mjdev.balldontlie.base.viewmodel.BaseViewModel
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.repository.def.IRepository
@@ -21,14 +19,12 @@ constructor(
     suspend fun players(
         page: Int = 0,
         cnt: Int = 50
-    ): Flow<List<Player>> = runSafe {
-//        if (isMock) {
-           (repository as MockedRepository).players().players.asMutableFlow()
-//        } else {
-//            repository.getPlayers(page, cnt).getOrThrow().map { data ->
-//                data.players
-//            }
-//        }
+    ): List<Player> = runSafe {
+        if (isMock) {
+           (repository as MockedRepository).players(page, cnt).players
+        } else {
+            repository.getPlayers(page, cnt).getOrThrow().players
+        }
     }
 
 }

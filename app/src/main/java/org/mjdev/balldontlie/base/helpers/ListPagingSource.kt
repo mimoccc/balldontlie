@@ -1,29 +1,24 @@
 package org.mjdev.balldontlie.base.helpers
 
-import androidx.compose.runtime.Composable
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import org.mjdev.balldontlie.model.Player
-import org.mjdev.balldontlie.repository.impl.MockedRepository
 
-class ListPagingSource(
+class ListPagingSource<T : Any>(
     private val perPage: Int = 50,
-    private val source: (page: Int, perPage: Int) -> List<Player> = { p, c ->
-        MockedRepository.MockRepository.players().players
-    },
-) : PagingSource<Int, Player>() {
+    private val source: (page: Int, perPage: Int) -> List<T>? = { _, _ -> emptyList() },
+) : PagingSource<Int, T>() {
 
-    override fun getRefreshKey(state: PagingState<Int, Player>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, T>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Player> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
         return try {
-            val page = params.key ?: 0
-            val response = source.invoke(page, perPage)
+            val page = params.key ?: 1
+            val response = source.invoke(page, perPage) ?: emptyList()
             return LoadResult.Page(
                 data = response,
                 prevKey = if (page == 1) null else page.minus(1),
