@@ -24,7 +24,11 @@ open class ApiError(
 
     constructor(e: Throwable) : this(createMessage(e))
 
+
     companion object {
+
+        @Suppress("unused")
+        fun Throwable.asApiError(): ApiError = ApiError(this)
 
         private fun createMessage(response: Response<*>): String {
             return when (val httpError = HttpError(response.code())) {

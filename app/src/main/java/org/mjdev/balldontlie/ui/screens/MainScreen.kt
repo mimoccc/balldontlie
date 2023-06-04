@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -20,6 +19,7 @@ import org.mjdev.balldontlie.base.helpers.Ext.appViewModel
 import org.mjdev.balldontlie.base.navigation.MenuItem
 import org.mjdev.balldontlie.base.navigation.Screen
 import org.mjdev.balldontlie.base.annotations.StartDestination
+import org.mjdev.balldontlie.base.helpers.Ext.runInComposeScope
 import org.mjdev.balldontlie.base.ui.ScreenView
 import org.mjdev.balldontlie.ui.components.players.PlayersList
 import org.mjdev.balldontlie.viewmodel.MainViewModel
@@ -47,7 +47,9 @@ class MainScreen : Screen() {
     ) {
 
         val viewModel: MainViewModel = appViewModel()
-        val players = remember { viewModel.players() }?.collectAsLazyPagingItems()
+        val players = runInComposeScope {
+            viewModel.players()
+        }.value?.collectAsLazyPagingItems()
 
         ScreenView(
             navController = navController,

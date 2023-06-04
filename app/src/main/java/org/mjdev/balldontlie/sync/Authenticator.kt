@@ -61,4 +61,5 @@ class Authenticator(context: Context) : AbstractAccountAuthenticator(context) {
     ): Bundle {
         throw UnsupportedOperationException()
     }
+
 }

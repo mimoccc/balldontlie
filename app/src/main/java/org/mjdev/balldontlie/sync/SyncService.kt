@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.IBinder
 import org.mjdev.balldontlie.BuildConfig
 import timber.log.Timber
+import java.lang.Exception
 
 class SyncService : Service() {
 
@@ -33,14 +34,19 @@ class SyncService : Service() {
         private var sSyncAdapter: SyncAdapter? = null
         private val sSyncAdapterLock = Any()
 
-        fun Context.createSyncAccount(): Account {
-            val accountManager = getSystemService(Context.ACCOUNT_SERVICE) as AccountManager
-            return Account(ACCOUNT, ACCOUNT_TYPE).also { account ->
-                if (accountManager.addAccountExplicitly(account, "", Bundle())) {
-                    setIsSyncable(account, AUTHORITY, 1)
-                } else {
-                    Timber.e("Can not create sync account")
+        fun Context.createSyncAccount(): Account? {
+            try {
+                val accountManager = getSystemService(Context.ACCOUNT_SERVICE) as AccountManager
+                return Account(ACCOUNT, ACCOUNT_TYPE).also { account ->
+                    if (accountManager.addAccountExplicitly(account, "", Bundle())) {
+                        setIsSyncable(account, AUTHORITY, 1)
+                    } else {
+                        Timber.e("Can not create sync account")
+                    }
                 }
+            } catch (e: Exception) {
+                Timber.e(e)
+                return null
             }
         }
 
