@@ -41,7 +41,11 @@ fun <T : Any> PagingList(
 
     val listData = remember {
         Pager(
-            config = PagingConfig(pageSize = perPage),
+            config = PagingConfig(
+                pageSize = perPage,
+                prefetchDistance = perPage,
+                initialLoadSize = perPage
+            ),
             pagingSourceFactory = {
                 ListPagingSource(perPage, source)
             }
