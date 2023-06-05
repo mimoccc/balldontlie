@@ -19,7 +19,7 @@ class NavGraphBuilderEx(
     override fun build(): NavGraph {
         val navGraph = super.build()
         if (startDestinationRouteEx == null) {
-            throw(RuntimeException("One class in ComposeActivity should have start annotation."))
+            throw(RuntimeException("One class in ComposeActivity should have start property set."))
         }
         navGraph.setStartDestination(startDestinationRouteEx!!)
         return navGraph

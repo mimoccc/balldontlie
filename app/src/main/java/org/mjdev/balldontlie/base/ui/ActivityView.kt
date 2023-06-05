@@ -40,6 +40,7 @@ import org.mjdev.balldontlie.base.navigation.MenuItem
 import org.mjdev.balldontlie.base.navigation.Screen.Companion.open
 import org.mjdev.balldontlie.base.states.ActivityViewState
 import org.mjdev.balldontlie.base.states.ActivityViewState.Companion.rememberActivityViewState
+import org.mjdev.balldontlie.error.ApiError.Companion.asApiError
 
 @Suppress("UNUSED_ANONYMOUS_PARAMETER")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -142,6 +143,9 @@ fun ScreenView(
                 CircleIndicatorScreen(
                     visibility = loadState.value is LoadState.Loading
                 )
+                if (loadState.value is LoadState.Error) {
+                    errorState.value = (loadState.value as LoadState.Error).error.asApiError()
+                }
                 ErrorIndicatorSmall(
                     modifier = Modifier
                         .fillMaxWidth()

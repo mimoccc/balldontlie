@@ -15,27 +15,21 @@ class DataProvider : ContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?,
         sortOrder: String?
-    ): Cursor? {
-        TODO("Not yet implemented")
-    }
+    ): Cursor? = null
 
     override fun getType(uri: Uri): String? = null
 
-    override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        TODO("Not yet implemented")
-    }
+    override fun insert(uri: Uri, values: ContentValues?): Uri =
+        throw UnsupportedOperationException()
 
-    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
-    }
+    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int =
+        throw UnsupportedOperationException()
 
     override fun update(
         uri: Uri,
         values: ContentValues?,
         selection: String?,
         selectionArgs: Array<out String>?
-    ): Int {
-        TODO("Not yet implemented")
-    }
+    ): Int = throw UnsupportedOperationException()
 
 }

@@ -1,14 +1,15 @@
-package org.mjdev.balldontlie.repository
+package org.mjdev.balldontlie.repository.impl
 
 import org.mjdev.balldontlie.model.Meta
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.model.Players
 import org.mjdev.balldontlie.model.Team
+import org.mjdev.balldontlie.repository.def.IRepository
 
 class MockedRepository : IRepository {
 
     @Suppress("PropertyName", "MemberVisibilityCanBePrivate")
-    val DEFAULT_COUNT_OF_PLAYERS = 25
+    val DEFAULT_COUNT_OF_PLAYERS = 50
 
     fun player(
         idx: Int = 0,
@@ -27,18 +28,18 @@ class MockedRepository : IRepository {
 
     fun players(
         page: Int = 0,
-        cnt: Int = DEFAULT_COUNT_OF_PLAYERS
+        perPage: Int = DEFAULT_COUNT_OF_PLAYERS
     ): Players = Players(
         players = mutableListOf<Player>().apply {
-            (1..cnt + 1).forEach { idx ->
+            (1..perPage + 1).forEach { idx ->
                 add(player(idx))
             }
         },
         meta = Meta(
             currentPage = page,
             nextPage = page + 1,
-            perPage = cnt,
-            totalCount = cnt,
+            perPage = perPage,
+            totalCount = perPage,
             totalPages = 1
         )
     )
