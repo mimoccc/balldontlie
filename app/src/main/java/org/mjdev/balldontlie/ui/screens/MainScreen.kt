@@ -12,19 +12,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
-import kotlinx.coroutines.runBlocking
 import org.mjdev.balldontlie.R
 import org.mjdev.balldontlie.base.annotations.DayNightPreview
 import org.mjdev.balldontlie.base.helpers.Ext.appViewModel
+import org.mjdev.balldontlie.base.helpers.SOURCE
 import org.mjdev.balldontlie.base.navigation.MenuItem
 import org.mjdev.balldontlie.base.navigation.Screen
-import org.mjdev.balldontlie.base.annotations.StartDestination
 import org.mjdev.balldontlie.base.ui.ScreenView
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.ui.components.players.PlayersList
 import org.mjdev.balldontlie.viewmodel.MainViewModel
 
-@StartDestination
 class MainScreen : Screen() {
 
     override val titleResId = R.string.app_name
@@ -48,10 +46,9 @@ class MainScreen : Screen() {
 
         val viewModel: MainViewModel = appViewModel()
 
-        val dataProvider: (p: Int, c: Int) -> List<Player> = { p, c ->
-            runBlocking {
-                viewModel.players(p, c)
-            }
+        val playersSource: SOURCE<Player> = { p, c ->
+            // todo custom DaoSource as ListPagerSource
+            viewModel.players(p, c)
         }
 
         ScreenView(
@@ -59,17 +56,20 @@ class MainScreen : Screen() {
             title = stringResource(titleResId),
             menuItems = menuItems
         ) { state, padding ->
+
+            viewModel.handleError { error ->
+                state.error(error)
+            }
+
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
             ) {
-                viewModel.handleError { error ->
-                    state.error(error)
-                }
+
                 PlayersList(
                     source = { p, c ->
-                        dataProvider.invoke(p, c)
+                        playersSource.invoke(p, c)
                     },
                     onItemClick = { player ->
                         open<DetailScreen>(navController, player.id)
@@ -78,7 +78,9 @@ class MainScreen : Screen() {
                         state.loadingState.value = loadState
                     }
                 )
+
             }
+
         }
 
     }

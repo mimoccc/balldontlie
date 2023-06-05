@@ -3,9 +3,11 @@ package org.mjdev.balldontlie.base.helpers
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 
+typealias SOURCE<T> = suspend (page: Int, cnt: Int) -> List<T>
+
 class ListPagingSource<T : Any>(
     private val perPage: Int = 50,
-    private val source: (page: Int, perPage: Int) -> List<T>? = { _, _ -> emptyList() },
+    private val source: SOURCE<T> = { _, _ -> emptyList() },
 ) : PagingSource<Int, T>() {
 
     override fun getRefreshKey(state: PagingState<Int, T>): Int? {
@@ -18,7 +20,7 @@ class ListPagingSource<T : Any>(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
         return try {
             val page = params.key ?: 1
-            val response = source.invoke(page, perPage) ?: emptyList()
+            val response = source.invoke(page, perPage)
             return LoadResult.Page(
                 data = response,
                 prevKey = if (page == 1) null else page.minus(1),

@@ -32,8 +32,6 @@ class ProvideModule {
 
     private val isDebug = BuildConfig.DEBUG
 
-//    private val CACHE_SIZE = 64L * 1024L * 1024L // 64 MiB
-
     @Singleton
     @Provides
     fun providesHttpLoggingInterceptor(

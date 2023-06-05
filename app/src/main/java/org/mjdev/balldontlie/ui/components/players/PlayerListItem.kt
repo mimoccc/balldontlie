@@ -28,7 +28,7 @@ import org.mjdev.balldontlie.repository.impl.MockedRepository.Companion.MockRepo
 fun PlayerListItem(
     item: Player? = previewData { MockRepository.player() },
     showInCard: Boolean = true,
-    onItemClick: (data: Player) -> Unit = { p -> },
+    onItemClick: (data: Player) -> Unit = { _ -> },
 ) {
 
     Card(

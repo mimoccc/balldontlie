@@ -7,7 +7,9 @@ import android.text.SpannableString
 import android.text.Spanned
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
@@ -36,30 +38,17 @@ import kotlin.reflect.jvm.jvmErasure
 
 object Ext {
 
-//    @Composable
-//    fun <T> runInComposeScope(function: suspend () -> T): MutableState<T?> {
-//        val composableScope = rememberCoroutineScope()
-//        val result = remember { mutableStateOf<T?>(null) }
-//        LaunchedEffect(key1 = Unit) {
-//            withContext(composableScope.coroutineContext) {
-//                result.value = function.invoke()
-//            }
-//        }
-//        return result
-//    }
-
-//    inline fun <reified T> fromJson(s: String, moshi: Moshi? = null): T =
-//        (moshi ?: Moshi.Builder().build()).adapter(T::class.java).fromJson(s)
-//            ?: throw (JSONException("Invalid data."))
-
-//    inline fun <reified T> T.toJson(
-//        moshi: Moshi? = null
-//    ): String = (moshi ?: Moshi.Builder().build()).adapter(T::class.java).toJson(this)
+    @Composable
+    fun LaunchCoroutine(block: suspend () -> Unit) {
+        val coroutineScope = rememberCoroutineScope()
+        LaunchedEffect(coroutineScope) {
+            block.invoke()
+        }
+    }
 
     fun <T> List<T>.contains(block: (T) -> Boolean) = count(block) > 0
 
     fun <T> List<T>.containsNot(block: (T) -> Boolean) = count(block) == 0
-
 
     fun Drawable.asImageBitmap(width: Int = 1, height: Int = 1): ImageBitmap =
         toBitmap(width, height).asImageBitmap()
@@ -75,10 +64,12 @@ object Ext {
         block: () -> T
     ): T = if (isEditMode()) block.invoke() else defaultValue
 
-//    @Composable
-//    fun <T : Any> previewLazyData(vararg values: T) = flowOf<PagingData<T>>(
-//        PagingData.from(values.toList())
-//    ).collectAsLazyPagingItems()
+    @Composable
+    fun <T> previewSource(vararg data: T): SOURCE<T> = if (isEditMode()) { p, c ->
+        if (data.size >= p + c) data.toList().subList(p, c)
+        else if (data.size >= c) data.toList().take(c)
+        else data.toList()
+    } else { _, _ -> emptyList() }
 
     @Composable
     inline fun <reified T> textFrom(text: T?): String? = when (text) {
@@ -146,8 +137,8 @@ object Ext {
         .apply(builder)
         .build()
 
-    fun <T : Screen> NavGraphBuilderEx.screen(route: T) {
-        if (route.isStartDestination) {
+    fun <T : Screen> NavGraphBuilderEx.screen(route: T, isHomeScreen: Boolean = false) {
+        if (isHomeScreen) {
             startDestinationRouteEx = route.completeRoute
         }
         route.menuItem?.also { menuItem ->
