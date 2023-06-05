@@ -1,7 +1,7 @@
 package org.mjdev.balldontlie.module
 
 import android.content.Context
-import com.j256.ormlite.android.apptools.OpenHelperManager
+import com.j256.ormlite.cipher.android.apptools.OpenHelperManager
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import dagger.Module

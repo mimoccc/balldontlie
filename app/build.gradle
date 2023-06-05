@@ -180,7 +180,13 @@ dependencies {
     // log
     implementation 'com.jakewharton.timber:timber:5.0.1'
     // db
-    implementation 'com.j256.ormlite:ormlite-android:5.0'
+    implementation 'com.j256.ormlite.cipher:ormlite-sqlcipher:1.4@aar'
+    implementation 'com.j256.ormlite:ormlite-core:5.1'
+    implementation 'com.j256.ormlite:ormlite-android:5.1'
+    implementation 'net.zetetic:android-database-sqlcipher:4.0.1@aar'
+    // prefs
+//    implementation "co.windly:ktx-prefs:1.5.0"
+//    kapt "co.windly:ktx-prefs-compiler:1.5.0"
     // test
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'com.google.dagger:hilt-android-testing:2.46.1'
