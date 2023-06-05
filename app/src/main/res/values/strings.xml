@@ -13,4 +13,5 @@
     <string name="webpage"><![CDATA[W : <a href=\"http://mjdev.org\">http://mjdev.org</a>]]></string>
     <string name="phone"><![CDATA[P : <a href=\"tel:+420702568909\">+420702568909</a>]]></string>
     <string name="github"><![CDATA[G : <a href=\"http://github.com/mimoccc\">http://github.com/mimoccc</a>]]></string>
+    <string name="database_password">lorem ipsum</string>
 </resources>

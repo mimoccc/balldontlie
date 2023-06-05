@@ -1,5 +1,6 @@
 package org.mjdev.balldontlie.base.helpers
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.Html
@@ -77,6 +78,8 @@ object Ext {
         is String -> text
         else -> null
     }
+
+    fun Context.stringResource(@StringRes id: Int): String = resources.getString(id)
 
     fun fromHtml(html: String?): Spanned {
         return when {

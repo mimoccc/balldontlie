@@ -1,18 +1,18 @@
 package org.mjdev.balldontlie.database
 
 import android.content.Context
-import android.database.sqlite.SQLiteDatabase
-import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper
+import com.j256.ormlite.cipher.android.apptools.OrmLiteSqliteOpenHelper
 import com.j256.ormlite.dao.Dao
 import com.j256.ormlite.support.ConnectionSource
 import com.j256.ormlite.table.TableUtils
 import org.mjdev.balldontlie.R
+import org.mjdev.balldontlie.base.helpers.Ext.stringResource
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.model.Team
 import timber.log.Timber
 
 class DAO(
-    context: Context
+    val context: Context
 ) : OrmLiteSqliteOpenHelper(
     context,
     DATABASE_NAME,
@@ -25,7 +25,10 @@ class DAO(
 
     val teamDao: Dao<Team, Int> get() = getDao(Team::class.java)
 
-    override fun onCreate(database: SQLiteDatabase, connectionSource: ConnectionSource) {
+    override fun onCreate(
+        database: net.sqlcipher.database.SQLiteDatabase?,
+        connectionSource: ConnectionSource?
+    ) {
         try {
             TableUtils.createTable(connectionSource, Player::class.java)
             TableUtils.createTable(connectionSource, Team::class.java)
@@ -35,8 +38,8 @@ class DAO(
     }
 
     override fun onUpgrade(
-        database: SQLiteDatabase,
-        connectionSource: ConnectionSource,
+        database: net.sqlcipher.database.SQLiteDatabase?,
+        connectionSource: ConnectionSource?,
         oldVersion: Int,
         newVersion: Int
     ) {
@@ -48,6 +51,8 @@ class DAO(
             Timber.e(e)
         }
     }
+
+    override fun getPassword(): String = context.stringResource(R.string.database_password)
 
     companion object {
         private const val DATABASE_NAME = "balldontlie"
