@@ -10,7 +10,7 @@ import org.mjdev.balldontlie.ui.screens.DetailScreen
 @AndroidEntryPoint
 class MainActivity : ComposableActivity({
 
-    screen(MainScreen())
+    screen(MainScreen(), isHomeScreen = true)
 
     screen(DetailScreen())
 

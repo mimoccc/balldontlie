@@ -9,12 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import org.mjdev.balldontlie.R
 import org.mjdev.balldontlie.base.annotations.DayPreview
-import org.mjdev.balldontlie.base.annotations.StartDestination
 import org.mjdev.balldontlie.base.helpers.Ext.currentRoute
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import kotlin.reflect.full.createInstance
@@ -43,14 +43,6 @@ open class Screen {
 
     val menuItem get() = if (menuResId >= 0) MenuItem(menuResId, menuIcon, completeRoute) else null
 
-    val isStartDestination: Boolean
-        get() {
-            val startAnnotation = this::class.annotations.firstOrNull {
-                it is StartDestination
-            }
-            return (startAnnotation != null)
-        }
-
     @DayPreview
     @Composable
     @CallSuper
@@ -62,6 +54,7 @@ open class Screen {
         backStackEntry: NavBackStackEntry?,
         menuItems: List<MenuItem>
     ) {
+
         Column(
             modifier = previewData(Modifier) {
                 Modifier.fillMaxSize()
@@ -69,8 +62,12 @@ open class Screen {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "screen")
+            Text(
+                text = "Empty Screen",
+                fontSize = 24.sp
+            )
         }
+
     }
 
     companion object {
