@@ -2,7 +2,6 @@ package org.mjdev.balldontlie.base.viewmodel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onEach
 import org.mjdev.balldontlie.error.ApiError
 import org.mjdev.balldontlie.error.EmptyError
@@ -25,14 +24,6 @@ open class BaseViewModel : ViewModel() {
         when (e) {
             is ApiError -> error.tryEmit(e)
             else -> error.tryEmit(ApiError(e))
-        }
-    }
-
-    protected fun <T> runSafeFlow(block: suspend () -> T) = flow {
-        try {
-            emit(block.invoke())
-        } catch (t: Throwable) {
-            onError(t)
         }
     }
 

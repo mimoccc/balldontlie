@@ -15,6 +15,7 @@ open class ApiError(
 
     @IgnoredOnParcel
     open var textColor: Color = Color.White
+
     @IgnoredOnParcel
     open var backgroundColor = Color.Red
 
@@ -27,7 +28,6 @@ open class ApiError(
 
     companion object {
 
-        @Suppress("unused")
         fun Throwable.asApiError(): ApiError = ApiError(this)
 
         private fun createMessage(response: Response<*>): String {

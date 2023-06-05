@@ -5,20 +5,12 @@ import android.text.method.LinkMovementMethod
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.text.TextLayoutResult
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.viewinterop.AndroidView
@@ -34,21 +26,21 @@ import org.mjdev.balldontlie.base.helpers.Ext.stringResWithStyling
 fun HtmlTextView(
     modifier: Modifier = previewData(Modifier) { Modifier.fillMaxWidth() } ,
     @StringRes htmlResId: Int? = previewData { R.string.webpage },
-    color: Color = Color.Unspecified,
+    color: Color = MaterialTheme.colorScheme.tertiary,
     fontSize: TextUnit = TextUnit.Unspecified,
-    fontStyle: FontStyle? = null,
-    fontWeight: FontWeight? = null,
-    fontFamily: FontFamily? = null,
-    letterSpacing: TextUnit = TextUnit.Unspecified,
-    textDecoration: TextDecoration? = null,
+//    fontStyle: FontStyle? = null,
+//    fontWeight: FontWeight? = null,
+//    fontFamily: FontFamily? = null,
+//    letterSpacing: TextUnit = TextUnit.Unspecified,
+//    textDecoration: TextDecoration? = null,
     textAlign: TextAlign? = null,
     lineHeight: TextUnit = TextUnit.Unspecified,
-    overflow: TextOverflow = TextOverflow.Clip,
-    softWrap: Boolean = true,
+//    overflow: TextOverflow = TextOverflow.Clip,
+//    softWrap: Boolean = true,
     maxLines: Int = Int.MAX_VALUE,
     minLines: Int = 1,
-    onTextLayout: (TextLayoutResult) -> Unit = {},
-    style: TextStyle = LocalTextStyle.current,
+//    onTextLayout: (TextLayoutResult) -> Unit = {},
+//    style: TextStyle = LocalTextStyle.current,
     onClick: (() -> Unit)? = null
 ) {
     HtmlTextView(
@@ -56,19 +48,19 @@ fun HtmlTextView(
         html = stringResWithStyling(htmlResId),
         color = color,
         fontSize = fontSize,
-        fontStyle = fontStyle,
-        fontWeight = fontWeight,
-        fontFamily = fontFamily,
-        letterSpacing = letterSpacing,
-        textDecoration = textDecoration,
+//        fontStyle = fontStyle,
+//        fontWeight = fontWeight,
+//        fontFamily = fontFamily,
+//        letterSpacing = letterSpacing,
+//        textDecoration = textDecoration,
         textAlign = textAlign,
         lineHeight = lineHeight,
-        overflow = overflow,
-        softWrap = softWrap,
+//        overflow = overflow,
+//        softWrap = softWrap,
         maxLines = maxLines,
         minLines = minLines,
-        onTextLayout = onTextLayout,
-        style = style,
+//        onTextLayout = onTextLayout,
+//        style = style,
         onClick = onClick
     )
 }
@@ -81,19 +73,19 @@ fun HtmlTextView(
     html: String? = previewData { "test html <a href=\"#\">link</a><b>bold</b>" },
     color: Color = MaterialTheme.colorScheme.tertiary,
     fontSize: TextUnit = TextUnit.Unspecified,
-    fontStyle: FontStyle? = null,
-    fontWeight: FontWeight? = null,
-    fontFamily: FontFamily? = null,
-    letterSpacing: TextUnit = TextUnit.Unspecified,
-    textDecoration: TextDecoration? = null,
+//    fontStyle: FontStyle? = null,
+//    fontWeight: FontWeight? = null,
+//    fontFamily: FontFamily? = null,
+//    letterSpacing: TextUnit = TextUnit.Unspecified,
+//    textDecoration: TextDecoration? = null,
     textAlign: TextAlign? = null,
     lineHeight: TextUnit = TextUnit.Unspecified,
-    overflow: TextOverflow = TextOverflow.Clip,
-    softWrap: Boolean = true,
+//    overflow: TextOverflow = TextOverflow.Clip,
+//    softWrap: Boolean = true,
     maxLines: Int = Int.MAX_VALUE,
     minLines: Int = 1,
-    onTextLayout: (TextLayoutResult) -> Unit = {},
-    style: TextStyle = LocalTextStyle.current,
+//    onTextLayout: (TextLayoutResult) -> Unit = {},
+//    style: TextStyle = LocalTextStyle.current,
     onClick: (() -> Unit)? = null
 ) {
     AndroidView(

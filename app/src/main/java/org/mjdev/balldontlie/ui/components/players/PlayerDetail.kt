@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.model.Player
-import org.mjdev.balldontlie.repository.MockedRepository.Companion.MockRepository
+import org.mjdev.balldontlie.repository.impl.MockedRepository.Companion.MockRepository
 
 @SuppressLint("ModifierParameter")
 @DayPreview
@@ -22,6 +22,7 @@ fun PlayerDetail(
     modifier: Modifier = previewData(Modifier) { Modifier.fillMaxSize() },
     player: Player? = previewData { MockRepository.player() }
 ) {
+
     Column(
         modifier = modifier
     ) {
@@ -55,4 +56,5 @@ fun PlayerDetail(
             Text("team abbreviation : ${player?.team?.abbreviation ?: "-"}")
         }
     }
+
 }

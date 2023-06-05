@@ -7,7 +7,9 @@ import android.accounts.NetworkErrorException
 import android.content.Context
 import android.os.Bundle
 
-class Authenticator(context: Context) : AbstractAccountAuthenticator(context) {
+class Authenticator(
+    context: Context
+) : AbstractAccountAuthenticator(context) {
 
     override fun editProperties(r: AccountAuthenticatorResponse, s: String): Bundle {
         throw UnsupportedOperationException()
@@ -15,26 +17,26 @@ class Authenticator(context: Context) : AbstractAccountAuthenticator(context) {
 
     @Throws(NetworkErrorException::class)
     override fun addAccount(
-            r: AccountAuthenticatorResponse,
-            s: String,
-            s2: String,
-            strings: Array<String>,
-            bundle: Bundle
-    ): Bundle?  = null
+        r: AccountAuthenticatorResponse,
+        s: String,
+        s2: String,
+        strings: Array<String>,
+        bundle: Bundle
+    ): Bundle? = null
 
     @Throws(NetworkErrorException::class)
     override fun confirmCredentials(
         r: AccountAuthenticatorResponse,
         account: Account,
         bundle: Bundle
-    ): Bundle?  = null
+    ): Bundle? = null
 
     @Throws(NetworkErrorException::class)
     override fun getAuthToken(
-            r: AccountAuthenticatorResponse,
-            account: Account,
-            s: String,
-            bundle: Bundle
+        r: AccountAuthenticatorResponse,
+        account: Account,
+        s: String,
+        bundle: Bundle
     ): Bundle {
         throw UnsupportedOperationException()
     }
@@ -45,19 +47,19 @@ class Authenticator(context: Context) : AbstractAccountAuthenticator(context) {
 
     @Throws(NetworkErrorException::class)
     override fun updateCredentials(
-            r: AccountAuthenticatorResponse,
-            account: Account,
-            s: String,
-            bundle: Bundle
+        r: AccountAuthenticatorResponse,
+        account: Account,
+        s: String,
+        bundle: Bundle
     ): Bundle {
         throw UnsupportedOperationException()
     }
 
     @Throws(NetworkErrorException::class)
     override fun hasFeatures(
-            r: AccountAuthenticatorResponse,
-            account: Account,
-            strings: Array<String>
+        r: AccountAuthenticatorResponse,
+        account: Account,
+        strings: Array<String>
     ): Bundle {
         throw UnsupportedOperationException()
     }

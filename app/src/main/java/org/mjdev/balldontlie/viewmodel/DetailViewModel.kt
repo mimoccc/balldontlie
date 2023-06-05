@@ -1,11 +1,10 @@
 package org.mjdev.balldontlie.viewmodel
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import org.mjdev.balldontlie.base.viewmodel.BaseViewModel
 import org.mjdev.balldontlie.model.Player
-import org.mjdev.balldontlie.repository.IRepository
-import org.mjdev.balldontlie.repository.MockedRepository
+import org.mjdev.balldontlie.repository.def.IRepository
+import org.mjdev.balldontlie.repository.impl.MockedRepository
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,7 +16,7 @@ constructor(
 
     private val isMock = repository is MockedRepository
 
-    fun player(playerId: Int): Flow<Player?> = runSafeFlow {
+    suspend fun player(playerId: Int): Player = runSafe {
         if (isMock) {
             (repository as MockedRepository).player(playerId)
         } else {

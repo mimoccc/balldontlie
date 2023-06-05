@@ -3,18 +3,31 @@ package org.mjdev.balldontlie.sync
 import android.accounts.Account
 import android.content.AbstractThreadedSyncAdapter
 import android.content.ContentProviderClient
-import android.content.ContentResolver
 import android.content.Context
 import android.content.SyncResult
 import android.os.Bundle
+import com.j256.ormlite.dao.Dao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
+import org.mjdev.balldontlie.database.DAO
+import org.mjdev.balldontlie.model.Player
+import org.mjdev.balldontlie.model.Team
+import timber.log.Timber
+import org.mjdev.balldontlie.base.helpers.Ext.containsNot
+import org.mjdev.balldontlie.repository.def.INetworkRepository
 
-@Suppress("unused")
+@Suppress("unused", "PrivatePropertyName")
 class SyncAdapter(
     context: Context,
-    autoInitialize: Boolean,
-    allowParallelSyncs: Boolean = false,
-    val contentResolver: ContentResolver = context.contentResolver
-) : AbstractThreadedSyncAdapter(context, autoInitialize, allowParallelSyncs) {
+    val repository: INetworkRepository,
+    val dao: DAO
+) : AbstractThreadedSyncAdapter(context, true, false) {
+
+    private val READ_COUNT = 50
+
+    private val playersStore: Dao<Player, Int> get() = dao.playerDao
+    private val teamsStore: Dao<Team, Int> get() = dao.teamDao
 
     override fun onPerformSync(
         account: Account?,
@@ -23,7 +36,53 @@ class SyncAdapter(
         provider: ContentProviderClient?,
         syncResult: SyncResult?
     ) {
-
+        try {
+            val playerIds = playersStore.queryForAll().map { p -> p.id }.toMutableList()
+            val teamIds = teamsStore.queryForAll().map { t -> t.id }.toMutableList()
+            runBlocking(Dispatchers.IO) {
+                flow {
+                    var page = 0
+                    var totalCnt: Long
+                    do {
+                        repository.getPlayers(page, READ_COUNT).let { result ->
+                            if (result.isSuccess) {
+                                result.getOrNull()?.let { playerData ->
+                                    totalCnt = playerData.meta.totalCount?.toLong() ?: 0L
+                                    syncResult?.let { sr ->
+                                        sr.stats.numEntries = totalCnt
+                                        playerData.players.forEachIndexed { idx, player ->
+                                            emit(player)
+                                            playerData.meta.perPage?.let { pp ->
+                                                sr.stats.numInserts = (idx + (page * (pp))).toLong()
+                                            }
+                                        }
+                                    }
+                                    page = playerData.meta.nextPage ?: -1
+                                }
+                            }
+                        }
+                    } while (page > 0)
+                }.collect { player ->
+                    if (playerIds.containsNot { id -> id == player.id }) {
+                        playersStore.create(player)
+                        playerIds.add(player.id)
+                        Timber.d("Player: $player stored.")
+                    } else {
+                        // todo ? check changed
+                    }
+                    val team = player.team
+                    if (teamIds.containsNot { id -> id == team.id }) {
+                        teamsStore.create(team)
+                        teamIds.add(team.id)
+                        Timber.d("Team: $team stored.")
+                    } else {
+                        // todo ? check changed
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Timber.e(e)
+        }
     }
 
 }

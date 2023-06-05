@@ -20,7 +20,7 @@ import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.base.ui.CircleImage
-import org.mjdev.balldontlie.repository.MockedRepository.Companion.MockRepository
+import org.mjdev.balldontlie.repository.impl.MockedRepository.Companion.MockRepository
 
 @OptIn(ExperimentalMaterial3Api::class)
 @DayPreview
@@ -28,14 +28,17 @@ import org.mjdev.balldontlie.repository.MockedRepository.Companion.MockRepositor
 fun PlayerListItem(
     item: Player? = previewData { MockRepository.player() },
     showInCard: Boolean = true,
-    onItemClick: (data: Player?) -> Unit = {},
+    onItemClick: (data: Player) -> Unit = { _ -> },
 ) {
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(2.dp),
         onClick = {
-            onItemClick(item)
+            item?.let { clieckedItem ->
+                onItemClick(clieckedItem)
+            }
         },
         colors = if (showInCard) CardDefaults.cardColors()
         else CardDefaults.cardColors(containerColor = Color.Transparent)
@@ -71,4 +74,5 @@ fun PlayerListItem(
             }
         }
     }
+
 }
