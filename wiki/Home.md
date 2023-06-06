@@ -6,7 +6,7 @@
 
 ## Project documentation
 
-| [App](documentation/index.md) |
+| [App](https://github.com/mimoccc/moneta-test/blob/main/wiki/documentation/index.md) |
 
 Contains all the classes in project
 
