@@ -5,7 +5,6 @@
 [![Build & Publish Release APK](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml/badge.svg)](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml)
 [![check-pr-badge](https://github.com/mimoccc/moneta-test/actions/workflows/check_pr.yml/badge.svg?branch=master)](#)
 [![last-commit-badge](https://img.shields.io/github/last-commit/mimoccc/moneta-test?color=FFC877)](#)
-[![kotlin-badge](https://img.shields.io/badge/Awesome-Kotlin-FFC877.svg)](#)
 [![lang-badge](https://img.shields.io/github/languages/top/mimoccc/moneta-test?color=FFC877)](#)
 [![platform-badge](https://img.shields.io/badge/Platform-Android-FFC877.svg)](#)
 [![min-sdk-badge](https://img.shields.io/badge/minSdkVersion-21-FFC877.svg)](#)
