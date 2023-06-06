@@ -29,6 +29,7 @@ android {
 
         val keystorePropertiesFile = rootProject.file(CONFIG_KEYSTORE_PROPERTIES_FILE)
         val keystoreProperties = Properties()
+
         if (keystorePropertiesFile.exists()) {
             keystoreProperties.load(FileInputStream(keystorePropertiesFile))
         } else {
@@ -37,10 +38,11 @@ android {
             keystoreProperties["storePassword"] = System.getenv("KEYSTORE_STORE_PASSWORD").orEmpty()
             keystoreProperties["storeFile"] = System.getenv("KEYSTORE_FILE").orEmpty()
         }
+
         create("any") {
             keyAlias = keystoreProperties["keyAlias"] as String
             keyPassword = keystoreProperties["keyPassword"] as String
-            storeFile = File(keystoreProperties["storeFile"] as String)
+            storeFile = File(projectDir, keystoreProperties["storeFile"] as String)
             storePassword = keystoreProperties["storePassword"] as String
         }
 
@@ -105,6 +107,7 @@ android {
             applicationIdSuffix = ".debug"
             isDebuggable = true
             isMinifyEnabled = false
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -115,6 +118,7 @@ android {
             isDebuggable = false
             // todo proguard
             isMinifyEnabled = false
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -125,10 +129,12 @@ android {
             applicationIdSuffix = ".mock"
             isDebuggable = true
             isMinifyEnabled = false
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
             buildConfigField("Boolean", "USE_MOCK", "true")
         }
 
@@ -136,6 +142,7 @@ android {
             applicationIdSuffix = ".min"
             isDebuggable = true
             isMinifyEnabled = true
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
