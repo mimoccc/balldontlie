@@ -1,10 +1,14 @@
 #!/bin/bash
-LOG=release-notes.txt
+LOG_VERSION=$1
+LOG="wiki/Release-Notes-$LOG_VERSION.md"
+LOG_ROOT='release-notes.txt'
 TEMP=release-notes.temp
-git log --oneline $(git describe --abbrev=0 --tags 2>&1).. > ${LOG}
-cut -d' ' -f2-  ${LOG} > ${TEMP}
+echo "# Release Notes $LOG_VERSION" > ${LOG}
+git log --oneline $(git describe --abbrev=0 --tags 2>&1).. >> ${LOG}
+cut -d' ' -f2-  ${LOG} >> ${TEMP}
 while read -r line
 do
     echo "* $line"
 done <${TEMP} > ${LOG}
 rm ${TEMP}
+cp ${LOG} ${LOG_ROOT}

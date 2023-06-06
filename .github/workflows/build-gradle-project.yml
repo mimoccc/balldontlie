@@ -38,7 +38,7 @@ jobs:
       - name: Prepare Version Number
         id: prepare_version
         run: |
-          export GRADLE_PATH="./version.properties";
+          export GRADLE_PATH="./config/version.properties";
           export GRADLE_FIELD_VMAJ="majorVersion"
           export GRADLE_FIELD_VMIN="minorVersion"
           export GRADLE_FIELD_VPAT="patchVersion"
