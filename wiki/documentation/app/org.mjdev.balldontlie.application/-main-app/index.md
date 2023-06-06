@@ -144,9 +144,3 @@ class [MainApp](index.md) : [Application](https://developer.android.com/referenc
 | [unregisterOnProvideAssistDataListener](index.md#2008750599%2FFunctions%2F-912451524) | [androidJvm]<br>open fun [unregisterOnProvideAssistDataListener](index.md#2008750599%2FFunctions%2F-912451524)(p0: [Application.OnProvideAssistDataListener](https://developer.android.com/reference/kotlin/android/app/Application.OnProvideAssistDataListener.html)) |
 | [unregisterReceiver](../../org.mjdev.balldontlie.sync/-sync-service/index.md#1949248458%2FFunctions%2F-912451524) | [androidJvm]<br>open override fun [unregisterReceiver](../../org.mjdev.balldontlie.sync/-sync-service/index.md#1949248458%2FFunctions%2F-912451524)(p0: [BroadcastReceiver](https://developer.android.com/reference/kotlin/android/content/BroadcastReceiver.html)) |
 | [updateServiceGroup](../../org.mjdev.balldontlie.sync/-sync-service/index.md#178246991%2FFunctions%2F-912451524) | [androidJvm]<br>open override fun [updateServiceGroup](../../org.mjdev.balldontlie.sync/-sync-service/index.md#178246991%2FFunctions%2F-912451524)(p0: [ServiceConnection](https://developer.android.com/reference/kotlin/android/content/ServiceConnection.html), p1: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), p2: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)) |
-
-## Properties
-
-| Name | Summary |
-|---|---|
-| [manifestPermissions](../../org.mjdev.balldontlie.base.helpers/-permissions-manager/-companion/manifest-permissions.md) | [androidJvm]<br>val [Context](https://developer.android.com/reference/kotlin/android/content/Context.html).[manifestPermissions](../../org.mjdev.balldontlie.base.helpers/-permissions-manager/-companion/manifest-permissions.md): [Array](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html)&lt;[String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)&gt; |
