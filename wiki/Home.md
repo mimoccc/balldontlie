@@ -3,6 +3,10 @@
 ## Balldontlie test app
 
 [![Build & Publish Release APK](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml/badge.svg)](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml)
+[![GitHub all releases](https://img.shields.io/github/downloads/mimoccc/moneta-test/total)](https://github.com/mimoccc/moneta-test/releases)
+
+## Stats
+
 [![last-commit-badge](https://img.shields.io/github/last-commit/mimoccc/moneta-test?color=FFC877)](#)
 [![lang-badge](https://img.shields.io/github/languages/top/mimoccc/moneta-test?color=FFC877)](#)
 [![platform-badge](https://img.shields.io/badge/Platform-Android-FFC877.svg)](#)
