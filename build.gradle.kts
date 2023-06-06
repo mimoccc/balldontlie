@@ -5,11 +5,12 @@ plugins {
     id("com.google.dagger.hilt.android") version "2.44" apply false
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("com.akaita.android:easylauncher:1.3.1")
-    }
-}
+// todo custom plugins
+//buildscript {
+//    repositories {
+//        mavenCentral()
+//    }
+//    dependencies {
+//        classpath("com.akaita.android:easylauncher:1.3.1")
+//    }
+//}

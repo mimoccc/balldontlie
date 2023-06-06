@@ -66,13 +66,9 @@ android {
         }
 
         fun getVersionName(): String {
-            val buildNumber = rootProject.ext.get("buildNumber")?.toString()?.toInt()
             val major = rootProject.ext.get("majorVersion")?.toString()?.toInt() ?: 1
             val minor = rootProject.ext.get("minorVersion")?.toString()?.toInt() ?: 0
             val patch = rootProject.ext.get("patchVersion")?.toString()?.toInt() ?: 0
-            if (buildNumber != null) {
-                return "${major}.${minor}.${patch}.${buildNumber}"
-            }
             return "${major}.${minor}.${patch}"
         }
 
