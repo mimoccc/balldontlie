@@ -48,31 +48,31 @@ android {
 
     }
 
+    val versionPropertiesFile = rootProject.file(CONFIG_VERSION_PROPERTIES_FILE)
+    val versionProps = Properties()
+    versionProps.load(FileInputStream(versionPropertiesFile))
+    versionProps.forEach { prop ->
+        rootProject.ext.set(prop.key.toString(), prop.value.toString())
+    }
+
+    fun getVersionCode(): Int {
+        val major = rootProject.ext.get("majorVersion")?.toString()?.toInt() ?: 1
+        val minor = rootProject.ext.get("minorVersion")?.toString()?.toInt() ?: 0
+        val patch = rootProject.ext.get("patchVersion")?.toString()?.toInt() ?: 0
+        return major * 10000 + minor * 100 + patch
+    }
+
+    fun getVersionName(): String {
+        val major = rootProject.ext.get("majorVersion")?.toString()?.toInt() ?: 1
+        val minor = rootProject.ext.get("minorVersion")?.toString()?.toInt() ?: 0
+        val patch = rootProject.ext.get("patchVersion")?.toString()?.toInt() ?: 0
+        return "${major}.${minor}.${patch}"
+    }
+
     namespace = "org.mjdev.balldontlie"
     compileSdk = 33
 
     defaultConfig {
-
-        val versionPropertiesFile = rootProject.file(CONFIG_VERSION_PROPERTIES_FILE)
-        val versionProps = Properties()
-        versionProps.load(FileInputStream(versionPropertiesFile))
-        versionProps.forEach { prop ->
-            rootProject.ext.set(prop.key.toString(), prop.value.toString())
-        }
-
-        fun getVersionCode(): Int {
-            val major = rootProject.ext.get("majorVersion")?.toString()?.toInt() ?: 1
-            val minor = rootProject.ext.get("minorVersion")?.toString()?.toInt() ?: 0
-            val patch = rootProject.ext.get("patchVersion")?.toString()?.toInt() ?: 0
-            return major * 10000 + minor * 100 + patch
-        }
-
-        fun getVersionName(): String {
-            val major = rootProject.ext.get("majorVersion")?.toString()?.toInt() ?: 1
-            val minor = rootProject.ext.get("minorVersion")?.toString()?.toInt() ?: 0
-            val patch = rootProject.ext.get("patchVersion")?.toString()?.toInt() ?: 0
-            return "${major}.${minor}.${patch}"
-        }
 
         applicationId = "org.mjdev.balldontlie"
 
@@ -189,6 +189,7 @@ android {
         doLast {
             exec {
                 workingDir(rootDir)
+                args(getVersionName())
                 executable("./scripts/git_log.sh")
             }
         }
