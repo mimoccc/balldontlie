@@ -40,7 +40,7 @@ class DAO(
 
     }
 
-    private val dbLocation: String = INTERNAL_DB
+    private val dbLocation: String = EXTERNAL_DB
 
     val playerDao: Dao<Player, Int> get() = getDao(Player::class.java)
 
