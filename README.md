@@ -4,7 +4,7 @@
 
 ## Project documentation
 
-| [App](/wiki/documentation/index.md) |
+| [App](./wiki/documentation/index.md) |
 
 ## Description
 
