@@ -6,4 +6,4 @@
 
 | Name | Summary |
 |---|---|
-| [MainApp](-main-app/index.md) | [androidJvm]<br>class [MainApp](-main-app/index.md) : [Application](https://developer.android.com/reference/kotlin/android/app/Application.html) |
+| [MainApp](-main-app/index.md) | [androidJvm]<br>class [MainApp](-main-app/index.md) : [Application](https://developer.android.com/reference/kotlin/android/app/Application.html)<br>Main app. |

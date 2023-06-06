@@ -6,6 +6,14 @@ import dagger.hilt.android.HiltAndroidApp
 import org.mjdev.balldontlie.sync.SyncService
 import org.mjdev.balldontlie.sync.SyncService.Companion.createSyncAccount
 
+/**
+ * Main app.
+ *
+ * Base application class
+ * It use hilt as injection helper
+ *
+ * @constructor Create empty constructor for main app
+ */
 @HiltAndroidApp
 class MainApp : Application() {
 

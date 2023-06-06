@@ -6,4 +6,4 @@
 
 | Name | Summary |
 |---|---|
-| [MainActivity](-main-activity/index.md) | [androidJvm]<br>class [MainActivity](-main-activity/index.md) : [ComposableActivity](../org.mjdev.balldontlie.base.activity/-composable-activity/index.md) |
+| [MainActivity](-main-activity/index.md) | [androidJvm]<br>class [MainActivity](-main-activity/index.md) : [ComposableActivity](../org.mjdev.balldontlie.base.activity/-composable-activity/index.md)<br>Main activity. |

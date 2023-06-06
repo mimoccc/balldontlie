@@ -4,3 +4,5 @@
 
 [androidJvm]\
 val [EXTERNAL_DB](-e-x-t-e-r-n-a-l_-d-b.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
+
+External database path Note : Needs permissions

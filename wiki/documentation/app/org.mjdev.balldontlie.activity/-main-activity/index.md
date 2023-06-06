@@ -5,11 +5,15 @@
 [androidJvm]\
 class [MainActivity](index.md) : [ComposableActivity](../../org.mjdev.balldontlie.base.activity/-composable-activity/index.md)
 
+Main activity.
+
+Simply one start activity for compose project
+
 ## Constructors
 
 | | |
 |---|---|
-| [MainActivity](-main-activity.md) | [androidJvm]<br>constructor() |
+| [MainActivity](-main-activity.md) | [androidJvm]<br>constructor()<br>Create empty constructor for main activity |
 
 ## Functions
 

@@ -7,6 +7,13 @@ import org.mjdev.balldontlie.ui.screens.AboutScreen
 import org.mjdev.balldontlie.ui.screens.MainScreen
 import org.mjdev.balldontlie.ui.screens.DetailScreen
 
+/**
+ * Main activity.
+ *
+ * Simply one start activity for compose project
+ *
+ * @constructor Create empty constructor for main activity
+ */
 @AndroidEntryPoint
 class MainActivity : ComposableActivity({
 

@@ -4,3 +4,5 @@
 
 [androidJvm]\
 const val [INTERNAL_DB](-i-n-t-e-r-n-a-l_-d-b.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
+
+Internal database path

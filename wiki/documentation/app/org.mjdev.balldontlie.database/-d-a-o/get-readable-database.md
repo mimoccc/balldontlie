@@ -7,3 +7,9 @@
 @[Synchronized](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-synchronized/index.html)
 
 fun [getReadableDatabase](get-readable-database.md)(): SQLiteDatabase?
+
+Get readable database.
+
+#### Return
+
+SQLiteDatabase or null

@@ -4,3 +4,5 @@
 
 [androidJvm]\
 val [teamDao](team-dao.md): Dao&lt;[Team](../../org.mjdev.balldontlie.model/-team/index.md), [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)&gt;
+
+Teams db access property
