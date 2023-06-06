@@ -1,0 +1,6 @@
+//[app](../../../../index.md)/[org.mjdev.balldontlie.base.activity](../../index.md)/[ComposableActivity](../index.md)/[ActivityResultHandler](index.md)/[postResult](post-result.md)
+
+# postResult
+
+[androidJvm]\
+fun [postResult](post-result.md)(requestCode: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), resultCode: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), intent: [Intent](https://developer.android.com/reference/kotlin/android/content/Intent.html)?)

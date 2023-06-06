@@ -1,0 +1,6 @@
+//[app](../../../../index.md)/[org.mjdev.balldontlie.base.activity](../../index.md)/[ComposableActivity](../index.md)/[ActivityResultHandler](index.md)/[unregister](unregister.md)
+
+# unregister
+
+[androidJvm]\
+fun [unregister](unregister.md)()
