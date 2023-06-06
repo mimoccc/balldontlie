@@ -10,9 +10,9 @@ val CONFIG_VERSION_PROPERTIES_FILE = "config/version.properties"
 val CONFIG_KEYSTORE_PROPERTIES_FILE = "config/keystore.properties"
 
 plugins {
+    id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    id("com.android.application")
     id("kotlin-parcelize")
     id("com.google.dagger.hilt.android")
     id("dagger.hilt.android.plugin")

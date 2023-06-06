@@ -164,5 +164,4 @@ class [SyncService](index.md) : [Service](https://developer.android.com/referenc
 | Name | Summary |
 |---|---|
 | [dao](dao.md) | [androidJvm]<br>@Inject<br>lateinit var [dao](dao.md): [DAO](../../org.mjdev.balldontlie.database/-d-a-o/index.md) |
-| [manifestPermissions](../../org.mjdev.balldontlie.base.helpers/-permissions-manager/-companion/manifest-permissions.md) | [androidJvm]<br>val [Context](https://developer.android.com/reference/kotlin/android/content/Context.html).[manifestPermissions](../../org.mjdev.balldontlie.base.helpers/-permissions-manager/-companion/manifest-permissions.md): [Array](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html)&lt;[String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)&gt; |
 | [repository](repository.md) | [androidJvm]<br>@Inject<br>lateinit var [repository](repository.md): [INetworkRepository](../../org.mjdev.balldontlie.repository.def/-i-network-repository/index.md) |
