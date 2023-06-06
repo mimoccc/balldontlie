@@ -17,6 +17,14 @@ import org.mjdev.balldontlie.model.Team
 import timber.log.Timber
 import java.io.File
 
+/**
+ * Dao.
+ *
+ * Database access object
+ *
+ * @constructor Create [DAO]
+ * @property context
+ */
 class DAO(
     @ApplicationContext
     val context: Context,
@@ -30,22 +38,55 @@ class DAO(
 
     companion object {
 
+        /**
+         * Database name
+         */
         const val DATABASE_NAME = "balldontlie"
+
+        /**
+         * Database version
+         */
         const val DATABASE_VERSION = 1
-        // note external db needs permission
+
+        /**
+         * External database path
+         * Note : Needs permissions
+         */
         val EXTERNAL_DB = Environment.getExternalStorageDirectory().absolutePath +
                 File.separator +
                 DATABASE_NAME
+
+        /**
+         * Internal database path
+         */
         const val INTERNAL_DB = DATABASE_NAME
 
     }
 
+    /**
+     * DB location
+     * Can be [EXTERNAL_DB] or [INTERNAL_DB]
+     */
     private val dbLocation: String = INTERNAL_DB
 
+    /**
+     * Players data access property
+     */
     val playerDao: Dao<Player, Int> get() = getDao(Player::class.java)
 
+    /**
+     * Teams db access property
+     */
     val teamDao: Dao<Team, Int> get() = getDao(Team::class.java)
 
+    /**
+     * On create.
+     *
+     * This function is called when database does not exists to create
+     *
+     * @param database Database
+     * @param connectionSource Connection source
+     */
     override fun onCreate(
         database: SQLiteDatabase?,
         connectionSource: ConnectionSource?
@@ -58,6 +99,16 @@ class DAO(
         }
     }
 
+    /**
+     * On upgrade.
+     *
+     * If version change this function is called
+     *
+     * @param database Database
+     * @param connectionSource Connection source
+     * @param oldVersion Old version
+     * @param newVersion New version
+     */
     override fun onUpgrade(
         database: SQLiteDatabase?,
         connectionSource: ConnectionSource?,
@@ -73,6 +124,11 @@ class DAO(
         }
     }
 
+    /**
+     * Get writable database.
+     *
+     * @return [SQLiteDatabase] or null
+     */
     @Synchronized
     fun getWritableDatabase(): SQLiteDatabase? {
         return SQLiteDatabase.openDatabase(
@@ -83,6 +139,11 @@ class DAO(
         )
     }
 
+    /**
+     * Get readable database.
+     *
+     * @return [SQLiteDatabase] or null
+     */
     @Synchronized
     fun getReadableDatabase(): SQLiteDatabase? {
         return SQLiteDatabase.openDatabase(
@@ -93,7 +154,13 @@ class DAO(
         )
     }
 
-
+    /**
+     * Get password.
+     *
+     * Function is used to encrypt database
+     *
+     * @return
+     */
     override fun getPassword(): String = context.stringResource(R.string.database_password)
 
 }

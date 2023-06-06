@@ -5,11 +5,15 @@
 [androidJvm]\
 class [MainApp](index.md) : [Application](https://developer.android.com/reference/kotlin/android/app/Application.html)
 
+Main app.
+
+Base application class It use hilt as injection helper
+
 ## Constructors
 
 | | |
 |---|---|
-| [MainApp](-main-app.md) | [androidJvm]<br>constructor() |
+| [MainApp](-main-app.md) | [androidJvm]<br>constructor()<br>Create empty constructor for main app |
 
 ## Functions
 

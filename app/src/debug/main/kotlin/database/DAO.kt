@@ -17,6 +17,14 @@ import org.mjdev.balldontlie.model.Team
 import timber.log.Timber
 import java.io.File
 
+/**
+ * Dao.
+ *
+ * Database access object
+ *
+ * @constructor Create [DAO]
+ * @property context
+ */
 class DAO(
     @ApplicationContext
     val context: Context,

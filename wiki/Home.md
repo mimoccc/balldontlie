@@ -7,20 +7,20 @@
 
 ## Stats
 
-[![last-commit-badge](https://img.shields.io/github/last-commit/mimoccc/moneta-test?color=FFC877)](#)
-[![lang-badge](https://img.shields.io/github/languages/top/mimoccc/moneta-test?color=FFC877)](#)
-[![platform-badge](https://img.shields.io/badge/Platform-Android-FFC877.svg)](#)
-[![min-sdk-badge](https://img.shields.io/badge/minSdkVersion-21-FFC877.svg)](#)
-[![languages-count-badge](https://img.shields.io/github/languages/count/mimoccc/moneta-test?color=FFC877)](#)
-[![issues-badge](https://img.shields.io/github/issues-raw/mimoccc/moneta-test?color=FFC877)](#)
-[![prs-badge](https://img.shields.io/badge/PRs-welcome-FFC877.svg)](#)
-[![code-size-badge](https://img.shields.io/github/languages/code-size/mimoccc/moneta-test?color=FFC877)](#)
-[![total-lines-badge](https://img.shields.io/tokei/lines/github/mimoccc/moneta-test?color=FFC877)](#)
-[![dependencies-badge](https://img.shields.io/librariesio/github/mimoccc/moneta-test?color=FFC877)](#)
+[![Last commit](https://img.shields.io/github/last-commit/mimoccc/moneta-test?color=FFC877)](#)
+[![Lang](https://img.shields.io/github/languages/top/mimoccc/moneta-test?color=FFC877)](#)
+[![Platform](https://img.shields.io/badge/Platform-Android-FFC877.svg)](#)
+[![Min sdk](https://img.shields.io/badge/minSdkVersion-21-FFC877.svg)](#)
+[![Languages](https://img.shields.io/github/languages/count/mimoccc/moneta-test?color=FFC877)](#)
+[![Issues](https://img.shields.io/github/issues-raw/mimoccc/moneta-test?color=FFC877)](#)
+[![PR's](https://img.shields.io/badge/PRs-welcome-FFC877.svg)](#)
+[![Code size](https://img.shields.io/github/languages/code-size/mimoccc/moneta-test?color=FFC877)](#)
+[![Total lines](https://img.shields.io/tokei/lines/github/mimoccc/moneta-test?color=FFC877)](#)
+[![Dependencies](https://img.shields.io/librariesio/github/mimoccc/moneta-test?color=FFC877)](#)
 
 ## Project documentation
 
-| [App](https://github.com/mimoccc/moneta-test/blob/main/wiki/documentation/index.md) |
+[App code documentation](https://github.com/mimoccc/moneta-test/blob/main/wiki/documentation/index.md)
 
 Contains all the classes in project
 

@@ -4,3 +4,5 @@
 
 [androidJvm]\
 const val [DATABASE_VERSION](-d-a-t-a-b-a-s-e_-v-e-r-s-i-o-n.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) = 1
+
+Database version

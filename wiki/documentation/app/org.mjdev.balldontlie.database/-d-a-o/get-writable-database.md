@@ -7,3 +7,9 @@
 @[Synchronized](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-synchronized/index.html)
 
 fun [getWritableDatabase](get-writable-database.md)(): SQLiteDatabase?
+
+Get writable database.
+
+#### Return
+
+SQLiteDatabase or null
