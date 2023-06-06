@@ -140,12 +140,6 @@ fun ScreenView(
                         content(activityViewState, padding)
                     }
                 )
-                CircleIndicatorScreen(
-                    visibility = loadState.value is LoadState.Loading
-                )
-                if (loadState.value is LoadState.Error) {
-                    errorState.value = (loadState.value as LoadState.Error).error.asApiError()
-                }
                 ErrorIndicatorSmall(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -154,5 +148,14 @@ fun ScreenView(
                 )
             }
         )
+        CircleIndicatorScreen(
+            visibility = loadState.value is LoadState.Loading
+        )
+        if (loadState.value is LoadState.Error) {
+            errorState.value = (loadState.value as LoadState.Error).error.asApiError()
+        }
+        PermissionsView { idx, name ->
+            PermissionItem(name)
+        }
     }
 }

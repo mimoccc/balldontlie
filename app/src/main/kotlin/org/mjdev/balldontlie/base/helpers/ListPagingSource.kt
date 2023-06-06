@@ -3,6 +3,7 @@ package org.mjdev.balldontlie.base.helpers
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import kotlinx.coroutines.delay
+import org.mjdev.balldontlie.base.helpers.Ext.retrySuspend
 
 typealias SOURCE<T> = suspend (page: Int, cnt: Int) -> List<T>
 
@@ -28,13 +29,12 @@ class ListPagingSource<T : Any>(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
         return try {
             val page = params.key ?: 1
-            var maxTryCount = maxRetryCount
-            var response = source.invoke(page, params.loadSize)
-            while ((response.isEmpty() || response.size < params.loadSize) && (maxTryCount > 0)) {
-                delay(retryDelay)
-                maxTryCount -= 1
-                response = source.invoke(page, params.loadSize)
-            }
+            val response: List<T> = retrySuspend(
+                retryDelay = retryDelay,
+                maxRetryCount = maxRetryCount,
+                condition = { size >= params.loadSize },
+                block = { source.invoke(page, params.loadSize) }
+            )
             return LoadResult.Page(
                 data = response,
                 prevKey = if (page == 1) null else page.minus(1),

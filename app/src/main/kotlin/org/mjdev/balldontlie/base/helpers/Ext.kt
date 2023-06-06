@@ -3,6 +3,8 @@ package org.mjdev.balldontlie.base.helpers
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.text.Html
 import android.text.SpannableString
 import android.text.Spanned
@@ -29,11 +31,13 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.NavigatorProvider
 import androidx.navigation.compose.composable
+import kotlinx.coroutines.delay
 import org.mjdev.balldontlie.BuildConfig
 import org.mjdev.balldontlie.base.navigation.NavGraphBuilderEx
 import org.mjdev.balldontlie.base.navigation.Screen
 import org.mjdev.balldontlie.repository.def.IRepository
 import org.mjdev.balldontlie.repository.impl.MockedRepository.Companion.MockRepository
+import timber.log.Timber
 import kotlin.reflect.full.isSubclassOf
 import kotlin.reflect.jvm.jvmErasure
 
@@ -80,6 +84,46 @@ object Ext {
     }
 
     fun Context.stringResource(@StringRes id: Int): String = resources.getString(id)
+
+    @Throws(Exception::class)
+    fun <T> retry(
+        retryCnt: Int = 8,
+        retryDelay: Long = 500L,
+        looper: Looper = Looper.myLooper() ?: Looper.getMainLooper(),
+        onError: (error: Throwable) -> Unit = { e -> throw (e) },
+        block: () -> T
+    ) {
+        var retryStep = retryCnt
+        try {
+            block.invoke()
+        } catch (e: Throwable) {
+            Timber.e(e)
+            retryStep -= 1
+            if (retryStep > 0) {
+                Handler(looper).postDelayed({
+                    retry(retryStep, retryDelay, looper, onError, block)
+                }, retryDelay)
+            } else {
+                onError(e)
+            }
+        }
+    }
+
+    suspend fun <T> retrySuspend(
+        retryDelay: Long = ListPagingSource.DEFAULT_RETRY_DELAY,
+        maxRetryCount: Int = ListPagingSource.DEFAULT_MAX_RETRY_COUNT,
+        condition: T.() -> Boolean,
+        block: suspend () -> T
+    ) : T {
+        var retryCount = maxRetryCount
+        var ret = block.invoke()
+        while ((!condition.invoke(ret)) && (retryCount > 0)) {
+            delay(retryDelay)
+            ret = block.invoke()
+            retryCount -= 1
+        }
+        return ret
+    }
 
     fun fromHtml(html: String?): Spanned {
         return when {

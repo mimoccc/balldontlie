@@ -3,19 +3,24 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
-        maven { url "https://www.jitpack.io" }
+        maven(url = "https://www.jitpack.io")
+        @Suppress("JcenterRepositoryObsolete")
         jcenter()
     }
 }
+
 plugins {
-    id("com.gradle.enterprise") version("3.13.3")
+    id("com.gradle.enterprise") version ("3.13.3")
 }
+
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
-        maven { url "https://www.jitpack.io" }
+        maven(url = "https://www.jitpack.io")
+        @Suppress("JcenterRepositoryObsolete")
         jcenter()
     }
 }
@@ -29,4 +34,4 @@ gradleEnterprise {
     }
 }
 rootProject.name = "BallDontLie"
-include ':app'
+include(":app")
