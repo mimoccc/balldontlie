@@ -154,8 +154,5 @@ fun ScreenView(
         if (loadState.value is LoadState.Error) {
             errorState.value = (loadState.value as LoadState.Error).error.asApiError()
         }
-        PermissionsView { idx, name ->
-            PermissionItem(name)
-        }
     }
 }
