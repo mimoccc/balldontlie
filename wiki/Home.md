@@ -6,7 +6,7 @@
 
 ## Project documentation
 
-| [App](/wiki/documentation/index.md) |
+| [App](../wiki/documentation/index.md) |
 
 Contains all the classes in project
 
