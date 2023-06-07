@@ -26,7 +26,7 @@ import org.mjdev.balldontlie.base.helpers.Ext.stringResWithStyling
 fun HtmlTextView(
     modifier: Modifier = previewData(Modifier) { Modifier.fillMaxWidth() } ,
     @StringRes htmlResId: Int? = previewData { R.string.webpage },
-    color: Color = MaterialTheme.colorScheme.tertiary,
+    color: Color = MaterialTheme.colorScheme.onSurface,
     fontSize: TextUnit = TextUnit.Unspecified,
 //    fontStyle: FontStyle? = null,
 //    fontWeight: FontWeight? = null,
