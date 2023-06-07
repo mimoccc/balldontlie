@@ -10,9 +10,10 @@ import org.mjdev.balldontlie.ui.screens.DetailScreen
 /**
  * Main activity.
  *
- * Simply one start activity for compose project
+ * Simply one, start activity, for compose project.
  *
- * @constructor Create empty constructor for main activity
+ * @constructor Create empty constructor for main activity, and keep it empty,
+ * or override to empty constructor call.
  */
 @AndroidEntryPoint
 class MainActivity : ComposableActivity({

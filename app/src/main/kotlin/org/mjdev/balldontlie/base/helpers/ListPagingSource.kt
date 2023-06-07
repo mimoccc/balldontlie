@@ -2,11 +2,25 @@ package org.mjdev.balldontlie.base.helpers
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import kotlinx.coroutines.delay
 import org.mjdev.balldontlie.base.helpers.Ext.retrySuspend
 
+/**
+ * Type alias for handler of source data in list.
+ */
 typealias SOURCE<T> = suspend (page: Int, cnt: Int) -> List<T>
 
+/**
+ * List paging source.
+ *
+ * Simplified version for paging source to be shown in [org.mjdev.balldontlie.base.ui.PagingList].
+ *
+ * @param T
+ * @constructor Create [ListPagingSource]
+ * @property perPage
+ * @property source
+ * @property maxRetryCount
+ * @property retryDelay
+ */
 class ListPagingSource<T : Any>(
     private val perPage: Int = 50,
     private val source: SOURCE<T> = { _, _ -> emptyList() },

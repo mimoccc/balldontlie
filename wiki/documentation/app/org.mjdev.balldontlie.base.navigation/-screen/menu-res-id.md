@@ -4,3 +4,5 @@
 
 [androidJvm]\
 open val [menuResId](menu-res-id.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+
+Menu string resource id menu is generated only if it returns id 0

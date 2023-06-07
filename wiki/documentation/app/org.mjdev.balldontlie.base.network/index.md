@@ -6,4 +6,4 @@
 
 | Name | Summary |
 |---|---|
-| [CacheInterceptor](-cache-interceptor/index.md) | [androidJvm]<br>class [CacheInterceptor](-cache-interceptor/index.md)(maxAge: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) = 1, timeUnit: [TimeUnit](https://developer.android.com/reference/kotlin/java/util/concurrent/TimeUnit.html) = TimeUnit.HOURS) : Interceptor |
+| [CacheInterceptor](-cache-interceptor/index.md) | [androidJvm]<br>class [CacheInterceptor](-cache-interceptor/index.md)(maxAge: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) = 1, timeUnit: [TimeUnit](https://developer.android.com/reference/kotlin/java/util/concurrent/TimeUnit.html) = TimeUnit.HOURS) : Interceptor<br>Cache interceptor. Made to cache result from internet. Basically for an one hour, to avoid multiple calls. |

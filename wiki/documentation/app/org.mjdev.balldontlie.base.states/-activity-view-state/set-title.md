@@ -3,4 +3,14 @@
 # setTitle
 
 [androidJvm]\
-fun [setTitle](set-title.md)(title: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))
+fun [setTitle](set-title.md)(title: [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?)
+
+Set title.
+
+#### Parameters
+
+androidJvm
+
+| | |
+|---|---|
+| title | Title |

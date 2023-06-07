@@ -5,4 +5,4 @@
 [androidJvm]\
 constructor()
 
-Create empty constructor for main activity
+Create empty constructor for main activity, and keep it empty, or override to empty constructor call.

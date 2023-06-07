@@ -13,18 +13,33 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.compose.rememberNavController
-import org.mjdev.balldontlie.base.helpers.Ext.NavHost
+import org.mjdev.balldontlie.base.helpers.Ext.NavHostEx
 import org.mjdev.balldontlie.base.navigation.NavGraphBuilderEx
 import org.mjdev.balldontlie.ui.theme.BallDontLieTheme
 import timber.log.Timber
 
-@Suppress("MemberVisibilityCanBePrivate")
+/**
+ * Composable activity.
+ *
+ * Activity that holds all the logic for navigation, to simplify it.
+ * See usage in [org.mjdev.balldontlie.activity.MainActivity]
+ *
+ * @constructor Create [ComposableActivity]
+ * @property navGraphBuilder
+ */
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 abstract class ComposableActivity(
     val navGraphBuilder: NavGraphBuilderEx.() -> Unit
 ) : ComponentActivity() {
 
+    /**
+     * Custom activity result listeners
+     */
     val activityResultListeners = mutableListOf<ActivityResultHandler<*>>()
 
+    /**
+     * {@inheritDoc}
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,7 +52,7 @@ abstract class ComposableActivity(
 
                     val navController = rememberNavController()
 
-                    NavHost(
+                    NavHostEx(
                         modifier = Modifier.fillMaxSize(),
                         navController = navController,
                         builder = navGraphBuilder
@@ -49,6 +64,13 @@ abstract class ComposableActivity(
 
     }
 
+    /**
+     * On activity result handler.
+     *
+     * @param requestCode Request code
+     * @param resultCode Result code
+     * @param intent Intent
+     */
     @Suppress("OVERRIDE_DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
@@ -61,6 +83,16 @@ abstract class ComposableActivity(
         }
     }
 
+    /**
+     * Register for activity result.
+     *
+     * Custom handler registration.
+     *
+     * @param onLaunch On launch method, to start custom activity.
+     * @param onActivityResult On activity result handler.
+     * @param T T result type
+     * @return [ActivityResultHandler] handler generated
+     */
     fun <T> registerForActivityResult(
         onLaunch: (args: List<T>) -> Unit,
         onActivityResult: (requestCode: Int, resultCode: Int, intent: Intent?) -> Unit
@@ -70,6 +102,16 @@ abstract class ComposableActivity(
         onActivityResult
     )
 
+    /**
+     * Activity result handler.
+     *
+     * @param I
+     * @constructor Create [ActivityResultHandler]
+     * @property lifecycle lifecycle handler
+     * @property onLaunch function to start activity
+     * @property onActivityResult result handler
+     */
+    @Suppress("unused")
     inner class ActivityResultHandler<I>(
         val lifecycle: Lifecycle,
         val onLaunch: (args: List<I>) -> Unit,
@@ -90,15 +132,31 @@ abstract class ComposableActivity(
             activityResultListeners.add(this)
         }
 
+        /**
+         * Function to register result handler.
+         * It is called automatically upon lifecycle state.
+         * */
         fun unregister() {
             lifecycle.removeObserver(observer)
             activityResultListeners.remove(this)
         }
 
+        /**
+         * Post result to handler.
+         *
+         * @param requestCode Request code
+         * @param resultCode Result code
+         * @param intent Intent result data
+         */
         fun postResult(requestCode: Int, resultCode: Int, intent: Intent?) {
             onActivityResult(requestCode, resultCode, intent)
         }
 
+        /**
+         * Launch the onLaunch handler.
+         *
+         * @param args Args
+         */
         fun launch(vararg args: I) {
             onLaunch(args.toList())
         }
