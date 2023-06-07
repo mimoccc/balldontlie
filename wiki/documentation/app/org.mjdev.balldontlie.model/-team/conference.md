@@ -3,4 +3,4 @@
 # conference
 
 [androidJvm]\
-val [conference](conference.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)? = null
+var [conference](conference.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)?

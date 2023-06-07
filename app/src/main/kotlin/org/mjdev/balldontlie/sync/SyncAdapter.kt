@@ -6,7 +6,7 @@ import android.content.ContentProviderClient
 import android.content.Context
 import android.content.SyncResult
 import android.os.Bundle
-import com.j256.ormlite.dao.Dao
+import io.objectbox.Box
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
@@ -26,8 +26,8 @@ class SyncAdapter(
 
     private val READ_COUNT = 50
 
-    private val playersStore: Dao<Player, Int> get() = dao.playerDao
-    private val teamsStore: Dao<Team, Int> get() = dao.teamDao
+    private val playersStore: Box<Player> get() = dao.playerDao
+    private val teamsStore: Box<Team> get() = dao.teamDao
 
     override fun onPerformSync(
         account: Account?,
@@ -37,8 +37,8 @@ class SyncAdapter(
         syncResult: SyncResult?
     ) {
         try {
-            val playerIds = playersStore.queryForAll().map { p -> p.id }.toMutableList()
-            val teamIds = teamsStore.queryForAll().map { t -> t.id }.toMutableList()
+            val playerIds = playersStore.all.map { p -> p.id }.toMutableList()
+            val teamIds = teamsStore.all.map { t -> t.id }.toMutableList()
             runBlocking(Dispatchers.IO) {
                 flow {
                     var page = 0
@@ -64,7 +64,7 @@ class SyncAdapter(
                     } while (page > 0)
                 }.collect { player ->
                     if (playerIds.containsNot { id -> id == player.id }) {
-                        playersStore.create(player)
+                        playersStore.put(player)
                         playerIds.add(player.id)
                         Timber.d("Player: $player stored.")
                     } else {
@@ -72,7 +72,7 @@ class SyncAdapter(
                     }
                     val team = player.team
                     if (teamIds.containsNot { id -> id == team.id }) {
-                        teamsStore.create(team)
+                        teamsStore.put(team)
                         teamIds.add(team.id)
                         Timber.d("Team: $team stored.")
                     } else {

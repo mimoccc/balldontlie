@@ -1,7 +1,6 @@
 package org.mjdev.balldontlie.module
 
 import android.content.Context
-import com.j256.ormlite.cipher.android.apptools.OpenHelperManager
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -93,6 +92,6 @@ class ProvideModule {
     fun provideDAO(
         @ApplicationContext
         context:Context
-    ) : DAO = OpenHelperManager.getHelper(context, DAO::class.java)
+    ) : DAO = DAO(context)
 
 }

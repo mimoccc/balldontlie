@@ -3,4 +3,4 @@
 # heightInches
 
 [androidJvm]\
-val [heightInches](height-inches.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)? = null
+var [heightInches](height-inches.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)?

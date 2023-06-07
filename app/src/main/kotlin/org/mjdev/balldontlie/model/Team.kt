@@ -1,43 +1,46 @@
 package org.mjdev.balldontlie.model
 
-import com.j256.ormlite.field.DatabaseField
-import com.j256.ormlite.table.DatabaseTable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import io.objectbox.annotation.Convert
+import io.objectbox.annotation.Entity
+import io.objectbox.annotation.Id
+import org.mjdev.balldontlie.model.convert.ConvertEntity
+import org.mjdev.balldontlie.model.convert.EncryptionConverter
 
-@DatabaseTable(tableName = "team")
+@Entity
 @JsonClass(generateAdapter = true)
 data class Team(
 
-    @DatabaseField(id=true, generatedId = false, unique=true)
+    @Id
     @Json(name = "id")
-    val id: Int? = null,
+    override var id: Long = 0L,
 
-    @DatabaseField(index = true)
+    @Convert(converter = EncryptionConverter::class, dbType = String::class)
     @Json(name = "name")
-    val name: String? = null,
+    var name: String? = null,
 
-    @DatabaseField(index = true)
+    @Convert(converter = EncryptionConverter::class, dbType = String::class)
     @Json(name = "full_name")
-    val fullName: String? = null,
+    var fullName: String? = null,
 
-    @DatabaseField(index = false)
+    @Convert(converter = EncryptionConverter::class, dbType = String::class)
     @Json(name = "division")
-    val division: String? = null,
+    var division: String? = null,
 
-    @DatabaseField(index = false)
+    @Convert(converter = EncryptionConverter::class, dbType = String::class)
     @Json(name = "abbreviation")
-    val abbreviation: String? = null,
+    var abbreviation: String? = null,
 
-    @DatabaseField(index = false)
+    @Convert(converter = EncryptionConverter::class, dbType = String::class)
     @Json(name = "conference")
-    val conference: String? = null,
+    var conference: String? = null,
 
-    @DatabaseField(index = true)
+    @Convert(converter = EncryptionConverter::class, dbType = String::class)
     @Json(name = "city")
-    val city: String? = null,
+    var city: String? = null,
 
-) {
+    ) : ConvertEntity() {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -54,7 +57,7 @@ data class Team(
     }
 
     override fun hashCode(): Int {
-        var result = id ?: 0
+        var result = id.toInt()
         result = 31 * result + (name?.hashCode() ?: 0)
         result = 31 * result + (fullName?.hashCode() ?: 0)
         result = 31 * result + (division?.hashCode() ?: 0)

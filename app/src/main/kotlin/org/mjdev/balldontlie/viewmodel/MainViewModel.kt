@@ -3,6 +3,7 @@ package org.mjdev.balldontlie.viewmodel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.mjdev.balldontlie.base.viewmodel.BaseViewModel
 import org.mjdev.balldontlie.model.Player
+import org.mjdev.balldontlie.model.Players
 import org.mjdev.balldontlie.repository.def.IRepository
 import org.mjdev.balldontlie.repository.impl.MockedRepository
 import javax.inject.Inject
@@ -23,7 +24,10 @@ constructor(
         if (isMock) {
            (repository as MockedRepository).players(page, cnt).players
         } else {
-            repository.getPlayers(page, cnt).getOrThrow().players
+            repository.getPlayers(page, cnt).getOrElse { e ->
+                onError(e)
+                Players()
+            }.players
         }
     }
 

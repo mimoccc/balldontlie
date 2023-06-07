@@ -3,4 +3,4 @@
 # position
 
 [androidJvm]\
-val [position](position.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)? = null
+var [position](position.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)?

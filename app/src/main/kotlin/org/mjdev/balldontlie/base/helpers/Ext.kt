@@ -77,6 +77,17 @@ object Ext {
     } else { _, _ -> emptyList() }
 
     @Composable
+    inline fun <reified T : Any> previewSource(count: Int): SOURCE<T> = if (isEditMode()) { p, c ->
+        mutableListOf<T>().apply {
+            (1..count).map {
+                T::class.constructors.first { it.parameters.isEmpty() }.call()
+            }.also { item ->
+                add(item as T)
+            }
+        }
+    } else { _, _ -> emptyList() }
+
+    @Composable
     inline fun <reified T> textFrom(text: T?): String? = when (text) {
         is Int -> LocalContext.current.getString(text)
         is String -> text
@@ -114,7 +125,7 @@ object Ext {
         maxRetryCount: Int = ListPagingSource.DEFAULT_MAX_RETRY_COUNT,
         condition: T.() -> Boolean,
         block: suspend () -> T
-    ) : T {
+    ): T {
         var retryCount = maxRetryCount
         var ret = block.invoke()
         while ((!condition.invoke(ret)) && (retryCount > 0)) {

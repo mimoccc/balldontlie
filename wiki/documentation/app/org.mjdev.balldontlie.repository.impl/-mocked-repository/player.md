@@ -3,4 +3,4 @@
 # player
 
 [androidJvm]\
-fun [player](player.md)(idx: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) = 0): [Player](../../org.mjdev.balldontlie.model/-player/index.md)
+fun [player](player.md)(idx: [Long](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) = 0): [Player](../../org.mjdev.balldontlie.model/-player/index.md)

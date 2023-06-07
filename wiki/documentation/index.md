@@ -20,6 +20,7 @@
 | [org.mjdev.balldontlie.error](app/org.mjdev.balldontlie.error/index.md) |
 | [org.mjdev.balldontlie.glide](app/org.mjdev.balldontlie.glide/index.md) |
 | [org.mjdev.balldontlie.model](app/org.mjdev.balldontlie.model/index.md) |
+| [org.mjdev.balldontlie.model.convert](app/org.mjdev.balldontlie.model.convert/index.md) |
 | [org.mjdev.balldontlie.module](app/org.mjdev.balldontlie.module/index.md) |
 | [org.mjdev.balldontlie.network](app/org.mjdev.balldontlie.network/index.md) |
 | [org.mjdev.balldontlie.repository.def](app/org.mjdev.balldontlie.repository.def/index.md) |

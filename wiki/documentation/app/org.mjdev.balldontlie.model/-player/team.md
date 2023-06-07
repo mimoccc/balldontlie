@@ -3,4 +3,4 @@
 # team
 
 [androidJvm]\
-val [team](team.md): [Team](../-team/index.md)
+var [team](team.md): [Team](../-team/index.md)

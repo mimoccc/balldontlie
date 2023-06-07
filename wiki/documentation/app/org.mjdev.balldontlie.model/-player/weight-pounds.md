@@ -3,4 +3,4 @@
 # weightPounds
 
 [androidJvm]\
-val [weightPounds](weight-pounds.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)? = null
+var [weightPounds](weight-pounds.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)?

@@ -12,7 +12,7 @@ class MockedRepository : IRepository {
     val DEFAULT_COUNT_OF_PLAYERS = 50
 
     fun player(
-        idx: Int = 0,
+        idx: Long = 0L,
     ) = Player(
         id = idx,
         firstName = "Player",
@@ -32,7 +32,7 @@ class MockedRepository : IRepository {
     ): Players = Players(
         players = mutableListOf<Player>().apply {
             (1..perPage + 1).forEach { idx ->
-                add(player(idx))
+                add(player(idx.toLong()))
             }
         },
         meta = Meta(
@@ -61,7 +61,7 @@ class MockedRepository : IRepository {
 
     override suspend fun getPlayer(
         id: Int
-    ): Result<Player> = Result.success(player(id))
+    ): Result<Player> = Result.success(player(id.toLong()))
 
     companion object {
         val MockRepository by lazy { MockedRepository() }

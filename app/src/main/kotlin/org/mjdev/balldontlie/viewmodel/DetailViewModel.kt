@@ -18,7 +18,7 @@ constructor(
 
     suspend fun player(playerId: Int): Player = runSafe {
         if (isMock) {
-            (repository as MockedRepository).player(playerId)
+            (repository as MockedRepository).player(playerId.toLong())
         } else {
             repository.getPlayer(playerId).getOrThrow()
         }

@@ -75,9 +75,13 @@ fun ErrorIndicatorSmall(
                                         .padding(8.dp, 4.dp)
                                 ) {
                                     Text(
-                                        minLines = 2,
+                                        minLines = 3,
                                         style = TextStyle.Default,
-                                        text = error.message,
+                                        text = error.message +
+                                                "\nline:" +
+                                                error.lineNumber +
+                                                "\nfile:" +
+                                                error.fileName,
                                         color = Color.Black,
                                         fontStyle = FontStyle.Italic,
                                         fontWeight = FontWeight.Normal,

@@ -20,15 +20,10 @@ class MainApp : Application() {
     override fun onCreate() {
         super.onCreate()
         DynamicColors.applyToActivitiesIfAvailable(this)
-        initializeDBSQLCipher()
         createSyncAccount()?.also { account ->
             SyncService.requestSync(account)
         }
         // todo account time to time can not be prepared
-    }
-
-    private fun initializeDBSQLCipher() {
-        System.loadLibrary("sqlcipher")
     }
 
 }

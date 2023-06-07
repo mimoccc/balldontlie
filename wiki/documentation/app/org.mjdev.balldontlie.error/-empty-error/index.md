@@ -33,6 +33,9 @@ class [EmptyError](index.md) : [ApiError](../-api-error/index.md)
 |---|---|
 | [backgroundColor](background-color.md) | [androidJvm]<br>open override var [backgroundColor](background-color.md): [Color](https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html) |
 | [cause](../-info/index.md#-654012527%2FProperties%2F-912451524) | [androidJvm]<br>open val [cause](../-info/index.md#-654012527%2FProperties%2F-912451524): [Throwable](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html)? |
+| [fileName](../-api-error/file-name.md) | [androidJvm]<br>val [fileName](../-api-error/file-name.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [lineNumber](../-api-error/line-number.md) | [androidJvm]<br>val [lineNumber](../-api-error/line-number.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [message](../-api-error/message.md) | [androidJvm]<br>open override val [message](../-api-error/message.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [t](../-api-error/t.md) | [androidJvm]<br>open val [t](../-api-error/t.md): [Throwable](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html)? = null |
 | [textColor](text-color.md) | [androidJvm]<br>open override var [textColor](text-color.md): [Color](https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html) |
 | [title](../-api-error/title.md) | [androidJvm]<br>open val [title](../-api-error/title.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |

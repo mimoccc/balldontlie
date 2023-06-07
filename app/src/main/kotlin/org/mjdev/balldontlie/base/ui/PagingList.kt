@@ -47,7 +47,7 @@ fun <T : Any> PagingList(
                 initialLoadSize = perPage
             ),
             pagingSourceFactory = {
-                ListPagingSource(perPage, source)
+                ListPagingSource(source)
             }
         ).flow
     }.collectAsLazyPagingItems().apply {

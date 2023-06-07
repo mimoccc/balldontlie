@@ -1,0 +1,111 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:2003979632816793885",
+      "lastPropertyId": "8:758164623092274986",
+      "name": "Player",
+      "properties": [
+        {
+          "id": "1:1776550615774582548",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8110648305101555867",
+          "name": "firstName",
+          "type": 9
+        },
+        {
+          "id": "3:369985392904835472",
+          "name": "lastName",
+          "type": 9
+        },
+        {
+          "id": "4:5096628644172940493",
+          "name": "position",
+          "type": 9
+        },
+        {
+          "id": "5:4107993659384202946",
+          "name": "team",
+          "type": 6
+        },
+        {
+          "id": "6:4436478771606368121",
+          "name": "heightFeet",
+          "type": 5
+        },
+        {
+          "id": "7:275968100546080319",
+          "name": "heightInches",
+          "type": 5
+        },
+        {
+          "id": "8:758164623092274986",
+          "name": "weightPounds",
+          "type": 5
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:2982807967671884768",
+      "lastPropertyId": "7:6394692287863126159",
+      "name": "Team",
+      "properties": [
+        {
+          "id": "1:2995473060973438742",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7642746850798247350",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:7111339386668046677",
+          "name": "fullName",
+          "type": 9
+        },
+        {
+          "id": "4:2336179991328320763",
+          "name": "division",
+          "type": 9
+        },
+        {
+          "id": "5:663944894946846038",
+          "name": "abbreviation",
+          "type": 9
+        },
+        {
+          "id": "6:7959050763897797299",
+          "name": "conference",
+          "type": 9
+        },
+        {
+          "id": "7:6394692287863126159",
+          "name": "city",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:2982807967671884768",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

@@ -5,12 +5,11 @@ plugins {
     id("com.google.dagger.hilt.android") version "2.44" apply false
 }
 
-// todo custom plugins
-//buildscript {
-//    repositories {
-//        mavenCentral()
-//    }
-//    dependencies {
-//        classpath("com.akaita.android:easylauncher:1.3.1")
-//    }
-//}
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("io.objectbox:objectbox-gradle-plugin:3.6.0")
+    }
+}

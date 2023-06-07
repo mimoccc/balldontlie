@@ -22,7 +22,7 @@ import org.mjdev.balldontlie.model.Player
 fun PlayersList(
     modifier: Modifier = previewData(Modifier) { Modifier.fillMaxSize() },
     perPage: Int = 25,
-    source: SOURCE<Player> = previewSource(Player(1), Player(2)),
+    source: SOURCE<Player> = previewSource(perPage),
     loadStateHandler: (state: LoadState) -> Unit = {},
     onItemClick: (data: Player) -> Unit = {}
 ) {

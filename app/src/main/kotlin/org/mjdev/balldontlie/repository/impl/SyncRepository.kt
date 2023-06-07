@@ -1,11 +1,12 @@
 package org.mjdev.balldontlie.repository.impl
 
-import com.j256.ormlite.dao.Dao
+import io.objectbox.Box
 import org.mjdev.balldontlie.database.DAO
 import org.mjdev.balldontlie.model.Meta
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.model.Players
 import org.mjdev.balldontlie.repository.def.IRepository
+import org.mjdev.balldontlie.repository.def.IRepository.Companion.runSafe
 import javax.inject.Inject
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -13,19 +14,20 @@ class SyncRepository @Inject constructor(
     var dao: DAO
 ) : IRepository {
 
-    private val playersStore: Dao<Player, Int> get() = dao.playerDao
+    private val playersStore: Box<Player> get() = dao.playerDao
 
     override suspend fun getPlayers(
         page: Int,
         perPage: Int,
-    ): Result<Players> = Result.success(
-        playersStore.query(
-            playersStore.queryBuilder()
-                .offset(page.toLong())
-                .limit(
-                    perPage.toLong()
-                ).prepare()
-        ).let { list ->
+    ): Result<Players> = runSafe {
+        playersStore.all.let { list ->
+            if (list.size > (perPage * page))
+                list.subList(
+                    page,
+                    perPage
+                )
+            else emptyList<Player>()
+        }.let { list ->
             Players(
                 players = list,
                 meta = Meta(
@@ -36,16 +38,12 @@ class SyncRepository @Inject constructor(
                 )
             )
         }
-    )
+    }
 
     override suspend fun getPlayer(
         id: Int
-    ): Result<Player> = Result.success(
-        playersStore.query(
-            playersStore.queryBuilder()
-                .where().eq("id", id)
-                .prepare()
-        ).first()
-    )
+    ): Result<Player> = runSafe {
+        playersStore.get(id.toLong())
+    }
 
 }

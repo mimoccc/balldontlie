@@ -1,50 +1,45 @@
 package org.mjdev.balldontlie.model
 
-import com.j256.ormlite.field.DatabaseField
-import com.j256.ormlite.table.DatabaseTable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import io.objectbox.annotation.Convert
+import io.objectbox.annotation.Entity
+import io.objectbox.annotation.Id
+import org.mjdev.balldontlie.model.convert.EncryptionConverter
+import org.mjdev.balldontlie.model.convert.TeamConverter
 
-@DatabaseTable(tableName = "player")
+@Entity
 @JsonClass(generateAdapter = true)
 data class Player(
 
-    @DatabaseField(id=true, generatedId = false, unique=true)
+    @Id
     @Json(name = "id")
-    val id: Int? = null,
+    var id: Long = 0,
 
-    @DatabaseField(index = true)
+    @Convert(converter = EncryptionConverter::class, dbType = String::class)
     @Json(name = "first_name")
     var firstName: String? = null,
 
-    @DatabaseField(index = true)
+    @Convert(converter = EncryptionConverter::class, dbType = String::class)
     @Json(name = "last_name")
     var lastName: String? = null,
 
-    @DatabaseField(index = false)
+    @Convert(converter = EncryptionConverter::class, dbType = String::class)
     @Json(name = "position")
-    val position: String? = null,
+    var position: String? = null,
 
-    @DatabaseField(
-        index = false,
-        foreign = true,
-        foreignAutoCreate = true,
-        foreignAutoRefresh = true
-    )
+    @Convert(converter = TeamConverter::class, dbType = Long::class)
     @Json(name = "team")
-    val team: Team = Team(),
+    var team: Team = Team(),
 
-    @DatabaseField(index = false)
     @Json(name = "height_feet")
-    val heightFeet: Int? = null,
+    var heightFeet: Int? = null,
 
-    @DatabaseField(index = false)
     @Json(name = "height_inches")
-    val heightInches: Int? = null,
+    var heightInches: Int? = null,
 
-    @DatabaseField(index = false)
     @Json(name = "weight_pounds")
-    val weightPounds: Int? = null,
+    var weightPounds: Int? = null,
 
     ) {
 
@@ -61,7 +56,7 @@ data class Player(
             }
         }
 
-    fun isEmpty() = (id == null)
+    fun isEmpty() = (id == 0L)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -79,7 +74,7 @@ data class Player(
     }
 
     override fun hashCode(): Int {
-        var result = id ?: 0
+        var result = id.toInt()
         result = 31 * result + (firstName?.hashCode() ?: 0)
         result = 31 * result + (lastName?.hashCode() ?: 0)
         result = 31 * result + (position?.hashCode() ?: 0)

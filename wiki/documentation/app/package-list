@@ -43,6 +43,7 @@ $dokka.location:org.mjdev.balldontlie.base.helpers/Ext/mockViewModel/#/PointingT
 $dokka.location:org.mjdev.balldontlie.base.helpers/Ext/previewData/#TypeParam(bounds=[kotlin.Any?])#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-ext/preview-data.md
 $dokka.location:org.mjdev.balldontlie.base.helpers/Ext/previewData/#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-ext/preview-data.md
 $dokka.location:org.mjdev.balldontlie.base.helpers/Ext/previewSource/#kotlin.Array[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-ext/preview-source.md
+$dokka.location:org.mjdev.balldontlie.base.helpers/Ext/previewSource/#kotlin.Int/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-ext/preview-source.md
 $dokka.location:org.mjdev.balldontlie.base.helpers/Ext/retry/#kotlin.Int#kotlin.Long#android.os.Looper#kotlin.Function1[kotlin.Throwable,kotlin.Unit]#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-ext/retry.md
 $dokka.location:org.mjdev.balldontlie.base.helpers/Ext/retrySuspend/#kotlin.Long#kotlin.Int#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Boolean]#kotlin.coroutines.SuspendFunction0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-ext/retry-suspend.md
 $dokka.location:org.mjdev.balldontlie.base.helpers/Ext/screen/org.mjdev.balldontlie.base.navigation.NavGraphBuilderEx#TypeParam(bounds=[org.mjdev.balldontlie.base.navigation.Screen])#kotlin.Boolean/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-ext/screen.md
@@ -53,7 +54,7 @@ $dokka.location:org.mjdev.balldontlie.base.helpers/ListPagingSource.Companion///
 $dokka.location:org.mjdev.balldontlie.base.helpers/ListPagingSource.Companion/DEFAULT_MAX_RETRY_COUNT/#/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-list-paging-source/-companion/-d-e-f-a-u-l-t_-m-a-x_-r-e-t-r-y_-c-o-u-n-t.md
 $dokka.location:org.mjdev.balldontlie.base.helpers/ListPagingSource.Companion/DEFAULT_RETRY_DELAY/#/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-list-paging-source/-companion/-d-e-f-a-u-l-t_-r-e-t-r-y_-d-e-l-a-y.md
 $dokka.location:org.mjdev.balldontlie.base.helpers/ListPagingSource///PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-list-paging-source/index.md
-$dokka.location:org.mjdev.balldontlie.base.helpers/ListPagingSource/ListPagingSource/#kotlin.Int#kotlin.coroutines.SuspendFunction2[kotlin.Int,kotlin.Int,kotlin.collections.List[TypeParam(bounds=[kotlin.Any])]]#kotlin.Int#kotlin.Long/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-list-paging-source/-list-paging-source.md
+$dokka.location:org.mjdev.balldontlie.base.helpers/ListPagingSource/ListPagingSource/#kotlin.coroutines.SuspendFunction2[kotlin.Int,kotlin.Int,kotlin.collections.List[TypeParam(bounds=[kotlin.Any])]]#kotlin.Int#kotlin.Long/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-list-paging-source/-list-paging-source.md
 $dokka.location:org.mjdev.balldontlie.base.helpers/ListPagingSource/getRefreshKey/#androidx.paging.PagingState[kotlin.Int,TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-list-paging-source/get-refresh-key.md
 $dokka.location:org.mjdev.balldontlie.base.helpers/ListPagingSource/load/#androidx.paging.PagingSource.LoadParams[kotlin.Int]/PointingToDeclaration/app/org.mjdev.balldontlie.base.helpers/-list-paging-source/load.md
 $dokka.location:org.mjdev.balldontlie.base.navigation////PointingToDeclaration/app/org.mjdev.balldontlie.base.navigation/index.md
@@ -127,27 +128,23 @@ $dokka.location:org.mjdev.balldontlie.base.viewmodel/BaseViewModel/handleError/#
 $dokka.location:org.mjdev.balldontlie.database////PointingToDeclaration/app/org.mjdev.balldontlie.database/index.md
 $dokka.location:org.mjdev.balldontlie.database/DAO.Companion///PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/-companion/index.md
 $dokka.location:org.mjdev.balldontlie.database/DAO.Companion/DATABASE_NAME/#/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/-companion/-d-a-t-a-b-a-s-e_-n-a-m-e.md
-$dokka.location:org.mjdev.balldontlie.database/DAO.Companion/DATABASE_VERSION/#/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/-companion/-d-a-t-a-b-a-s-e_-v-e-r-s-i-o-n.md
-$dokka.location:org.mjdev.balldontlie.database/DAO.Companion/EXTERNAL_DB/#/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/-companion/-e-x-t-e-r-n-a-l_-d-b.md
-$dokka.location:org.mjdev.balldontlie.database/DAO.Companion/INTERNAL_DB/#/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/-companion/-i-n-t-e-r-n-a-l_-d-b.md
 $dokka.location:org.mjdev.balldontlie.database/DAO///PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/index.md
 $dokka.location:org.mjdev.balldontlie.database/DAO/DAO/#android.content.Context/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/-d-a-o.md
 $dokka.location:org.mjdev.balldontlie.database/DAO/context/#/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/context.md
-$dokka.location:org.mjdev.balldontlie.database/DAO/getReadableDatabase/#/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/get-readable-database.md
-$dokka.location:org.mjdev.balldontlie.database/DAO/getWritableDatabase/#/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/get-writable-database.md
-$dokka.location:org.mjdev.balldontlie.database/DAO/onCreate/#net.sqlcipher.database.SQLiteDatabase?#com.j256.ormlite.support.ConnectionSource?/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/on-create.md
-$dokka.location:org.mjdev.balldontlie.database/DAO/onUpgrade/#net.sqlcipher.database.SQLiteDatabase?#com.j256.ormlite.support.ConnectionSource?#kotlin.Int#kotlin.Int/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/on-upgrade.md
 $dokka.location:org.mjdev.balldontlie.database/DAO/playerDao/#/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/player-dao.md
 $dokka.location:org.mjdev.balldontlie.database/DAO/teamDao/#/PointingToDeclaration/app/org.mjdev.balldontlie.database/-d-a-o/team-dao.md
 $dokka.location:org.mjdev.balldontlie.error////PointingToDeclaration/app/org.mjdev.balldontlie.error/index.md
 $dokka.location:org.mjdev.balldontlie.error/ApiError.Companion///PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/-companion/index.md
 $dokka.location:org.mjdev.balldontlie.error/ApiError.Companion/asApiError/kotlin.Throwable#/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/-companion/as-api-error.md
 $dokka.location:org.mjdev.balldontlie.error/ApiError///PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/index.md
-$dokka.location:org.mjdev.balldontlie.error/ApiError/ApiError/#kotlin.String#kotlin.String/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/-api-error.md
+$dokka.location:org.mjdev.balldontlie.error/ApiError/ApiError/#kotlin.String#kotlin.String#kotlin.Throwable?/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/-api-error.md
 $dokka.location:org.mjdev.balldontlie.error/ApiError/ApiError/#kotlin.Throwable/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/-api-error.md
 $dokka.location:org.mjdev.balldontlie.error/ApiError/ApiError/#retrofit2.Response[*]/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/-api-error.md
 $dokka.location:org.mjdev.balldontlie.error/ApiError/backgroundColor/#/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/background-color.md
+$dokka.location:org.mjdev.balldontlie.error/ApiError/fileName/#/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/file-name.md
+$dokka.location:org.mjdev.balldontlie.error/ApiError/lineNumber/#/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/line-number.md
 $dokka.location:org.mjdev.balldontlie.error/ApiError/message/#/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/message.md
+$dokka.location:org.mjdev.balldontlie.error/ApiError/t/#/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/t.md
 $dokka.location:org.mjdev.balldontlie.error/ApiError/textColor/#/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/text-color.md
 $dokka.location:org.mjdev.balldontlie.error/ApiError/title/#/PointingToDeclaration/app/org.mjdev.balldontlie.error/-api-error/title.md
 $dokka.location:org.mjdev.balldontlie.error/EmptyError///PointingToDeclaration/app/org.mjdev.balldontlie.error/-empty-error/index.md
@@ -185,6 +182,34 @@ $dokka.location:org.mjdev.balldontlie.glide/MyAppGlideModule/MyAppGlideModule/#/
 $dokka.location:org.mjdev.balldontlie.glide/MyAppGlideModule/applyOptions/#android.content.Context#com.bumptech.glide.GlideBuilder/PointingToDeclaration/app/org.mjdev.balldontlie.glide/-my-app-glide-module/apply-options.md
 $dokka.location:org.mjdev.balldontlie.glide/MyAppGlideModule/isManifestParsingEnabled/#/PointingToDeclaration/app/org.mjdev.balldontlie.glide/-my-app-glide-module/is-manifest-parsing-enabled.md
 $dokka.location:org.mjdev.balldontlie.glide/MyAppGlideModule/registerComponents/#android.content.Context#com.bumptech.glide.Glide#com.bumptech.glide.Registry/PointingToDeclaration/app/org.mjdev.balldontlie.glide/-my-app-glide-module/register-components.md
+$dokka.location:org.mjdev.balldontlie.model.convert////PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/index.md
+$dokka.location:org.mjdev.balldontlie.model.convert/ConvertEntity///PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-convert-entity/index.md
+$dokka.location:org.mjdev.balldontlie.model.convert/ConvertEntity/ConvertEntity/#/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-convert-entity/-convert-entity.md
+$dokka.location:org.mjdev.balldontlie.model.convert/ConvertEntity/id/#/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-convert-entity/id.md
+$dokka.location:org.mjdev.balldontlie.model.convert/CustomPropertyConverter///PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-custom-property-converter/index.md
+$dokka.location:org.mjdev.balldontlie.model.convert/CustomPropertyConverter/CustomPropertyConverter/#kotlin.Function1[kotlin.Long,TypeParam(bounds=[org.mjdev.balldontlie.model.convert.ConvertEntity])?]/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-custom-property-converter/-custom-property-converter.md
+$dokka.location:org.mjdev.balldontlie.model.convert/CustomPropertyConverter/convertToDatabaseValue/#TypeParam(bounds=[org.mjdev.balldontlie.model.convert.ConvertEntity])/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-custom-property-converter/convert-to-database-value.md
+$dokka.location:org.mjdev.balldontlie.model.convert/CustomPropertyConverter/convertToEntityProperty/#kotlin.Long?/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-custom-property-converter/convert-to-entity-property.md
+$dokka.location:org.mjdev.balldontlie.model.convert/EncryptionConverter.Companion///PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-encryption-converter/-companion/index.md
+$dokka.location:org.mjdev.balldontlie.model.convert/EncryptionConverter.Companion/AES_KEY/#/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-encryption-converter/-companion/-a-e-s_-k-e-y.md
+$dokka.location:org.mjdev.balldontlie.model.convert/EncryptionConverter///PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-encryption-converter/index.md
+$dokka.location:org.mjdev.balldontlie.model.convert/EncryptionConverter/EncryptionConverter/#/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-encryption-converter/-encryption-converter.md
+$dokka.location:org.mjdev.balldontlie.model.convert/EncryptionConverter/convertToDatabaseValue/#kotlin.String/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-encryption-converter/convert-to-database-value.md
+$dokka.location:org.mjdev.balldontlie.model.convert/EncryptionConverter/convertToEntityProperty/#kotlin.String?/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-encryption-converter/convert-to-entity-property.md
+$dokka.location:org.mjdev.balldontlie.model.convert/PropertyEnumConverter///PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-property-enum-converter/index.md
+$dokka.location:org.mjdev.balldontlie.model.convert/PropertyEnumConverter/PropertyEnumConverter/#kotlin.Array[TypeParam(bounds=[kotlin.Any?])]#TypeParam(bounds=[kotlin.Any?])#kotlin.Function2[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?]),kotlin.Boolean]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])?]/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-property-enum-converter/-property-enum-converter.md
+$dokka.location:org.mjdev.balldontlie.model.convert/PropertyEnumConverter/convertToDatabaseValue/#TypeParam(bounds=[kotlin.Any?])?/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-property-enum-converter/convert-to-database-value.md
+$dokka.location:org.mjdev.balldontlie.model.convert/PropertyEnumConverter/convertToEntityProperty/#TypeParam(bounds=[kotlin.Any?])?/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-property-enum-converter/convert-to-entity-property.md
+$dokka.location:org.mjdev.balldontlie.model.convert/PropertyJsonConverter///PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-property-json-converter/index.md
+$dokka.location:org.mjdev.balldontlie.model.convert/PropertyJsonConverter/PropertyJsonConverter/#java.lang.Class[TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-property-json-converter/-property-json-converter.md
+$dokka.location:org.mjdev.balldontlie.model.convert/PropertyJsonConverter/convertToDatabaseValue/#TypeParam(bounds=[kotlin.Any])?/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-property-json-converter/convert-to-database-value.md
+$dokka.location:org.mjdev.balldontlie.model.convert/PropertyJsonConverter/convertToEntityProperty/#kotlin.String?/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-property-json-converter/convert-to-entity-property.md
+$dokka.location:org.mjdev.balldontlie.model.convert/StringListConverter///PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-string-list-converter/index.md
+$dokka.location:org.mjdev.balldontlie.model.convert/StringListConverter/StringListConverter/#/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-string-list-converter/-string-list-converter.md
+$dokka.location:org.mjdev.balldontlie.model.convert/StringListConverter/convertToDatabaseValue/#kotlin.collections.List[kotlin.String?]?/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-string-list-converter/convert-to-database-value.md
+$dokka.location:org.mjdev.balldontlie.model.convert/StringListConverter/convertToEntityProperty/#kotlin.String?/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-string-list-converter/convert-to-entity-property.md
+$dokka.location:org.mjdev.balldontlie.model.convert/TeamConverter///PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-team-converter/index.md
+$dokka.location:org.mjdev.balldontlie.model.convert/TeamConverter/TeamConverter/#kotlin.Function1[kotlin.Long,org.mjdev.balldontlie.model.Team?]/PointingToDeclaration/app/org.mjdev.balldontlie.model.convert/-team-converter/-team-converter.md
 $dokka.location:org.mjdev.balldontlie.model////PointingToDeclaration/app/org.mjdev.balldontlie.model/index.md
 $dokka.location:org.mjdev.balldontlie.model/Meta///PointingToDeclaration/app/org.mjdev.balldontlie.model/-meta/index.md
 $dokka.location:org.mjdev.balldontlie.model/Meta/Meta/#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?/PointingToDeclaration/app/org.mjdev.balldontlie.model/-meta/-meta.md
@@ -194,7 +219,7 @@ $dokka.location:org.mjdev.balldontlie.model/Meta/perPage/#/PointingToDeclaration
 $dokka.location:org.mjdev.balldontlie.model/Meta/totalCount/#/PointingToDeclaration/app/org.mjdev.balldontlie.model/-meta/total-count.md
 $dokka.location:org.mjdev.balldontlie.model/Meta/totalPages/#/PointingToDeclaration/app/org.mjdev.balldontlie.model/-meta/total-pages.md
 $dokka.location:org.mjdev.balldontlie.model/Player///PointingToDeclaration/app/org.mjdev.balldontlie.model/-player/index.md
-$dokka.location:org.mjdev.balldontlie.model/Player/Player/#kotlin.Int?#kotlin.String?#kotlin.String?#kotlin.String?#org.mjdev.balldontlie.model.Team#kotlin.Int?#kotlin.Int?#kotlin.Int?/PointingToDeclaration/app/org.mjdev.balldontlie.model/-player/-player.md
+$dokka.location:org.mjdev.balldontlie.model/Player/Player/#kotlin.Long#kotlin.String?#kotlin.String?#kotlin.String?#org.mjdev.balldontlie.model.Team#kotlin.Int?#kotlin.Int?#kotlin.Int?/PointingToDeclaration/app/org.mjdev.balldontlie.model/-player/-player.md
 $dokka.location:org.mjdev.balldontlie.model/Player/equals/#kotlin.Any?/PointingToDeclaration/app/org.mjdev.balldontlie.model/-player/equals.md
 $dokka.location:org.mjdev.balldontlie.model/Player/firstName/#/PointingToDeclaration/app/org.mjdev.balldontlie.model/-player/first-name.md
 $dokka.location:org.mjdev.balldontlie.model/Player/fullName/#/PointingToDeclaration/app/org.mjdev.balldontlie.model/-player/full-name.md
@@ -212,7 +237,7 @@ $dokka.location:org.mjdev.balldontlie.model/Players/Players/#kotlin.collections.
 $dokka.location:org.mjdev.balldontlie.model/Players/meta/#/PointingToDeclaration/app/org.mjdev.balldontlie.model/-players/meta.md
 $dokka.location:org.mjdev.balldontlie.model/Players/players/#/PointingToDeclaration/app/org.mjdev.balldontlie.model/-players/players.md
 $dokka.location:org.mjdev.balldontlie.model/Team///PointingToDeclaration/app/org.mjdev.balldontlie.model/-team/index.md
-$dokka.location:org.mjdev.balldontlie.model/Team/Team/#kotlin.Int?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?/PointingToDeclaration/app/org.mjdev.balldontlie.model/-team/-team.md
+$dokka.location:org.mjdev.balldontlie.model/Team/Team/#kotlin.Long#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?/PointingToDeclaration/app/org.mjdev.balldontlie.model/-team/-team.md
 $dokka.location:org.mjdev.balldontlie.model/Team/abbreviation/#/PointingToDeclaration/app/org.mjdev.balldontlie.model/-team/abbreviation.md
 $dokka.location:org.mjdev.balldontlie.model/Team/city/#/PointingToDeclaration/app/org.mjdev.balldontlie.model/-team/city.md
 $dokka.location:org.mjdev.balldontlie.model/Team/conference/#/PointingToDeclaration/app/org.mjdev.balldontlie.model/-team/conference.md
@@ -242,6 +267,8 @@ $dokka.location:org.mjdev.balldontlie.repository.def////PointingToDeclaration/a
 $dokka.location:org.mjdev.balldontlie.repository.def/INetworkRepository///PointingToDeclaration/app/org.mjdev.balldontlie.repository.def/-i-network-repository/index.md
 $dokka.location:org.mjdev.balldontlie.repository.def/INetworkRepository/getPlayer/#kotlin.Int/PointingToDeclaration/app/org.mjdev.balldontlie.repository.def/-i-network-repository/get-player.md
 $dokka.location:org.mjdev.balldontlie.repository.def/INetworkRepository/getPlayers/#kotlin.Int#kotlin.Int/PointingToDeclaration/app/org.mjdev.balldontlie.repository.def/-i-network-repository/get-players.md
+$dokka.location:org.mjdev.balldontlie.repository.def/IRepository.Companion///PointingToDeclaration/app/org.mjdev.balldontlie.repository.def/-i-repository/-companion/index.md
+$dokka.location:org.mjdev.balldontlie.repository.def/IRepository.Companion/runSafe/#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/app/org.mjdev.balldontlie.repository.def/-i-repository/-companion/run-safe.md
 $dokka.location:org.mjdev.balldontlie.repository.def/IRepository///PointingToDeclaration/app/org.mjdev.balldontlie.repository.def/-i-repository/index.md
 $dokka.location:org.mjdev.balldontlie.repository.def/IRepository/getPlayer/#kotlin.Int/PointingToDeclaration/app/org.mjdev.balldontlie.repository.def/-i-repository/get-player.md
 $dokka.location:org.mjdev.balldontlie.repository.def/IRepository/getPlayers/#kotlin.Int#kotlin.Int/PointingToDeclaration/app/org.mjdev.balldontlie.repository.def/-i-repository/get-players.md
@@ -258,7 +285,7 @@ $dokka.location:org.mjdev.balldontlie.repository.impl/MockedRepository/DEFAULT_C
 $dokka.location:org.mjdev.balldontlie.repository.impl/MockedRepository/MockedRepository/#/PointingToDeclaration/app/org.mjdev.balldontlie.repository.impl/-mocked-repository/-mocked-repository.md
 $dokka.location:org.mjdev.balldontlie.repository.impl/MockedRepository/getPlayer/#kotlin.Int/PointingToDeclaration/app/org.mjdev.balldontlie.repository.impl/-mocked-repository/get-player.md
 $dokka.location:org.mjdev.balldontlie.repository.impl/MockedRepository/getPlayers/#kotlin.Int#kotlin.Int/PointingToDeclaration/app/org.mjdev.balldontlie.repository.impl/-mocked-repository/get-players.md
-$dokka.location:org.mjdev.balldontlie.repository.impl/MockedRepository/player/#kotlin.Int/PointingToDeclaration/app/org.mjdev.balldontlie.repository.impl/-mocked-repository/player.md
+$dokka.location:org.mjdev.balldontlie.repository.impl/MockedRepository/player/#kotlin.Long/PointingToDeclaration/app/org.mjdev.balldontlie.repository.impl/-mocked-repository/player.md
 $dokka.location:org.mjdev.balldontlie.repository.impl/MockedRepository/players/#kotlin.Int#kotlin.Int/PointingToDeclaration/app/org.mjdev.balldontlie.repository.impl/-mocked-repository/players.md
 $dokka.location:org.mjdev.balldontlie.repository.impl/SyncRepository///PointingToDeclaration/app/org.mjdev.balldontlie.repository.impl/-sync-repository/index.md
 $dokka.location:org.mjdev.balldontlie.repository.impl/SyncRepository/SyncRepository/#org.mjdev.balldontlie.database.DAO/PointingToDeclaration/app/org.mjdev.balldontlie.repository.impl/-sync-repository/-sync-repository.md
@@ -412,6 +439,7 @@ org.mjdev.balldontlie.database
 org.mjdev.balldontlie.error
 org.mjdev.balldontlie.glide
 org.mjdev.balldontlie.model
+org.mjdev.balldontlie.model.convert
 org.mjdev.balldontlie.module
 org.mjdev.balldontlie.network
 org.mjdev.balldontlie.repository.def

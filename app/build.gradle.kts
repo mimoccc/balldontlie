@@ -6,6 +6,7 @@ import kotlin.text.toInt
 
 @Suppress("PropertyName")
 val CONFIG_VERSION_PROPERTIES_FILE = "config/version.properties"
+
 @Suppress("PropertyName")
 val CONFIG_KEYSTORE_PROPERTIES_FILE = "config/keystore.properties"
 
@@ -21,6 +22,7 @@ plugins {
 //    id("androidx.navigation.safeargs.kotlin")
 //    id("kotlinx-serialization")
 //    id("io.gitlab.arturbosch.detekt")
+    id("io.objectbox")
 }
 
 android {
@@ -95,10 +97,11 @@ android {
         resValue("string", "API_URL", "https://www.balldontlie.io/api/v1/")
 
         buildConfigField("Boolean", "USE_MOCK", "false")
+        buildConfigField(
+            "String", "SYNC_AUTH", "\"" + applicationId + ".sync\""
+        )
 
-        buildConfigField("String", "SYNC_AUTH", "\"" + applicationId + ".sync\"")
         resValue("string", "sync_auth", applicationId + ".sync")
-
     }
 
     buildTypes {
@@ -112,6 +115,19 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField(
+                "String",
+                "SYNC_AUTH",
+                "\"" + defaultConfig.applicationId + applicationIdSuffix + ".sync\""
+            )
+
+            resValue(
+                "string",
+                "sync_auth",
+                defaultConfig.applicationId + applicationIdSuffix + ".sync"
+            )
+
         }
 
         release {
@@ -123,6 +139,19 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField(
+                "String",
+                "SYNC_AUTH",
+                "\"" + defaultConfig.applicationId + applicationIdSuffix + ".sync\""
+            )
+
+            resValue(
+                "string",
+                "sync_auth",
+                defaultConfig.applicationId + applicationIdSuffix + ".sync"
+            )
+
         }
 
         create("mock") {
@@ -136,6 +165,19 @@ android {
             )
 
             buildConfigField("Boolean", "USE_MOCK", "true")
+
+            buildConfigField(
+                "String",
+                "SYNC_AUTH",
+                "\"" + defaultConfig.applicationId + applicationIdSuffix + ".sync\""
+            )
+
+            resValue(
+                "string",
+                "sync_auth",
+                defaultConfig.applicationId + applicationIdSuffix + ".sync"
+            )
+
         }
 
         create("minified") {
@@ -147,6 +189,19 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField(
+                "String",
+                "SYNC_AUTH",
+                "\"" + defaultConfig.applicationId + applicationIdSuffix + ".sync\""
+            )
+
+            resValue(
+                "string",
+                "sync_auth",
+                defaultConfig.applicationId + applicationIdSuffix + ".sync"
+            )
+
         }
 
     }
@@ -262,11 +317,8 @@ dependencies {
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
     // log
     implementation("com.jakewharton.timber:timber:5.0.1")
-    // db
-    implementation("com.j256.ormlite.cipher:ormlite-sqlcipher:1.4@aar")
-    implementation("com.j256.ormlite:ormlite-core:5.1")
-    implementation("com.j256.ormlite:ormlite-android:5.1")
-    implementation("net.zetetic:android-database-sqlcipher:4.0.1@aar")
+    // db encrypt data
+    implementation("com.scottyab:aescrypt:0.0.1")
     // test
     testImplementation("junit:junit:4.13.2")
     testImplementation("com.google.dagger:hilt-android-testing:2.46.1")
