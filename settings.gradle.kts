@@ -4,7 +4,7 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         maven(url = "https://www.jitpack.io")
-        @Suppress("JcenterRepositoryObsolete")
+        @Suppress("JcenterRepositoryObsolete", "DEPRECATION")
         jcenter()
     }
 }
@@ -20,7 +20,9 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven(url = "https://www.jitpack.io")
-        @Suppress("JcenterRepositoryObsolete")
+        maven(url = "https://plugins.gradle.org/m2/")
+        gradlePluginPortal()
+        @Suppress("JcenterRepositoryObsolete", "DEPRECATION")
         jcenter()
     }
 }
