@@ -4,3 +4,5 @@
 
 [androidJvm]\
 fun [unregister](unregister.md)()
+
+Function to register result handler. It is called automatically upon lifecycle state.

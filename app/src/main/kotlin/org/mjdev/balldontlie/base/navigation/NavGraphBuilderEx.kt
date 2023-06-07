@@ -6,6 +6,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavigatorProvider
 import java.lang.RuntimeException
 
+/**
+ * Custom nav graph builder.
+ *
+ * Just extended of [navHostController] for simplify navigation auto creation.
+ * @see : [androidx.navigation.NavGraphBuilder]
+ *
+ * @param provider
+ * @param route
+ * @constructor Create [NavGraphBuilderEx]
+ * @property navHostController
+ */
 class NavGraphBuilderEx(
     provider: NavigatorProvider,
     route: String?,

@@ -4,3 +4,17 @@
 
 [androidJvm]\
 open override fun [intercept](intercept.md)(chain: Interceptor.Chain): Response
+
+Intercept network calls.
+
+#### Return
+
+Response
+
+#### Parameters
+
+androidJvm
+
+| | |
+|---|---|
+| chain | Chain |

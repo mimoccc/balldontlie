@@ -2,14 +2,32 @@
 
 # NavGraphBuilderEx
 
-[androidJvm]\
 class [NavGraphBuilderEx](index.md)(provider: [NavigatorProvider](https://developer.android.com/reference/kotlin/androidx/navigation/NavigatorProvider.html), route: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)?, val navHostController: [NavHostController](https://developer.android.com/reference/kotlin/androidx/navigation/NavHostController.html)) : [NavGraphBuilder](https://developer.android.com/reference/kotlin/androidx/navigation/NavGraphBuilder.html)
+
+Custom nav graph builder.
+
+Just extended of [navHostController](nav-host-controller.md) for simplify navigation auto creation.
+
+#### Parameters
+
+androidJvm
+
+| |
+|---|
+| provider |
+| route |
+
+#### See also
+
+| | |
+|---|---|
+|  | : [androidx.navigation.NavGraphBuilder](https://developer.android.com/reference/kotlin/androidx/navigation/NavGraphBuilder.html) |
 
 ## Constructors
 
 | | |
 |---|---|
-| [NavGraphBuilderEx](-nav-graph-builder-ex.md) | [androidJvm]<br>constructor(provider: [NavigatorProvider](https://developer.android.com/reference/kotlin/androidx/navigation/NavigatorProvider.html), route: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)?, navHostController: [NavHostController](https://developer.android.com/reference/kotlin/androidx/navigation/NavHostController.html)) |
+| [NavGraphBuilderEx](-nav-graph-builder-ex.md) | [androidJvm]<br>constructor(provider: [NavigatorProvider](https://developer.android.com/reference/kotlin/androidx/navigation/NavigatorProvider.html), route: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)?, navHostController: [NavHostController](https://developer.android.com/reference/kotlin/androidx/navigation/NavHostController.html))<br>Create [NavGraphBuilderEx](index.md) |
 
 ## Functions
 
@@ -21,7 +39,7 @@ class [NavGraphBuilderEx](index.md)(provider: [NavigatorProvider](https://develo
 | [build](build.md) | [androidJvm]<br>open override fun [build](build.md)(): [NavGraph](https://developer.android.com/reference/kotlin/androidx/navigation/NavGraph.html) |
 | [deepLink](index.md#-1156471893%2FFunctions%2F-912451524) | [androidJvm]<br>fun [deepLink](index.md#-1156471893%2FFunctions%2F-912451524)(navDeepLink: [NavDeepLinkDslBuilder](https://developer.android.com/reference/kotlin/androidx/navigation/NavDeepLinkDslBuilder.html).() -&gt; [Unit](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html))<br>fun [deepLink](index.md#-150036510%2FFunctions%2F-912451524)(uriPattern: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)) |
 | [destination](index.md#-1004337867%2FFunctions%2F-912451524) | [androidJvm]<br>fun &lt;[D](index.md#-1004337867%2FFunctions%2F-912451524) : [NavDestination](https://developer.android.com/reference/kotlin/androidx/navigation/NavDestination.html)&gt; [destination](index.md#-1004337867%2FFunctions%2F-912451524)(navDestination: [NavDestinationBuilder](https://developer.android.com/reference/kotlin/androidx/navigation/NavDestinationBuilder.html)&lt;[D](index.md#-1004337867%2FFunctions%2F-912451524)&gt;) |
-| [screen](../../org.mjdev.balldontlie.base.helpers/-ext/screen.md) | [androidJvm]<br>fun &lt;[T](../../org.mjdev.balldontlie.base.helpers/-ext/screen.md) : [Screen](../-screen/index.md)&gt; [NavGraphBuilderEx](index.md).[screen](../../org.mjdev.balldontlie.base.helpers/-ext/screen.md)(route: [T](../../org.mjdev.balldontlie.base.helpers/-ext/screen.md), isHomeScreen: [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) = false) |
+| [screen](../../org.mjdev.balldontlie.base.helpers/-ext/screen.md) | [androidJvm]<br>fun &lt;[T](../../org.mjdev.balldontlie.base.helpers/-ext/screen.md) : [Screen](../-screen/index.md)&gt; [NavGraphBuilderEx](index.md).[screen](../../org.mjdev.balldontlie.base.helpers/-ext/screen.md)(route: [T](../../org.mjdev.balldontlie.base.helpers/-ext/screen.md), isHomeScreen: [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) = false)<br>Custom function to generate screen in nav graph. |
 | [unaryPlus](index.md#-837558775%2FExtensions%2F-912451524) | [androidJvm]<br>operator fun [NavDestination](https://developer.android.com/reference/kotlin/androidx/navigation/NavDestination.html).[unaryPlus](index.md#-837558775%2FExtensions%2F-912451524)() |
 
 ## Properties

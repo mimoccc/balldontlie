@@ -43,7 +43,7 @@ fun TextAny(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     style: TextStyle = LocalTextStyle.current
 ) = Text(
-    text = textFrom(text) ?: "",
+    text = textFrom(text),
     modifier = modifier,
     color = color,
     fontSize = fontSize,

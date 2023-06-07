@@ -4,3 +4,7 @@
 
 [androidJvm]\
 fun [setIsLoading](set-is-loading.md)()
+
+Set is loading.
+
+#### Return

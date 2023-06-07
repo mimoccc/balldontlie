@@ -7,3 +7,9 @@
 @[Composable](https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html)
 
 fun [isMock](is-mock.md)(): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+
+Is mock.
+
+Indicates custom mock mode. Mode used for preview of an application without real data.
+
+#### Return

@@ -4,3 +4,5 @@
 
 [androidJvm]\
 fun [clearError](clear-error.md)()
+
+Clear error.

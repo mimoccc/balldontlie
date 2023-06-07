@@ -4,3 +4,13 @@
 
 [androidJvm]\
 fun [launch](launch.md)(vararg args: [I](index.md))
+
+Launch the onLaunch handler.
+
+#### Parameters
+
+androidJvm
+
+| | |
+|---|---|
+| args | Args |

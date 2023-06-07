@@ -10,7 +10,7 @@ import org.mjdev.balldontlie.sync.SyncService.Companion.createSyncAccount
  * Main app.
  *
  * Base application class
- * It use hilt as injection helper
+ * It uses hilt as injection helper
  *
  * @constructor Create empty constructor for main app
  */
