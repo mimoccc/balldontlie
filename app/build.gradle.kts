@@ -1,10 +1,10 @@
 @file:Suppress("UnstableApiUsage")
 
-import org.mjdev.gradle.MainAppPlugin.Companion.javaVersion
-import org.mjdev.gradle.MainAppPlugin.Companion.kotlinCompilerExtVersion
-import org.mjdev.gradle.MainAppPlugin.Companion.loadKeyStoreProperties
-import org.mjdev.gradle.MainAppPlugin.Companion.versionCode
-import org.mjdev.gradle.MainAppPlugin.Companion.versionName
+import org.mjdev.gradle.plugin.MainAppPlugin.Companion.javaVersion
+import org.mjdev.gradle.plugin.MainAppPlugin.Companion.kotlinCompilerExtVersion
+import org.mjdev.gradle.plugin.MainAppPlugin.Companion.loadKeyStoreProperties
+import org.mjdev.gradle.plugin.MainAppPlugin.Companion.versionCode
+import org.mjdev.gradle.plugin.MainAppPlugin.Companion.versionName
 
 @Suppress("PropertyName")
 val CONFIG_KEYSTORE_PROPERTIES_FILE = "config/keystore.properties"
@@ -13,6 +13,8 @@ val CONFIG_KEYSTORE_PROPERTIES_FILE = "config/keystore.properties"
 val SIGNING_CONFIG_NAME = "Any"
 
 plugins {
+//    id("com.google.devtools.ksp") version("1.8.0-1.0.9")
+// fucking ksp one version is too old and next is too new
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")

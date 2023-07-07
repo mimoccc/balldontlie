@@ -3,13 +3,13 @@
 # DetailViewModel
 
 [androidJvm]\
-class [DetailViewModel](index.md)@Injectconstructor(repository: [IRepository](../../org.mjdev.balldontlie.repository.def/-i-repository/index.md)) : [BaseViewModel](../../org.mjdev.balldontlie.base.viewmodel/-base-view-model/index.md)
+class [DetailViewModel](index.md)@Injectconstructor(context: [Context](https://developer.android.com/reference/kotlin/android/content/Context.html), repository: [IRepository](../../org.mjdev.balldontlie.repository.def/-i-repository/index.md)) : [BaseViewModel](../../org.mjdev.balldontlie.base.viewmodel/-base-view-model/index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [DetailViewModel](-detail-view-model.md) | [androidJvm]<br>@Inject<br>constructor(repository: [IRepository](../../org.mjdev.balldontlie.repository.def/-i-repository/index.md)) |
+| [DetailViewModel](-detail-view-model.md) | [androidJvm]<br>@Inject<br>constructor(context: [Context](https://developer.android.com/reference/kotlin/android/content/Context.html), repository: [IRepository](../../org.mjdev.balldontlie.repository.def/-i-repository/index.md)) |
 
 ## Functions
 
@@ -24,3 +24,4 @@ class [DetailViewModel](index.md)@Injectconstructor(repository: [IRepository](..
 | Name | Summary |
 |---|---|
 | [error](../../org.mjdev.balldontlie.base.viewmodel/-base-view-model/error.md) | [androidJvm]<br>val [error](../../org.mjdev.balldontlie.base.viewmodel/-base-view-model/error.md): MutableStateFlow&lt;[ApiError](../../org.mjdev.balldontlie.error/-api-error/index.md)&gt; |
+| [networkStatus](../../org.mjdev.balldontlie.base.viewmodel/-base-view-model/network-status.md) | [androidJvm]<br>val [networkStatus](../../org.mjdev.balldontlie.base.viewmodel/-base-view-model/network-status.md): StateFlow&lt;[NetworkStatus](../../org.mjdev.balldontlie.base.network/-network-status/index.md)&gt;<br>Network status as flow |

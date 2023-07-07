@@ -141,20 +141,22 @@ object Ext {
         block: () -> T
     ): T = if (isEditMode()) block.invoke() else defaultValue
 
-    /**
-     * Helper function for previews in edit mode. It runs data generated from
-     * variable params and return is given to a composable function. Or it
-     * returns empty list if in released app.
-     *
-     * @param data Data
-     * @param T T type of result
-     * @return [SOURCE] source function as an result
-     */
     @Composable
     fun <T> previewSource(vararg data: T): SOURCE<T> = if (isEditMode()) { p, c ->
         if (data.size >= p + c) data.toList().subList(p, c)
         else if (data.size >= c) data.toList().take(c)
         else data.toList()
+    } else { _, _ -> emptyList() }
+
+    @Composable
+    inline fun <reified T : Any> previewSource(count: Int): SOURCE<T> = if (isEditMode()) { _, _ ->
+        mutableListOf<T>().apply {
+            (1..count).map {
+                T::class.constructors.first { it.parameters.isEmpty() }.call()
+            }.also { item ->
+                add(item as T)
+            }
+        }
     } else { _, _ -> emptyList() }
 
     /**
@@ -452,7 +454,7 @@ object Ext {
     /**
      * Mock view model generation function.
      *
-     * In this caser is used reflection, as there are no another possibility.
+     * In this case is used reflection, as there are no another possibility.
      *
      * Function generate mocked view model, mainly with [MockRepository] as a input.
      *

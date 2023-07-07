@@ -11,7 +11,8 @@ import java.net.UnknownHostException
 open class ApiError(
     override val message: String = "Unknown error.",
     open val title: String = "Error",
-) : Exception(message), Parcelable {
+    open val t: Throwable? = null
+) : Exception(message, t), Parcelable {
 
     @IgnoredOnParcel
     open var textColor: Color = Color.White
@@ -23,8 +24,13 @@ open class ApiError(
         response: Response<*>
     ) : this(createMessage(response))
 
-    constructor(e: Throwable) : this(createMessage(e))
+    constructor(e: Throwable) : this(message = createMessage(e), t = e)
 
+    val lineNumber: Int get() = cause?.stackTrace?.first()?.lineNumber ?: -1
+
+    @Suppress("LeakingThis")
+    @IgnoredOnParcel
+    val fileName : String = cause?.stackTrace?.first()?.fileName ?: "-"
 
     companion object {
 

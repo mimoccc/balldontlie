@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- todo custom account type-->
 <sync-adapter xmlns:android="http://schemas.android.com/apk/res/android"
-    android:accountType="org.mjdev.balldontlie.sync"
+    android:accountType="@string/sync_auth"
     android:allowParallelSyncs="false"
     android:contentAuthority="@string/sync_auth"
     android:isAlwaysSyncable="true"

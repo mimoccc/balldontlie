@@ -46,6 +46,8 @@ class MainScreen : Screen() {
 
         val viewModel: MainViewModel = appViewModel()
 
+//        val networkStatus = viewModel.networkStatus.collectAsStateWithLifecycle()
+
         val playersSource: SOURCE<Player> = { p, c ->
             // todo custom DaoSource as ListPagerSource
             viewModel.players(p, c)

@@ -11,6 +11,12 @@ interface [IRepository](index.md)
 | [MockedRepository](../../org.mjdev.balldontlie.repository.impl/-mocked-repository/index.md) |
 | [SyncRepository](../../org.mjdev.balldontlie.repository.impl/-sync-repository/index.md) |
 
+## Types
+
+| Name | Summary |
+|---|---|
+| [Companion](-companion/index.md) | [androidJvm]<br>object [Companion](-companion/index.md) |
+
 ## Functions
 
 | Name | Summary |

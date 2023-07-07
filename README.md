@@ -1,20 +1,20 @@
 # Balldontlie test app
 
-[![Build & Publish Release APK](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml/badge.svg)](https://github.com/mimoccc/moneta-test/actions/workflows/build-gradle-project.yml)
-[![GitHub all releases](https://img.shields.io/github/downloads/mimoccc/moneta-test/total)](https://github.com/mimoccc/moneta-test/releases)
+[![Build & Publish Release APK](https://github.com/mimoccc/balldontlie/actions/workflows/build-gradle-project.yml/badge.svg)](https://github.com/mimoccc/balldontlie/actions/workflows/build-gradle-project.yml)
+[![GitHub all releases](https://img.shields.io/github/downloads/mimoccc/balldontlie/total)](https://github.com/mimoccc/balldontlie/releases)
 
 ## Stats
 
-[![Last commit](https://img.shields.io/github/last-commit/mimoccc/moneta-test?color=FFC877)](#)
-[![Lang](https://img.shields.io/github/languages/top/mimoccc/moneta-test?color=FFC877)](#)
+[![Last commit](https://img.shields.io/github/last-commit/mimoccc/balldontlie?color=FFC877)](#)
+[![Lang](https://img.shields.io/github/languages/top/mimoccc/balldontlie?color=FFC877)](#)
 [![Platform](https://img.shields.io/badge/Platform-Android-FFC877.svg)](#)
 [![Min sdk](https://img.shields.io/badge/minSdkVersion-21-FFC877.svg)](#)
-[![Languages](https://img.shields.io/github/languages/count/mimoccc/moneta-test?color=FFC877)](#)
-[![Issues](https://img.shields.io/github/issues-raw/mimoccc/moneta-test?color=FFC877)](#)
+[![Languages](https://img.shields.io/github/languages/count/mimoccc/balldontlie?color=FFC877)](#)
+[![Issues](https://img.shields.io/github/issues-raw/mimoccc/balldontlie?color=FFC877)](#)
 [![PR's](https://img.shields.io/badge/PRs-welcome-FFC877.svg)](#)
-[![Code size](https://img.shields.io/github/languages/code-size/mimoccc/moneta-test?color=FFC877)](#)
-[![Total lines](https://img.shields.io/tokei/lines/github/mimoccc/moneta-test?color=FFC877)](#)
-[![Dependencies](https://img.shields.io/librariesio/github/mimoccc/moneta-test?color=FFC877)](#)
+[![Code size](https://img.shields.io/github/languages/code-size/mimoccc/balldontlie?color=FFC877)](#)
+[![Total lines](https://img.shields.io/tokei/lines/github/mimoccc/balldontlie?color=FFC877)](#)
+[![Dependencies](https://img.shields.io/librariesio/github/mimoccc/balldontlie?color=FFC877)](#)
 
 ## Project documentation
 

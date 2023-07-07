@@ -2,7 +2,7 @@
 
 # BaseViewModel
 
-open class [BaseViewModel](index.md) : [ViewModel](https://developer.android.com/reference/kotlin/androidx/lifecycle/ViewModel.html)
+open class [BaseViewModel](index.md)(context: [Context](https://developer.android.com/reference/kotlin/android/content/Context.html)) : [ViewModel](https://developer.android.com/reference/kotlin/androidx/lifecycle/ViewModel.html)
 
 #### Inheritors
 
@@ -15,7 +15,7 @@ open class [BaseViewModel](index.md) : [ViewModel](https://developer.android.com
 
 | | |
 |---|---|
-| [BaseViewModel](-base-view-model.md) | [androidJvm]<br>constructor() |
+| [BaseViewModel](-base-view-model.md) | [androidJvm]<br>constructor(context: [Context](https://developer.android.com/reference/kotlin/android/content/Context.html)) |
 
 ## Functions
 
@@ -29,3 +29,4 @@ open class [BaseViewModel](index.md) : [ViewModel](https://developer.android.com
 | Name | Summary |
 |---|---|
 | [error](error.md) | [androidJvm]<br>val [error](error.md): MutableStateFlow&lt;[ApiError](../../org.mjdev.balldontlie.error/-api-error/index.md)&gt; |
+| [networkStatus](network-status.md) | [androidJvm]<br>val [networkStatus](network-status.md): StateFlow&lt;[NetworkStatus](../../org.mjdev.balldontlie.base.network/-network-status/index.md)&gt;<br>Network status as flow |

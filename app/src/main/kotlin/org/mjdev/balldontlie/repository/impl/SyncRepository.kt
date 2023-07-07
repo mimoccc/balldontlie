@@ -6,6 +6,7 @@ import org.mjdev.balldontlie.model.Meta
 import org.mjdev.balldontlie.model.Player
 import org.mjdev.balldontlie.model.Players
 import org.mjdev.balldontlie.repository.def.IRepository
+import org.mjdev.balldontlie.repository.def.IRepository.Companion.runSafe
 import javax.inject.Inject
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -18,7 +19,7 @@ class SyncRepository @Inject constructor(
     override suspend fun getPlayers(
         page: Int,
         perPage: Int,
-    ): Result<Players> = Result.success(
+    ): Result<Players> = runSafe {
         playersStore.query(
             playersStore.queryBuilder()
                 .offset(page.toLong())
@@ -36,16 +37,16 @@ class SyncRepository @Inject constructor(
                 )
             )
         }
-    )
+    }
 
     override suspend fun getPlayer(
         id: Int
-    ): Result<Player> = Result.success(
+    ): Result<Player> = runSafe {
         playersStore.query(
             playersStore.queryBuilder()
                 .where().eq("id", id)
                 .prepare()
         ).first()
-    )
+    }
 
 }

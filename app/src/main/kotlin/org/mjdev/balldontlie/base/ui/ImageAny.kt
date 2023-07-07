@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.skydoves.landscapist.glide.GlideImage
 import org.mjdev.balldontlie.R
 import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.asImageBitmap
@@ -94,34 +95,34 @@ fun ImageAny(
             colorFilter
         )
 
-        is URL -> Image(
-            glideResource(src),
-            contentDescription,
-            modifier,
-            alignment,
-            contentScale,
-            alpha,
-            colorFilter
+        is URL -> GlideImage(
+            imageModel = { src },
+//            contentDescription = contentDescription,
+            modifier = modifier,
+//            alignment = alignment,
+//            contentScale = contentScale,
+//            alpha = alpha,
+//            colorFilter = colorFilter
         )
 
-        is Uri -> Image(
-            glideResource(src),
-            contentDescription,
-            modifier,
-            alignment,
-            contentScale,
-            alpha,
-            colorFilter
+        is Uri -> GlideImage(
+            imageModel = { src },
+//            contentDescription = contentDescription,
+            modifier = modifier,
+//            alignment = alignment,
+//            contentScale = contentScale,
+//            alpha = alpha,
+//            colorFilter = colorFilter
         )
 
-        is String -> Image(
-            glideResource(src),
-            contentDescription,
-            modifier,
-            alignment,
-            contentScale,
-            alpha,
-            colorFilter
+        is String -> GlideImage(
+            imageModel = { src },
+//            contentDescription = contentDescription,
+            modifier = modifier,
+//            alignment = alignment,
+//            contentScale = contentScale,
+//            alpha = alpha,
+//            colorFilter = colorFilter
         )
 
         is ImageVector -> Image(

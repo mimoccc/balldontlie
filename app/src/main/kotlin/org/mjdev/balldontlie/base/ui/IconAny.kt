@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.skydoves.landscapist.glide.GlideImage
 import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.asImageBitmap
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
@@ -61,28 +62,25 @@ fun IconAny(
             tint
         )
 
-        is URL -> Icon(
-            glideResource(
-                src = src,
-                width = width,
-                height = height
-            ), contentDescription, modifier, tint
+        is URL -> GlideImage(
+            imageModel = { src },
+//            contentDescription = contentDescription,
+            modifier = modifier,
+//            colorFilter = ColorFilter.tint(tint)
         )
 
-        is Uri -> Icon(
-            glideResource(
-                src = src,
-                width = width,
-                height = height
-            ), contentDescription, modifier, tint
+        is Uri -> GlideImage(
+            imageModel = { src },
+//            contentDescription = contentDescription,
+            modifier = modifier,
+//            colorFilter = ColorFilter.tint(tint)
         )
 
-        is String -> Icon(
-            glideResource(
-                src = src,
-                width = width,
-                height = height
-            ), contentDescription, modifier, tint
+        is String -> GlideImage(
+            imageModel = { src },
+//            contentDescription = contentDescription,
+            modifier = modifier,
+//            colorFilter = ColorFilter.tint(tint)
         )
 
         is ImageVector -> Icon(src, contentDescription, modifier, tint)
@@ -90,4 +88,3 @@ fun IconAny(
         else -> throw (RuntimeException("Unknown image format."))
     }
 }
-
