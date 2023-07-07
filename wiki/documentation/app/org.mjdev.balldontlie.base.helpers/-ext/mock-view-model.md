@@ -10,7 +10,7 @@ inline fun &lt;[VM](mock-view-model.md)&gt; [mockViewModel](mock-view-model.md)(
 
 Mock view model generation function.
 
-In this caser is used reflection, as there are no another possibility.
+In this case is used reflection, as there are no another possibility.
 
 Function generate mocked view model, mainly with [MockRepository](../../org.mjdev.balldontlie.repository.impl/-mocked-repository/-companion/-mock-repository.md) as a input.
 

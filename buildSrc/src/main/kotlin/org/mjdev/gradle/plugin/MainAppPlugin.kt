@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package org.mjdev.gradle
+package org.mjdev.gradle.plugin
 
 import org.gradle.api.Action
 import org.gradle.api.JavaVersion
@@ -12,6 +12,15 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.tasks.Exec
 import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.kotlin
+import org.mjdev.gradle.helper.CustomEventLogger
+import org.mjdev.gradle.extensions.implementation
+import org.mjdev.gradle.extensions.kapt
+import org.mjdev.gradle.extensions.androidTestImplementation
+import org.mjdev.gradle.extensions.androidTestAnnotationProcessor
+import org.mjdev.gradle.extensions.testImplementation
+import org.mjdev.gradle.extensions.debugImplementation
+import org.mjdev.gradle.extensions.testAnnotationProcessor
+
 import java.io.File
 import java.io.FileInputStream
 import java.util.Properties
@@ -51,7 +60,7 @@ abstract class MainAppPlugin : Plugin<Project> {
                 return "${major}.${minor}.${patch}"
             }
 
-        val Project.javaVersion : JavaVersion get() = JavaVersion.VERSION_17
+        val Project.javaVersion: JavaVersion get() = JavaVersion.VERSION_17
 
         val Project.kotlinCompilerExtVersion get() = "1.3.2"
 
@@ -59,36 +68,6 @@ abstract class MainAppPlugin : Plugin<Project> {
             name: String,
             block: Action<T>
         ) = project.tasks.register(name, T::class.java).configure(block)
-
-        private fun DependencyHandler.debugImplementation(dependencyNotation: String): Dependency? =
-            add("debugImplementation", dependencyNotation)
-
-        private fun DependencyHandler.releaseImplementation(dependencyNotation: String): Dependency? =
-            add("releaseImplementation", dependencyNotation)
-
-        private fun DependencyHandler.testImplementation(dependencyNotation: String): Dependency? =
-            add("testImplementation", dependencyNotation)
-
-        private fun DependencyHandler.androidTestImplementation(dependencyNotation: String): Dependency? =
-            add("androidTestImplementation", dependencyNotation)
-
-        private fun DependencyHandler.androidTestImplementation(dependency: Dependency): Dependency? =
-            add("androidTestImplementation", dependency)
-
-        private fun DependencyHandler.testAnnotationProcessor(dependencyNotation: String): Dependency? =
-            add("testAnnotationProcessor", dependencyNotation)
-
-        private fun DependencyHandler.androidTestAnnotationProcessor(dependencyNotation: String): Dependency? =
-            add("androidTestAnnotationProcessor", dependencyNotation)
-
-        private fun DependencyHandler.implementation(dependencyNotation: String): Dependency? =
-            add("implementation", dependencyNotation)
-
-        private fun DependencyHandler.implementation(dependency: Dependency): Dependency? =
-            add("implementation", dependency)
-
-        private fun DependencyHandler.kapt(dependencyNotation: String): Dependency? =
-            add("kapt", dependencyNotation)
 
         fun DependencyHandler.implementCore(): Array<Dependency?> = arrayOf(
             // base, kotlin & etc
@@ -161,6 +140,7 @@ abstract class MainAppPlugin : Plugin<Project> {
             implementation("com.github.bumptech.glide:gifdecoder:4.15.1"),
             implementation("com.github.bumptech.glide:annotations:4.15.1"),
             implementation("com.github.bumptech.glide:okhttp4-integration:4.15.1"),
+            implementation("com.github.skydoves:landscapist-glide:2.2.2"),
             kapt("com.github.bumptech.glide:compiler:4.15.1"),
         )
 
@@ -219,7 +199,7 @@ abstract class MainAppPlugin : Plugin<Project> {
 
         fun Project.loadKeyStoreProperties(
             signConfigFilePath: String,
-            block: (keyAlias:String, keyPassword:String, storeFile: File, storePassword:String)->Unit
+            block: (keyAlias: String, keyPassword: String, storeFile: File, storePassword: String) -> Unit
         ) {
             val keystorePropertiesFile = project.rootProject.file(signConfigFilePath)
             val keystoreProperties = Properties()
@@ -228,13 +208,14 @@ abstract class MainAppPlugin : Plugin<Project> {
             } else {
                 keystoreProperties["keyAlias"] = System.getenv("KEYSTORE_KEY_ALIAS").orEmpty()
                 keystoreProperties["keyPassword"] = System.getenv("KEYSTORE_KEY_PASSWORD").orEmpty()
-                keystoreProperties["storePassword"] = System.getenv("KEYSTORE_STORE_PASSWORD").orEmpty()
+                keystoreProperties["storePassword"] =
+                    System.getenv("KEYSTORE_STORE_PASSWORD").orEmpty()
                 keystoreProperties["storeFile"] = System.getenv("KEYSTORE_FILE").orEmpty()
             }
             block.invoke(
                 keystoreProperties["keyAlias"] as String? ?: "",
                 keystoreProperties["keyPassword"] as? String? ?: "",
-                File(projectDir,keystoreProperties["storeFile"] as? String? ?: ""),
+                File(projectDir, keystoreProperties["storeFile"] as? String? ?: ""),
                 keystoreProperties["storePassword"] as? String? ?: ""
             )
         }
@@ -266,10 +247,10 @@ abstract class MainAppPlugin : Plugin<Project> {
         // tasks after build
         project.afterEvaluate {
             listOf(
-                TASK_ASSEMBLE_DEBUG,
+//                TASK_ASSEMBLE_DEBUG,
                 TASK_ASSEMBLE_MOCK,
                 TASK_ASSEMBLE_RELEASE,
-                TASK_ASSEMBLE_MINIFIED
+//                TASK_ASSEMBLE_MINIFIED
             ).forEach { taskName ->
                 tasks.findByName(taskName)
                     ?.finalizedBy(TASK_PREPARE_RELEASE_NOTES, TASK_DOKKA)

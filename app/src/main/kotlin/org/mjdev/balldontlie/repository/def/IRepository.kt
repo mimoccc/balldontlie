@@ -14,4 +14,14 @@ interface IRepository {
         id: Int
     ): Result<Player>
 
+    companion object {
+
+        fun <T> runSafe(block: () -> T): Result<T> = try {
+            Result.success(block.invoke())
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+
+    }
+
 }

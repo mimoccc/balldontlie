@@ -37,7 +37,7 @@ fun PlayerDetail(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(18.dp)
+                .padding(16.dp)
         ) {
             Text("id : ${player?.id ?: "-"}")
             Text("firstName : ${player?.firstName ?: "-"}")

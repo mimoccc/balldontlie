@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package org.mjdev.gradle
+package org.mjdev.gradle.helper
 
 import org.gradle.BuildAdapter
 import org.gradle.BuildResult

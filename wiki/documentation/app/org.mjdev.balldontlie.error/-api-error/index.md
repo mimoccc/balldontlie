@@ -2,7 +2,7 @@
 
 # ApiError
 
-open class [ApiError](index.md)(val message: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = &quot;Unknown error.&quot;, val title: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = &quot;Error&quot;) : [Exception](https://developer.android.com/reference/kotlin/java/lang/Exception.html), [Parcelable](https://developer.android.com/reference/kotlin/android/os/Parcelable.html)
+open class [ApiError](index.md)(val message: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = &quot;Unknown error.&quot;, val title: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = &quot;Error&quot;, val t: [Throwable](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html)? = null) : [Exception](https://developer.android.com/reference/kotlin/java/lang/Exception.html), [Parcelable](https://developer.android.com/reference/kotlin/android/os/Parcelable.html)
 
 #### Inheritors
 
@@ -15,7 +15,7 @@ open class [ApiError](index.md)(val message: [String](https://kotlinlang.org/api
 
 | | |
 |---|---|
-| [ApiError](-api-error.md) | [androidJvm]<br>constructor(response: Response&lt;*&gt;)constructor(e: [Throwable](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html))constructor(message: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = &quot;Unknown error.&quot;, title: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = &quot;Error&quot;) |
+| [ApiError](-api-error.md) | [androidJvm]<br>constructor(response: Response&lt;*&gt;)constructor(e: [Throwable](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html))constructor(message: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = &quot;Unknown error.&quot;, title: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = &quot;Error&quot;, t: [Throwable](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html)? = null) |
 
 ## Types
 
@@ -45,6 +45,9 @@ open class [ApiError](index.md)(val message: [String](https://kotlinlang.org/api
 |---|---|
 | [backgroundColor](background-color.md) | [androidJvm]<br>open var [backgroundColor](background-color.md): [Color](https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html) |
 | [cause](../-info/index.md#-654012527%2FProperties%2F-912451524) | [androidJvm]<br>open val [cause](../-info/index.md#-654012527%2FProperties%2F-912451524): [Throwable](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html)? |
+| [fileName](file-name.md) | [androidJvm]<br>val [fileName](file-name.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [lineNumber](line-number.md) | [androidJvm]<br>val [lineNumber](line-number.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [message](message.md) | [androidJvm]<br>open override val [message](message.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [t](t.md) | [androidJvm]<br>open val [t](t.md): [Throwable](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html)? = null |
 | [textColor](text-color.md) | [androidJvm]<br>open var [textColor](text-color.md): [Color](https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html) |
 | [title](title.md) | [androidJvm]<br>open val [title](title.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |

@@ -26,6 +26,7 @@ fun About() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CircleImage(
+            borderSize = 4.dp,
             modifier = Modifier.size(96.dp),
             src = R.drawable.milanj
         )

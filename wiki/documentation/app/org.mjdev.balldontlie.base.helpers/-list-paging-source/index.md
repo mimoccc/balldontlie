@@ -2,7 +2,7 @@
 
 # ListPagingSource
 
-class [ListPagingSource](index.md)&lt;[T](index.md) : [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)&gt;(perPage: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) = 50, source: [SOURCE](../index.md#1428666533%2FClasslikes%2F-912451524)&lt;[T](index.md)&gt; = { _, _ -&gt; emptyList() }, maxRetryCount: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) = DEFAULT_MAX_RETRY_COUNT, retryDelay: [Long](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) = DEFAULT_RETRY_DELAY) : [PagingSource](https://developer.android.com/reference/kotlin/androidx/paging/PagingSource.html)&lt;[Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), [T](index.md)&gt; 
+class [ListPagingSource](index.md)&lt;[T](index.md) : [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)&gt;(source: [SOURCE](../index.md#1428666533%2FClasslikes%2F-912451524)&lt;[T](index.md)&gt; = { _, _ -&gt; emptyList() }, maxRetryCount: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) = DEFAULT_MAX_RETRY_COUNT, retryDelay: [Long](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) = DEFAULT_RETRY_DELAY) : [PagingSource](https://developer.android.com/reference/kotlin/androidx/paging/PagingSource.html)&lt;[Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), [T](index.md)&gt; 
 
 List paging source.
 
@@ -20,7 +20,7 @@ androidJvm
 
 | | |
 |---|---|
-| [ListPagingSource](-list-paging-source.md) | [androidJvm]<br>constructor(perPage: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) = 50, source: [SOURCE](../index.md#1428666533%2FClasslikes%2F-912451524)&lt;[T](index.md)&gt; = { _, _ -&gt; emptyList() }, maxRetryCount: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) = DEFAULT_MAX_RETRY_COUNT, retryDelay: [Long](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) = DEFAULT_RETRY_DELAY)<br>Create [ListPagingSource](index.md) |
+| [ListPagingSource](-list-paging-source.md) | [androidJvm]<br>constructor(source: [SOURCE](../index.md#1428666533%2FClasslikes%2F-912451524)&lt;[T](index.md)&gt; = { _, _ -&gt; emptyList() }, maxRetryCount: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) = DEFAULT_MAX_RETRY_COUNT, retryDelay: [Long](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) = DEFAULT_RETRY_DELAY)<br>Create [ListPagingSource](index.md) |
 
 ## Types
 

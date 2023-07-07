@@ -16,13 +16,11 @@ typealias SOURCE<T> = suspend (page: Int, cnt: Int) -> List<T>
  *
  * @param T
  * @constructor Create [ListPagingSource]
- * @property perPage
  * @property source
  * @property maxRetryCount
  * @property retryDelay
  */
 class ListPagingSource<T : Any>(
-    private val perPage: Int = 50,
     private val source: SOURCE<T> = { _, _ -> emptyList() },
     private val maxRetryCount: Int = DEFAULT_MAX_RETRY_COUNT,
     private val retryDelay: Long = DEFAULT_RETRY_DELAY,

@@ -11,10 +11,10 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import org.mjdev.balldontlie.base.annotations.DayPreview
 import org.mjdev.balldontlie.base.helpers.Ext.previewData
-import org.mjdev.balldontlie.base.helpers.Ext.previewSource
 import org.mjdev.balldontlie.base.helpers.SOURCE
 import org.mjdev.balldontlie.base.ui.PagingList
 import org.mjdev.balldontlie.model.Player
+import org.mjdev.balldontlie.repository.impl.MockedRepository
 
 @SuppressLint("ModifierParameter")
 @DayPreview
@@ -22,7 +22,9 @@ import org.mjdev.balldontlie.model.Player
 fun PlayersList(
     modifier: Modifier = previewData(Modifier) { Modifier.fillMaxSize() },
     perPage: Int = 25,
-    source: SOURCE<Player> = previewSource(Player(1), Player(2)),
+    source: SOURCE<Player> = { p, c ->
+        MockedRepository.MockRepository.players(p, c).players
+    },
     loadStateHandler: (state: LoadState) -> Unit = {},
     onItemClick: (data: Player) -> Unit = {}
 ) {

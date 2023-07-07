@@ -1,9 +1,12 @@
 package org.mjdev.balldontlie.base.ui
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -19,22 +22,24 @@ import org.mjdev.balldontlie.base.helpers.Ext.previewData
 import org.mjdev.balldontlie.base.helpers.ListPagingSource
 import org.mjdev.balldontlie.base.helpers.SOURCE
 
-@Suppress("UNUSED_ANONYMOUS_PARAMETER", "ModifierParameter")
+@Suppress("ModifierParameter")
 @DayPreview
 @Composable
 fun <T : Any> PagingList(
     modifier: Modifier = previewData(Modifier) { Modifier.fillMaxSize() },
     verticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.spacedBy(8.dp),
     perPage: Int = 50,
-    source: SOURCE<T> = { p, c -> emptyList() },
+    source: SOURCE<T> = { _, _ -> emptyList() },
     loadStateHandler: (state: LoadState) -> Unit = {},
-    onItemClick: (data: T) -> Unit = { p -> },
+    onItemClick: (data: T) -> Unit = { _ -> },
+    emptyContent: @Composable () -> Unit = {
+        Text(text = "Empty list")
+    },
     itemBlock: @Composable (
         idx: Int,
         item: T,
         onItemClick: (data: T) -> Unit
-    ) -> Unit = { idx, item, onClick ->
-    }
+    ) -> Unit = { _, _, _ -> }
 ) {
 
     val listState = rememberLazyListState()
@@ -47,26 +52,36 @@ fun <T : Any> PagingList(
                 initialLoadSize = perPage
             ),
             pagingSourceFactory = {
-                ListPagingSource(perPage, source)
+                ListPagingSource(source)
             }
         ).flow
     }.collectAsLazyPagingItems().apply {
         loadStateHandler.invoke(loadState.refresh)
     }
 
-    LazyColumn(
-        modifier = modifier,
-        verticalArrangement = verticalArrangement,
-        state = listState
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        items(
-            count = listData.itemCount,
-            key = listData.itemKey(),
-            contentType = listData.itemContentType()
-        ) { index ->
-            val item = listData[index]
-            if (item != null) {
-                itemBlock(index, item, onItemClick)
+        if (listData.itemCount == 0) {
+            emptyContent()
+        } else {
+            LazyColumn(
+                modifier = modifier,
+                verticalArrangement = verticalArrangement,
+                state = listState
+            ) {
+                items(
+                    count = listData.itemCount,
+                    key = listData.itemKey(),
+                    contentType = listData.itemContentType()
+                ) { index ->
+                    val item = listData[index]
+                    if (item != null) {
+                        itemBlock(index, item, onItemClick)
+                    }
+                }
             }
         }
     }
