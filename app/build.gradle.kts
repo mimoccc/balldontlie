@@ -14,7 +14,7 @@ val SIGNING_CONFIG_NAME = "Any"
 
 plugins {
 //    id("com.google.devtools.ksp") version("1.8.0-1.0.9")
-// fucking ksp one version is too old and next is too new
+//  ksp one version is too old and next is too new
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
